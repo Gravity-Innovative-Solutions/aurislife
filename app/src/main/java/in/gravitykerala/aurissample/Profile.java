@@ -29,7 +29,7 @@ public class Profile extends AppCompatActivity {
 //
 //            @Override
 //            public void onClick(View v) {
-//                Intent intent = new Intent(Profile.this, ChangePassword.class);
+//                Intent intent = new Intent(Profile.this, ChangePasswordActivity.class);
 //                startActivity(intent);
 //            }
 //        });
@@ -38,7 +38,7 @@ public class Profile extends AppCompatActivity {
         chngepswd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Profile.this, ChangePassword.class);
+                Intent intent = new Intent(Profile.this, ChangePasswordActivity.class);
                 startActivity(intent);
 
             }
