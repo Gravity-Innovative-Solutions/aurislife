@@ -138,7 +138,7 @@ public class LoginActivity extends AppCompatActivity {
                     user.setAuthenticationToken(tok);
                     mClient.setCurrentUser(user);
                     Log.d("uid", userId);
-                    Intent intent = new Intent(getApplicationContext(), Profile.class);
+                    Intent intent = new Intent(getApplicationContext(), FirstPage.class);
                     startActivity(intent);
                     finish();
 
