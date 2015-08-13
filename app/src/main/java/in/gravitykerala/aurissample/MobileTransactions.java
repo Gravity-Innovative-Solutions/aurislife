@@ -9,7 +9,7 @@ public class MobileTransactions {
     public String uId;
 
     @com.google.gson.annotations.SerializedName("recharge_Amount")
-    public String recAmnt;
+    public int recAmnt;
 
     @com.google.gson.annotations.SerializedName("phno")
     public String pno;
@@ -17,5 +17,9 @@ public class MobileTransactions {
     @com.google.gson.annotations.SerializedName("connection_Name")
     public String Cname;
 
-
+    @com.google.gson.annotations.SerializedName("status")
+    public String stats;
+    @com.google.gson.annotations.SerializedName("remark")
+    public String remark;
 }
+

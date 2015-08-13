@@ -84,9 +84,13 @@ public class Transaction extends Activity {
 
         // Create a new item
         final MobileTransactions item = new MobileTransactions();
+        String amnt = phn.getText().toString().trim();
+        final int amt = (Integer.parseInt(amnt));
+        //Toast.makeText(this,amnt,Toast.LENGTH_LONG).show();
 
-        item.recAmnt = (phn.getText().toString());
-        item.Cname = (spnr.getSelectedItem().toString());
+        //  item.recAmnt = amt;
+        //  Toast.makeText(this,""+amt,Toast.LENGTH_LONG).show();
+        //  item.Cname = (spnr.getSelectedItem().toString());
 
         // item.sId = mClient.getCurrentUser().getUserId();
         // item.setComplete(false);
@@ -102,7 +106,8 @@ public class Transaction extends Activity {
                         public void run() {
                             //if(!entity.isComplete()){
                             // mAdapter.add(entity);
-                            item.recAmnt = (phn.getText().toString());
+                            item.recAmnt = amt;
+                            Toast.makeText(Transaction.this, "" + amt, Toast.LENGTH_LONG).show();
                             item.Cname = (spnr.getSelectedItem().toString());
                             //}
 

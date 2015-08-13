@@ -38,7 +38,10 @@
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar" />
         <activity
             android:name=".Transaction"
-            android:label="@string/title_activity_transaction"></activity>
+            android:label="@string/title_activity_transaction" />
+        <activity
+            android:name=".RecentTransactions"
+            android:label="@string/title_activity_recent_transactions"></activity>
     </application>
 
 </manifest>

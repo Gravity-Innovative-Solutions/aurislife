@@ -206,6 +206,14 @@ public class FirstPage extends FragmentActivity implements ActionBar.TabListener
                     startActivity(i);
                 }
             });
+            Button recnttrans = (Button) rootView.findViewById(R.id.button3);
+            recnttrans.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(getActivity(), RecentTransactions.class);
+                    startActivity(i);
+                }
+            });
 
 
             return rootView;
