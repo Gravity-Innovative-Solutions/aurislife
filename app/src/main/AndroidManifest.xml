@@ -41,7 +41,10 @@
             android:label="@string/title_activity_transaction" />
         <activity
             android:name=".RecentTransactions"
-            android:label="@string/title_activity_recent_transactions"></activity>
+            android:label="@string/title_activity_recent_transactions">
+            android:label="@string/title_activity_transaction"
+            android:theme="@style/AppTheme.Dark">
+        </activity>
     </application>
 
 </manifest>
