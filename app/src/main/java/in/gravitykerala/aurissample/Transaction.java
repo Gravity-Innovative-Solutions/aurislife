@@ -1,8 +1,8 @@
 package in.gravitykerala.aurissample;
 
+import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Activity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,9 +13,6 @@ import android.widget.Toast;
 
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
-
-import java.util.Date;
-import java.util.List;
 
 public class Transaction extends Activity {
     MobileServiceClient mClient;
@@ -42,7 +39,7 @@ public class Transaction extends Activity {
         setContentView(R.layout.activity_transaction);
         mClient = LoginActivity.mClient;
         mToDoTable = mClient.getTable(MobileTransactions.class);
-        phn = (EditText) findViewById(R.id.phno);
+        phn = (EditText) findViewById(R.id.input_phn);
         sbmt = (Button) findViewById(R.id.submit);
         spnr = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
@@ -72,7 +69,14 @@ public class Transaction extends Activity {
         sbmt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String phn_string = phn.getText().toString();
+                if (phn_string == null) {
+                    Toast.makeText(Transaction.this, "Enter your Phone number", Toast.LENGTH_SHORT).show();
+                } else {
+
+
                 addItem();
+                }
             }
         });
     }
