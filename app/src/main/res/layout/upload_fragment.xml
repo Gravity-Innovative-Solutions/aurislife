@@ -16,5 +16,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="Capture Or Upload Image"
-        android:textColor="#030303" />
+        />
 </LinearLayout>
