@@ -38,8 +38,13 @@
             android:theme="@style/MyActionBar" />
         <activity
             android:name=".Transaction"
+            android:label="@string/title_activity_transaction" />
+        <activity
+            android:name=".RecentTransactions"
+            android:label="@string/title_activity_recent_transactions">
             android:label="@string/title_activity_transaction"
-            android:theme="@style/AppTheme.Dark"></activity>
+            android:theme="@style/AppTheme.Dark">
+        </activity>
     </application>
 
 </manifest>
