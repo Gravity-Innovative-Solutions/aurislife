@@ -34,7 +34,8 @@
                     android:id="@+id/btnCapturePicture"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Take a Picture" />
+                    android:text="Take a Picture"
+                    android:textColor="@color/white" />
 
                 <!--<Button-->
                 <!--android:id="@+id/btnRecordVideo"-->
@@ -47,7 +48,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="Upload Image" />
+                    android:text="Upload Image"
+                    android:textColor="@color/white" />
             </LinearLayout>
         </LinearLayout>
 

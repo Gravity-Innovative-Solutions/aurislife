@@ -26,6 +26,14 @@
         <item name="android:textColorPrimary">@color/iron</item>
         <item name="android:background">@color/primary</item>
     </style>
+    <!-- the theme applied to the application or activity -->
+    <style name="CustomActionBarTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+    </style>
 
+    <!-- ActionBar styles -->
+    <style name="MyActionBar" parent="@android:style/Theme.Holo.Light.DarkActionBar">
+        <item name="android:background">#E43F3F</item>
+    </style>
 
 </resources>
