@@ -3,7 +3,7 @@
     package="in.gravitykerala.aurissample">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -41,8 +41,8 @@
             android:label="@string/title_activity_transaction" />
         <activity
             android:name=".RecentTransactions"
-            android:label="@string/title_activity_recent_transactions">
-            android:label="@string/title_activity_transaction"
+            android:label="@string/title_activity_recent_transactions"
+
             android:theme="@style/AppTheme.Dark">
         </activity>
     </application>
