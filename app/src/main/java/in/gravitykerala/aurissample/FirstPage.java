@@ -296,9 +296,7 @@ public class FirstPage extends FragmentActivity implements ActionBar.TabListener
         private static File getOutputMediaFile(int type) {
 
             // External sdcard location
-            File mediaStorageDir = new File(
-                    Environment
-                            .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+            File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
                     IMAGE_DIRECTORY_NAME);
 
             // Create the storage directory if it does not exist
@@ -462,7 +460,9 @@ public class FirstPage extends FragmentActivity implements ActionBar.TabListener
         }
 
         public Uri getOutputMediaFileUri(int type) {
-            return Uri.fromFile(getOutputMediaFile(type));
+            Log.d("URI type", "" + type);
+            File file = getOutputMediaFile(type);
+            return Uri.fromFile(file);
         }
 
     }
