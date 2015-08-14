@@ -35,10 +35,11 @@
         <activity
             android:name=".FirstPage"
             android:label="@string/title_activity_change_password"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" />
+            android:theme="@style/MyActionBar" />
         <activity
             android:name=".Transaction"
-            android:label="@string/title_activity_transaction" />
+            android:label="@string/title_activity_transaction"
+            android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".RecentTransactions"
             android:label="@string/title_activity_recent_transactions"

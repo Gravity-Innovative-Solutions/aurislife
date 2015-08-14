@@ -22,6 +22,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -72,12 +74,14 @@ public class FirstPage extends FragmentActivity implements ActionBar.TabListener
         setContentView(R.layout.activity_main);
         getActionBar().setDisplayShowHomeEnabled(false);  // hides action bar icon
         getActionBar().setDisplayShowTitleEnabled(false);
+
         // Create the adapter that will return a fragment for each of the three primary sections
         // of the app.
         mAppSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0000ff")));
 
         // Specify that the Home/Up button should not be enabled, since there is no hierarchical
         // parent.
