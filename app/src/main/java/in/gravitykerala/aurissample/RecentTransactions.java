@@ -1,6 +1,9 @@
 package in.gravitykerala.aurissample;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -55,6 +58,7 @@ public class RecentTransactions extends ActionBarActivity {
             @Override
             public void onRefresh() {
                 //mSwipeLayout.setRefreshing(true);
+                isOnline();
                 refreshItemsFromTable();
                 //mSwipeLayout.setRefreshing(true);
             }
@@ -75,6 +79,7 @@ public class RecentTransactions extends ActionBarActivity {
         mAdapter = new RTAdapter(this, R.layout.transaction_single);
         ListView listViewToDo = (ListView) findViewById(R.id.list);
         listViewToDo.setAdapter(mAdapter);
+        isOnline();
         refreshItemsFromTable();
     }
     // Load the items from the Mobile Service
@@ -90,12 +95,7 @@ public class RecentTransactions extends ActionBarActivity {
 
         new AsyncTask<Void, Void, Void>() {
             @Override
-            protected void onPostExecute(Void result) {
-                mSwipeLayout.setRefreshing(false);
-                Toast toast2 = Toast.makeText(RecentTransactions.this, "no network",
-                        Toast.LENGTH_SHORT);
-                toast2.show();
-            }
+
             protected Void doInBackground(Void... params) {
                 try {
                     final List<MobileTransactions> results =
@@ -115,30 +115,36 @@ public class RecentTransactions extends ActionBarActivity {
                             }
                         }
                     });
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//
-//                    createAndShowDialog(e, "Error");
-//                    Toast.makeText(RecentTransactions.this,"NO NETWORK",Toast.LENGTH_LONG).show();
-                } catch (InterruptedException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
-                } catch (ExecutionException e) {
 
-                    e.printStackTrace();
-                    Log.d("netwrk", "prob ");
-//                    Toast.makeText(getBaseContext(), "Error retrieving notifications, Probably bad network connection!", Toast.LENGTH_LONG).show();
-//                } catch (MobileServiceException e) {
-//                    e.printStackTrace();
+                    createAndShowDialog(e, "Error");
+
+
                 }
                 return null;
             }
 
+            protected void onPostExecute(Void results) {
+                super.onPostExecute(results);
+//
+            }
         }.execute();
 
         mAdapter.clear();
     }
 
-
+    public boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        } else {
+            mSwipeLayout.setRefreshing(false);
+            Toast.makeText(getBaseContext(), "YOU ARE NOT CONNECTED TO AN NETWORK", Toast.LENGTH_LONG).show();
+        }
+        return false;
+    }
     private void createAndShowDialog(Exception exception, String title) {
         Throwable ex = exception;
         if (exception.getCause() != null) {
