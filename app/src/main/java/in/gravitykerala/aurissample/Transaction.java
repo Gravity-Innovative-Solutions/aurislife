@@ -21,6 +21,7 @@ public class Transaction extends Activity {
     Spinner spnr;
     Button sbmt;
 
+
     String[] operators = {
             "IDEA",
             "BSNL",
@@ -70,9 +71,18 @@ public class Transaction extends Activity {
             @Override
             public void onClick(View v) {
                 String phn_string = phn.getText().toString();
-                if (phn_string == null) {
-                    Toast.makeText(Transaction.this, "Enter your Phone number", Toast.LENGTH_SHORT).show();
+                int a = Integer.parseInt(phn_string);
+
+
+                int bal = getIntent().getIntExtra("bal", 0);
+
+                Toast.makeText(Transaction.this, bal, Toast.LENGTH_LONG).show();
+                if (phn_string.equals("")) {
+                    Toast.makeText(Transaction.this, "Enter your Recharge Amount", Toast.LENGTH_SHORT).show();
+                } else if (a > bal) {
+                    Toast.makeText(Transaction.this, "Insufficient Balance", Toast.LENGTH_LONG).show();
                 } else {
+
 
 
                 addItem();

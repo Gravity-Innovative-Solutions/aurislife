@@ -179,6 +179,7 @@ public class FirstPage extends FragmentActivity implements ActionBar.TabListener
     public static class ProfileFragment extends Fragment {
         MobileServiceClient mClient;
         MobileServiceTable<MobileProfile> mToDoTable;
+        int currnt_blnce = 0;
         private TextView tv;
         private TextView tv1;
         private TextView tv2;
@@ -205,8 +206,12 @@ public class FirstPage extends FragmentActivity implements ActionBar.TabListener
             Recahrge.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (currnt_blnce == 0) {
+                        Toast.makeText(getActivity(), "Current balance is zero", Toast.LENGTH_SHORT).show();
+                    }
                     Intent i = new Intent(getActivity(), Transaction.class);
-                    i.putExtra("bal", bal);
+//                    i.putExtra("bal", currnt_blnce);
+                    i.putExtra("bal", currnt_blnce);
                     startActivity(i);
                 }
             });
@@ -243,6 +248,7 @@ public class FirstPage extends FragmentActivity implements ActionBar.TabListener
                                     tv.setText("" + item.bal);
                                     tv1.setText(item.email);
                                     tv2.setText(item.phn);
+                                    currnt_blnce = item.bal;
 
                                 }
                             }

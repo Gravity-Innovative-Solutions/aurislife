@@ -10,7 +10,7 @@
         android:text="Title"
 
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#ff000000"
+        android:textColor="#fff"
         android:textStyle="bold" />
 
     <TextView
@@ -23,7 +23,7 @@
         android:paddingBottom="7dp"
         android:text="Content: sadasdasd asd sadas asdasdasdas asdasdasdas sadasdasdas asdasdasda"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#ff000000" />
+        android:textColor="#fff" />
 
     <TextView
         android:id="@+id/remark"
@@ -35,6 +35,6 @@
         android:paddingBottom="7dp"
         android:text="Content: sadasdasd asd sadas asdasdasdas asdasdasdas sadasdasdas asdasdasda"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#ff000000" />
+        android:textColor="#fff" />
 
 </LinearLayout>
