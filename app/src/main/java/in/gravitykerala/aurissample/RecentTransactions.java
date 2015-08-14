@@ -3,6 +3,7 @@ package in.gravitykerala.aurissample;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.util.Pair;
@@ -15,16 +16,18 @@ import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
+import com.microsoft.windowsazure.mobileservices.MobileServiceException;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
 import java.util.AbstractList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class RecentTransactions extends ActionBarActivity {
     private MobileServiceClient mClient;
     private TextView tv;
     private MobileServiceTable<MobileTransactions> mToDoTable;
-
+    private SwipeRefreshLayout mSwipeLayout;
 
     private RTAdapter mAdapter;
     private ProgressBar mProgressBar;
@@ -46,6 +49,20 @@ public class RecentTransactions extends ActionBarActivity {
 //
 //                }
         // });
+        mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
+        //mSwipeLayout.setOnRefreshListener(this);
+        mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                //mSwipeLayout.setRefreshing(true);
+                refreshItemsFromTable();
+                //mSwipeLayout.setRefreshing(true);
+            }
+        });
+        mSwipeLayout.setColorSchemeResources(android.R.color.holo_red_light,
+                android.R.color.holo_green_light, android.R.color.holo_orange_light,
+                android.R.color.holo_blue_light);
+        mSwipeLayout.setEnabled(true);
         mClient = LoginActivity.mClient;
 
         // Get the Mobile Service Table instance to use
@@ -73,6 +90,12 @@ public class RecentTransactions extends ActionBarActivity {
 
         new AsyncTask<Void, Void, Void>() {
             @Override
+            protected void onPostExecute(Void result) {
+                mSwipeLayout.setRefreshing(false);
+                Toast toast2 = Toast.makeText(RecentTransactions.this, "no network",
+                        Toast.LENGTH_SHORT);
+                toast2.show();
+            }
             protected Void doInBackground(Void... params) {
                 try {
                     final List<MobileTransactions> results =
@@ -81,23 +104,38 @@ public class RecentTransactions extends ActionBarActivity {
                         @Override
                         public void run() {
 
+                            mSwipeLayout.setRefreshing(false);
+                            if (results.size() == 0) {
+                                Toast.makeText(RecentTransactions.this, "NO TRANSACTIPNS YET!!", Toast.LENGTH_LONG).show();
 
-                            for (MobileTransactions item : results) {
-                                mAdapter.add(item);
+                            } else {
+                                for (MobileTransactions item : results) {
+                                    mAdapter.add(item);
+                                }
                             }
                         }
                     });
-                } catch (Exception e) {
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//
+//                    createAndShowDialog(e, "Error");
+//                    Toast.makeText(RecentTransactions.this,"NO NETWORK",Toast.LENGTH_LONG).show();
+                } catch (InterruptedException e) {
                     e.printStackTrace();
+                } catch (ExecutionException e) {
 
-                    createAndShowDialog(e, "Error");
-
+                    e.printStackTrace();
+                    Log.d("netwrk", "prob ");
+//                    Toast.makeText(getBaseContext(), "Error retrieving notifications, Probably bad network connection!", Toast.LENGTH_LONG).show();
+//                } catch (MobileServiceException e) {
+//                    e.printStackTrace();
                 }
-
                 return null;
             }
+
         }.execute();
 
+        mAdapter.clear();
     }
 
 

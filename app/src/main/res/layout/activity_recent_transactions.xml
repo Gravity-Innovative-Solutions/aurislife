@@ -5,7 +5,15 @@
     android:layout_below="@+id/include3"
     android:orientation="vertical">
 
+    <include layout="@layout/toolbar_default" />
 
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:background="@color/white">
     <ListView
         android:id="@+id/list"
         android:layout_width="fill_parent"
@@ -13,4 +21,6 @@
         android:divider="#b5b5b5"
         android:dividerHeight="1dp"
         android:listSelector="@drawable/list_selector" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 </LinearLayout>
