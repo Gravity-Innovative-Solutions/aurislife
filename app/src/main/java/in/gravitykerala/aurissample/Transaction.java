@@ -76,11 +76,11 @@ public class Transaction extends Activity {
 
                 int bal = getIntent().getIntExtra("bal", 0);
 
-                Toast.makeText(Transaction.this, bal, Toast.LENGTH_LONG).show();
+
                 if (phn_string.equals("")) {
                     Toast.makeText(Transaction.this, "Enter your Recharge Amount", Toast.LENGTH_SHORT).show();
                 } else if (a > bal) {
-                    Toast.makeText(Transaction.this, "Insufficient Balance", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Transaction.this, "Your Balance Is Less Than You Request", Toast.LENGTH_LONG).show();
                 } else {
 
 
