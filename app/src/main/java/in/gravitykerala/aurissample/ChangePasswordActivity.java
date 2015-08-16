@@ -10,12 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.microsoft.windowsazure.mobileservices.ApiOperationCallback;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
-
-import org.apache.http.HttpResponse;
 
 import java.util.AbstractList;
 import java.util.List;
@@ -32,6 +31,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
+
+
         Curerntpwd = (EditText) findViewById(R.id.input_crnt_password);
         NewPwd = (EditText) findViewById(R.id.input_new_password);
         ReNpwd = (EditText) findViewById(R.id.input_new_confirm_password);
@@ -44,6 +45,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             }
         });
     }
+
 
     public void submit() {
         {

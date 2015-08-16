@@ -20,6 +20,8 @@ public class Transaction extends Activity {
     EditText phn;
     Spinner spnr;
     Button sbmt;
+    int position = -1;
+
 
 
     String[] operators = {
@@ -43,6 +45,7 @@ public class Transaction extends Activity {
         phn = (EditText) findViewById(R.id.input_phn);
         sbmt = (Button) findViewById(R.id.submit);
         spnr = (Spinner) findViewById(R.id.spinner);
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_item, operators);
 
@@ -54,7 +57,7 @@ public class Transaction extends Activity {
                     public void onItemSelected(AdapterView<?> arg0, View arg1,
                                                int arg2, long arg3) {
 
-                        int position = spnr.getSelectedItemPosition();
+                        position = spnr.getSelectedItemPosition();
                         Toast.makeText(getApplicationContext(), "You have selected " + operators[+position], Toast.LENGTH_LONG).show();
                         // TODO Auto-generated method stub
                     }
@@ -122,7 +125,7 @@ public class Transaction extends Activity {
                             // mAdapter.add(entity);
                             item.recAmnt = amt;
                             Toast.makeText(Transaction.this, "" + amt, Toast.LENGTH_LONG).show();
-                            item.Cname = (spnr.getSelectedItem().toString());
+                            item.Cname = (operators[+position].toString());
                             //}
 
                         }
