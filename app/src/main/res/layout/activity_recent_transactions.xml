@@ -6,7 +6,7 @@
     android:layout_below="@+id/include3"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="5dp"
+
     tools:context="in.gravitykerala.aurissample.RecentTransactions">
 
     <include layout="@layout/toolbar_default" />
@@ -31,7 +31,8 @@
         android:layout_height="wrap_content"
         android:divider="#fff"
         android:dividerHeight="1dp"
-        android:listSelector="@drawable/list_selector" />
+        android:listSelector="@drawable/list_selector"
+        android:padding="5dp" />
     </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

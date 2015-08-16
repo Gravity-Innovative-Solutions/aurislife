@@ -1,7 +1,9 @@
 package in.gravitykerala.aurissample;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -31,6 +34,12 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
     public static MobileServiceClient mClient;
+    CheckBox saveLoginCheckBox;
+    String username, password;
+    String KEY_username = "username";
+    String KEY_password = "password";
+    SharedPreferences prefs;
+
     LinearLayout l1;
     CoordinatorLayout coordinatorLayout;
     View.OnClickListener mOnClickListener = null;
@@ -48,6 +57,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
+        saveLoginCheckBox = (CheckBox) findViewById(R.id.checkBox_remember);
+        prefs = this.getSharedPreferences("in.gravity", Context.MODE_PRIVATE);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id
                 .coordinatorLayout);
 
@@ -56,6 +67,25 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 login();
+                username = prefs.getString(KEY_username, "");
+                password = prefs.getString(KEY_password, "");
+                _emailText.setText(username);
+                _passwordText.setText(password);
+                String email = _emailText.getText().toString();
+                String password = _passwordText.getText().toString();
+                if (saveLoginCheckBox.isChecked()) {
+
+                    prefs.edit().putString(KEY_username, username).commit();
+                    prefs.edit().putString(KEY_password, password).commit();
+
+//                        SharedPreferences prefs = getSharedPreferences(SPF_NAME, Context.MODE_PRIVATE);
+                    // prefs.edit().putString(username, us).putString(password, ps).commit();
+                } else {
+
+                    //  SharedPreferences prefs = getSharedPreferences(SPF_NAME, Context.MODE_PRIVATE);
+                    prefs.edit().clear().commit();
+
+                }
 
 
             }
@@ -81,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void login() {
         Log.d(TAG, "Login");
+
 
         if (!validate()) {
             onLoginFailed();
@@ -207,8 +238,6 @@ public class LoginActivity extends AppCompatActivity {
     public boolean validate() {
         boolean valid = true;
 
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
 
 //        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
 //            _emailText.setError("enter a valid email address");
