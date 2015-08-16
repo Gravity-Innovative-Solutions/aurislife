@@ -18,12 +18,15 @@ package in.gravitykerala.aurissample;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -192,6 +195,7 @@ public class FirstPage extends FragmentActivity implements ActionBar.TabListener
             tv = (TextView) rootView.findViewById(R.id.textView2);
             tv1 = (TextView) rootView.findViewById(R.id.textView7);
             tv2 = (TextView) rootView.findViewById(R.id.textView6);
+//            isOnline();
             refreshItemsFromTable();
             Button chngepswd = (Button) rootView.findViewById(R.id.btn_change_pswd);
             chngepswd.setOnClickListener(new View.OnClickListener() {
@@ -208,11 +212,11 @@ public class FirstPage extends FragmentActivity implements ActionBar.TabListener
                 public void onClick(View v) {
                     if (currnt_blnce == 0) {
                         Toast.makeText(getActivity(), "Current balance is zero", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Intent i = new Intent(getActivity(), Transaction.class);
+                        i.putExtra("bal", currnt_blnce);
+                        startActivity(i);
                     }
-                    Intent i = new Intent(getActivity(), Transaction.class);
-//                    i.putExtra("bal", currnt_blnce);
-                    i.putExtra("bal", currnt_blnce);
-                    startActivity(i);
                 }
             });
             Button recnttrans = (Button) rootView.findViewById(R.id.button3);
@@ -262,10 +266,25 @@ public class FirstPage extends FragmentActivity implements ActionBar.TabListener
 
                     return null;
                 }
+
+                protected void onPostExecute(Void results) {
+                    super.onPostExecute(results);
+//
+                }
             }.execute();
 
         }
-
+//        public boolean isOnline() {
+//            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+//            NetworkInfo netInfo = cm.getActiveNetworkInfo();
+//            if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+//                return true;
+//            } else {
+//               // mSwipeLayout.setRefreshing(false);
+//                Toast.makeText(getActivity(), "YOU ARE NOT CONNECTED TO AN NETWORK", Toast.LENGTH_LONG).show();
+//            }
+//            return false;
+//        }
 
         private void createAndShowDialog(Exception exception, String title) {
             Throwable ex = exception;
