@@ -1,34 +1,26 @@
 package in.gravitykerala.aurissample;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
-import android.util.Pair;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.common.util.concurrent.FutureCallback;
-import com.google.common.util.concurrent.Futures;
-import com.google.common.util.concurrent.ListenableFuture;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
-import com.microsoft.windowsazure.mobileservices.MobileServiceException;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
-import java.util.AbstractList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
-public class RecentTransactions extends ActionBarActivity {
+public class RecentTransactions extends AppCompatActivity {
     private MobileServiceClient mClient;
-    private TextView tv;
+    private TextView tv, pull;
     private MobileServiceTable<MobileTransactions> mToDoTable;
     private SwipeRefreshLayout mSwipeLayout;
 
@@ -52,6 +44,7 @@ public class RecentTransactions extends ActionBarActivity {
 //
 //                }
         // });
+        pull = (TextView) findViewById(R.id.textView_pull);
         mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
         //mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -60,6 +53,7 @@ public class RecentTransactions extends ActionBarActivity {
                 //mSwipeLayout.setRefreshing(true);
                 isOnline();
                 refreshItemsFromTable();
+                pull.setVisibility(View.GONE);
                 //mSwipeLayout.setRefreshing(true);
             }
         });
