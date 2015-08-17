@@ -7,4 +7,5 @@
     <string name="title_activity_change_password">Change Password</string>
     <string name="title_activity_transaction">Transaction</string>
     <string name="title_activity_recent_transactions">RecentTransactions</string>
+    <string name="title_activity_priscription_details">PriscriptionDetails</string>
 </resources>

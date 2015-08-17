@@ -134,167 +134,6 @@ public class FirstPage extends FragmentActivity implements ActionBar.TabListener
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
 
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to one of the primary
-     * sections of the app.
-     */
-    public static class AppSectionsPagerAdapter extends FragmentPagerAdapter {
-
-        public AppSectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int i) {
-            switch (i) {
-                case 0:
-                    // The first section of the app is the most interesting -- it offers
-                    // a launchpad into the other demonstrations in this example application.
-                    return new ProfileFragment();
-
-                default:
-                    // The other sections of the app are dummy placeholders.
-                    Fragment fragment = new UploadFragment();
-//                    Bundle args = new Bundle();
-//                    args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, i + 1);
-//                    fragment.setArguments(args);
-                    return fragment;
-            }
-        }
-
-        @Override
-        public int getCount() {
-            return 2;
-        }
-
-        //
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return Titles[position];
-        }
-
-    }
-
-
-    /**
-     * A fragment that launches other parts of the demo application.
-     */
-    public static class ProfileFragment extends Fragment {
-        MobileServiceClient mClient;
-        MobileServiceTable<MobileProfile> mToDoTable;
-        int currnt_blnce = 0;
-        private TextView tv;
-        private TextView tv1;
-        private TextView tv2;
-
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.activity_profile, container, false);
-            mClient = LoginActivity.mClient;
-            mToDoTable = mClient.getTable(MobileProfile.class);
-            tv = (TextView) rootView.findViewById(R.id.textView2);
-            tv1 = (TextView) rootView.findViewById(R.id.textView7);
-            tv2 = (TextView) rootView.findViewById(R.id.textView6);
-//            isOnline();
-            refreshItemsFromTable();
-            Button chngepswd = (Button) rootView.findViewById(R.id.btn_change_pswd);
-            chngepswd.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(getActivity(), ChangePasswordActivity.class);
-                    startActivity(i);
-                }
-            });
-            final String bal = tv.getText().toString();
-            Button Recahrge = (Button) rootView.findViewById(R.id.button2);
-            Recahrge.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (currnt_blnce == 0) {
-                        Toast.makeText(getActivity(), "Current balance is zero", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Intent i = new Intent(getActivity(), Transaction.class);
-                        i.putExtra("bal", currnt_blnce);
-                        startActivity(i);
-                    }
-                }
-            });
-            Button recnttrans = (Button) rootView.findViewById(R.id.button3);
-            recnttrans.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(getActivity(), RecentTransactions.class);
-                    startActivity(i);
-                }
-            });
-
-
-            return rootView;
-        }
-
-        public void refreshItemsFromTable() {
-
-            // Get the items that weren't marked as completed and add them in the
-            // adapter
-
-            new AsyncTask<Void, Void, Void>() {
-                @Override
-                protected Void doInBackground(Void... params) {
-                    try {
-                        final List<MobileProfile> results =
-                                mToDoTable.where().execute().get();
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-
-
-                                for (MobileProfile item : results) {
-                                    tv.setText("" + item.bal);
-                                    tv1.setText(item.email);
-                                    tv2.setText(item.phn);
-                                    currnt_blnce = item.bal;
-
-                                }
-                            }
-                        });
-                    } catch (Exception e) {
-                        e.printStackTrace();
-
-                        createAndShowDialog(e, "Error");
-
-                    }
-
-                    return null;
-                }
-
-                protected void onPostExecute(Void results) {
-                    super.onPostExecute(results);
-//
-                }
-            }.execute();
-
-        }
-//        public boolean isOnline() {
-//            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-//            NetworkInfo netInfo = cm.getActiveNetworkInfo();
-//            if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-//                return true;
-//            } else {
-//               // mSwipeLayout.setRefreshing(false);
-//                Toast.makeText(getActivity(), "YOU ARE NOT CONNECTED TO AN NETWORK", Toast.LENGTH_LONG).show();
-//            }
-//            return false;
-//        }
-
-        private void createAndShowDialog(Exception exception, String title) {
-            Throwable ex = exception;
-            if (exception.getCause() != null) {
-                ex = exception.getCause();
-            }
-            // createAndShowDialog(ex.getMessage(), title);
-        }
-    }
-
     public static class UploadFragment extends Fragment {
         public static final int MEDIA_TYPE_IMAGE = 1;
         private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 100;
@@ -391,6 +230,14 @@ public class FirstPage extends FragmentActivity implements ActionBar.TabListener
 //
 //                }
 //            });
+            Button Prscrptiondetails = (Button) rootView.findViewById(R.id.button4);
+            Prscrptiondetails.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(getActivity(), PriscriptionDetails.class);
+                    startActivity(i);
+                }
+            });
             return rootView;
         }
 
@@ -484,6 +331,167 @@ public class FirstPage extends FragmentActivity implements ActionBar.TabListener
             return Uri.fromFile(file);
         }
 
+    }
+
+    /**
+     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to one of the primary
+     * sections of the app.
+     */
+    public class AppSectionsPagerAdapter extends FragmentPagerAdapter {
+
+        public AppSectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int i) {
+            switch (i) {
+                case 0:
+                    // The first section of the app is the most interesting -- it offers
+                    // a launchpad into the other demonstrations in this example application.
+                    return new ProfileFragment();
+
+                default:
+                    // The other sections of the app are dummy placeholders.
+                    Fragment fragment = new UploadFragment();
+//                    Bundle args = new Bundle();
+//                    args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, i + 1);
+//                    fragment.setArguments(args);
+                    return fragment;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+
+        //
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return Titles[position];
+        }
+
+    }
+
+    /**
+     * A fragment that launches other parts of the demo application.
+     */
+    public class ProfileFragment extends Fragment {
+        MobileServiceClient mClient;
+        MobileServiceTable<MobileProfile> mToDoTable;
+        int currnt_blnce = 0;
+        private TextView tv;
+        private TextView tv1;
+        private TextView tv2;
+
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.activity_profile, container, false);
+            mClient = LoginActivity.mClient;
+            mToDoTable = mClient.getTable(MobileProfile.class);
+            tv = (TextView) rootView.findViewById(R.id.textView2);
+            tv1 = (TextView) rootView.findViewById(R.id.textView7);
+            tv2 = (TextView) rootView.findViewById(R.id.textView6);
+            isOnline();
+            refreshItemsFromTable();
+            Button chngepswd = (Button) rootView.findViewById(R.id.btn_change_pswd);
+            chngepswd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(getActivity(), ChangePasswordActivity.class);
+                    startActivity(i);
+                }
+            });
+            final String bal = tv.getText().toString();
+            Button Recahrge = (Button) rootView.findViewById(R.id.button2);
+            Recahrge.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (currnt_blnce == 0) {
+                        Toast.makeText(getActivity(), "Current balance is zero", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Intent i = new Intent(getActivity(), Transaction.class);
+                        i.putExtra("bal", currnt_blnce);
+                        startActivity(i);
+                    }
+                }
+            });
+            Button recnttrans = (Button) rootView.findViewById(R.id.button3);
+            recnttrans.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(getActivity(), RecentTransactions.class);
+                    startActivity(i);
+                }
+            });
+
+
+            return rootView;
+        }
+
+        public void refreshItemsFromTable() {
+
+            // Get the items that weren't marked as completed and add them in the
+            // adapter
+
+            new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... params) {
+                    try {
+                        final List<MobileProfile> results =
+                                mToDoTable.where().execute().get();
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+
+                                for (MobileProfile item : results) {
+                                    tv.setText("" + item.bal);
+                                    tv1.setText(item.email);
+                                    tv2.setText(item.phn);
+                                    currnt_blnce = item.bal;
+
+                                }
+                            }
+                        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+
+                        createAndShowDialog(e, "Error");
+
+                    }
+
+                    return null;
+                }
+
+                protected void onPostExecute(Void results) {
+                    super.onPostExecute(results);
+//
+                }
+            }.execute();
+
+        }
+
+        public boolean isOnline() {
+            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo netInfo = cm.getActiveNetworkInfo();
+            if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+                return true;
+            } else {
+                // mSwipeLayout.setRefreshing(false);
+                Toast.makeText(getActivity(), "YOU ARE NOT CONNECTED TO AN NETWORK", Toast.LENGTH_LONG).show();
+            }
+            return false;
+        }
+
+        private void createAndShowDialog(Exception exception, String title) {
+            Throwable ex = exception;
+            if (exception.getCause() != null) {
+                ex = exception.getCause();
+            }
+            // createAndShowDialog(ex.getMessage(), title);
+        }
     }
 //
 //        @Override
