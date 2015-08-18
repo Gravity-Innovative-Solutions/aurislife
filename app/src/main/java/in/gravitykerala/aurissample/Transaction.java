@@ -3,6 +3,7 @@ package in.gravitykerala.aurissample;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,7 +22,7 @@ public class Transaction extends Activity {
     Spinner spnr;
     Button sbmt;
     int position = -1;
-
+    int amount = 0;
 
 
     String[] operators = {
@@ -58,7 +59,7 @@ public class Transaction extends Activity {
                                                int arg2, long arg3) {
 
                         position = spnr.getSelectedItemPosition();
-                        Toast.makeText(getApplicationContext(), "You have selected " + operators[+position], Toast.LENGTH_LONG).show();
+                        //   Toast.makeText(getApplicationContext(), "You have selected " + operators[+position], Toast.LENGTH_LONG).show();
                         // TODO Auto-generated method stub
                     }
 
@@ -73,22 +74,24 @@ public class Transaction extends Activity {
         sbmt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String phn_string = phn.getText().toString();
-                int a = Integer.parseInt(phn_string);
 
+                amount = phn.getText().length();
 
                 int bal = getIntent().getIntExtra("bal", 0);
 
 
-                if (phn_string.equals("")) {
+                if (amount == 0) {
                     Toast.makeText(Transaction.this, "Enter your Recharge Amount", Toast.LENGTH_SHORT).show();
-                } else if (a > bal) {
-                    Toast.makeText(Transaction.this, "Your Balance Is Less Than You Request", Toast.LENGTH_LONG).show();
                 } else {
+                    String phn_string = phn.getText().toString();
+                    int a = Integer.parseInt(phn_string);
+                    if (a > bal) {
+                        Toast.makeText(Transaction.this, "Your Balance Is Less Than You Request", Toast.LENGTH_LONG).show();
+                    } else {
 
 
-
-                addItem();
+                        addItem();
+                    }
                 }
             }
         });
@@ -101,8 +104,10 @@ public class Transaction extends Activity {
 
         // Create a new item
         final MobileTransactions item = new MobileTransactions();
-        String amnt = phn.getText().toString().trim();
+        final String amnt = phn.getText().toString().trim();
         final int amt = (Integer.parseInt(amnt));
+        final String Connction = spnr.getSelectedItem().toString();
+
         //Toast.makeText(this,amnt,Toast.LENGTH_LONG).show();
 
         //  item.recAmnt = amt;
@@ -113,6 +118,9 @@ public class Transaction extends Activity {
         // item.setComplete(false);
 
         // Insert the new item
+        item.recAmnt = amt;
+
+        item.Cname = Connction;
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
@@ -123,9 +131,8 @@ public class Transaction extends Activity {
                         public void run() {
                             //if(!entity.isComplete()){
                             // mAdapter.add(entity);
-                            item.recAmnt = amt;
-                            Toast.makeText(Transaction.this, "" + amt, Toast.LENGTH_LONG).show();
-                            item.Cname = (operators[+position].toString());
+
+                            Toast.makeText(Transaction.this, Connction + "\t" + amt, Toast.LENGTH_LONG).show();
                             //}
 
                         }
@@ -133,6 +140,7 @@ public class Transaction extends Activity {
                 } catch (Exception e) {
                     e.printStackTrace();
                     createAndShowDialog(e, "Error");
+                    Log.d("", "error");
 
                 }
 
