@@ -59,7 +59,7 @@ public class RecentTransactions extends AppCompatActivity {
                 //mSwipeLayout.setRefreshing(true);
                 isOnline();
                 refreshItemsFromTable();
-                pull.setVisibility(View.GONE);
+
                 //mSwipeLayout.setRefreshing(true);
             }
         });
@@ -111,6 +111,7 @@ public class RecentTransactions extends AppCompatActivity {
                             } else {
                                 for (MobileTransactions item : results) {
                                     mAdapter.add(item);
+                                    pull.setVisibility(View.GONE);
                                 }
                             }
                         }
