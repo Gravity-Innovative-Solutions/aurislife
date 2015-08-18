@@ -26,13 +26,14 @@ public class RecentTransactions extends AppCompatActivity {
     private SwipeRefreshLayout mSwipeLayout;
 
     private RTAdapter mAdapter;
-    private ProgressBar mProgressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recent_transactions);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         if (toolbar != null) {
             setSupportActionBar(toolbar);
         }
@@ -57,9 +58,11 @@ public class RecentTransactions extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 //mSwipeLayout.setRefreshing(true);
+
                 isOnline();
                 refreshItemsFromTable();
                 pull.setVisibility(View.GONE);
+
                 //mSwipeLayout.setRefreshing(true);
             }
         });
@@ -79,8 +82,15 @@ public class RecentTransactions extends AppCompatActivity {
         mAdapter = new RTAdapter(this, R.layout.transaction_single);
         ListView listViewToDo = (ListView) findViewById(R.id.list);
         listViewToDo.setAdapter(mAdapter);
+        mSwipeLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeLayout.setRefreshing(true);
+            }
+        });
         isOnline();
         refreshItemsFromTable();
+        // mProgressBar.setVisibility(ProgressBar.GONE);
     }
     // Load the items from the Mobile Service
     // refreshItemsFromTable();
@@ -92,7 +102,7 @@ public class RecentTransactions extends AppCompatActivity {
 
         // Get the items that weren't marked as completed and add them in the
         // adapter
-
+        mSwipeLayout.setRefreshing(true);
         new AsyncTask<Void, Void, Void>() {
             @Override
 
@@ -106,7 +116,7 @@ public class RecentTransactions extends AppCompatActivity {
 
                             mSwipeLayout.setRefreshing(false);
                             if (results.size() == 0) {
-                                Toast.makeText(RecentTransactions.this, "NO TRANSACTIPNS YET!!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(RecentTransactions.this, "NO TRANSACTIONS YET!!", Toast.LENGTH_LONG).show();
 
                             } else {
                                 for (MobileTransactions item : results) {
@@ -124,11 +134,11 @@ public class RecentTransactions extends AppCompatActivity {
                 }
                 return null;
             }
-
             protected void onPostExecute(Void results) {
                 super.onPostExecute(results);
-//
+
             }
+
         }.execute();
 
         mAdapter.clear();
