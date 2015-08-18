@@ -3,7 +3,6 @@ package in.gravitykerala.aurissample;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -39,10 +38,10 @@ public class LoginActivity extends AppCompatActivity {
     private static final int REQUEST_SIGNUP = 0;
     public static MobileServiceClient mClient;
     CheckBox saveLoginCheckBox;
-    String username, password;
-    String KEY_username = "username";
-    String KEY_password = "password";
-    SharedPreferences prefs;
+//    String username, password;
+//    String KEY_username = "username";
+//    String KEY_password = "password";
+//    SharedPreferences prefs;
 
     LinearLayout l1;
     CoordinatorLayout coordinatorLayout;
@@ -62,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
         saveLoginCheckBox = (CheckBox) findViewById(R.id.checkBox_remember);
-        prefs = this.getSharedPreferences("in.gravity", Context.MODE_PRIVATE);
+//        prefs = this.getSharedPreferences("in.gravity", Context.MODE_PRIVATE);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id
                 .coordinatorLayout);
 
@@ -71,25 +70,25 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 login();
-                username = prefs.getString(KEY_username, "");
-                password = prefs.getString(KEY_password, "");
-                _emailText.setText(username);
-                _passwordText.setText(password);
-                String email = _emailText.getText().toString();
-                String password = _passwordText.getText().toString();
-                if (saveLoginCheckBox.isChecked()) {
-
-                    prefs.edit().putString(KEY_username, username).commit();
-                    prefs.edit().putString(KEY_password, password).commit();
-
-//                        SharedPreferences prefs = getSharedPreferences(SPF_NAME, Context.MODE_PRIVATE);
-                    // prefs.edit().putString(username, us).putString(password, ps).commit();
-                } else {
-
-                    //  SharedPreferences prefs = getSharedPreferences(SPF_NAME, Context.MODE_PRIVATE);
-                    prefs.edit().clear().commit();
-
-                }
+//                username = prefs.getString(KEY_username, "");
+//                password = prefs.getString(KEY_password, "");
+//                _emailText.setText(username);
+//                _passwordText.setText(password);
+//                String email = _emailText.getText().toString();
+//                String password = _passwordText.getText().toString();
+//                if (saveLoginCheckBox.isChecked()) {
+//
+//                    prefs.edit().putString(KEY_username, username).commit();
+//                    prefs.edit().putString(KEY_password, password).commit();
+//
+////                        SharedPreferences prefs = getSharedPreferences(SPF_NAME, Context.MODE_PRIVATE);
+//                    // prefs.edit().putString(username, us).putString(password, ps).commit();
+//                } else {
+//
+//                    //  SharedPreferences prefs = getSharedPreferences(SPF_NAME, Context.MODE_PRIVATE);
+//                    prefs.edit().clear().commit();
+//
+//                }
 
 
             }

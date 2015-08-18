@@ -18,7 +18,6 @@ import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
 
 import java.util.AbstractList;
 import java.util.List;
-import java.util.Objects;
 
 
 public class ChangePasswordActivity extends AppCompatActivity {
@@ -37,6 +36,12 @@ public class ChangePasswordActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
         }
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
 
         Curerntpwd = (EditText) findViewById(R.id.input_crnt_password);
@@ -130,3 +135,4 @@ public class ChangePasswordActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+

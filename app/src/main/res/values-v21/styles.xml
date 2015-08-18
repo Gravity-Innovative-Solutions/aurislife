@@ -1,17 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-    </style>
 
     <style name="AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
-        <item name="android:divider">@color/primary</item>
-
         <item name="selectableItemBackground">@drawable/selectable_item_background</item>
         <item name="android:selectableItemBackground">@drawable/selectable_item_background</item>
+
         <item name="android:windowBackground">@color/primary</item>
 
         <item name="colorControlNormal">@color/iron</item>
@@ -21,30 +17,19 @@
         <item name="android:textColor">@color/white</item>
 
         <item name="colorButtonNormal">@color/primary_darker</item>
-        <!--<item name="android:colorButtonNormal">@color/primary_darker</item>-->
+        <item name="android:colorButtonNormal">@color/primary_darker</item>
     </style>
 
-    <style name="AppTheme.Dark.Dialog" parent="Theme.AppCompat.Dialog">
+    <style name="AppTheme.Action" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorAccent">@color/white</item>
         <item name="android:textColorPrimary">@color/iron</item>
         <item name="android:background">@color/primary</item>
     </style>
-    <!-- the theme applied to the application or activity -->
-    <style name="CustomActionBarTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
-        <item name="android:actionBarStyle">@style/MyActionBar</item>
-    </style>
 
     <style name="Widget.MyApp.HeaderBar.Spinner" parent="Widget.AppCompat.Spinner.DropDown">
         <item name="android:background">?android:selectableItemBackground</item>
-        <item name="android:dropDownSelector">@color/primary</item>
+        <item name="android:dropDownSelector">@color/primary_darker</item>
         <!--<item name="android:divider">@color/white</item>-->
         <item name="android:overlapAnchor">true</item>
     </style>
-
-
-    <!-- ActionBar styles -->
-    <style name="MyActionBar" parent="@android:style/Theme.Holo.Light.DarkActionBar">
-        <item name="android:background">#E43F3F</item>
-    </style>
-
 </resources>

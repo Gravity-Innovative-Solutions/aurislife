@@ -26,14 +26,13 @@ public class RecentTransactions extends AppCompatActivity {
     private SwipeRefreshLayout mSwipeLayout;
 
     private RTAdapter mAdapter;
-
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recent_transactions);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
         if (toolbar != null) {
             setSupportActionBar(toolbar);
         }
@@ -58,7 +57,6 @@ public class RecentTransactions extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 //mSwipeLayout.setRefreshing(true);
-
                 isOnline();
                 refreshItemsFromTable();
                 pull.setVisibility(View.GONE);
@@ -102,7 +100,7 @@ public class RecentTransactions extends AppCompatActivity {
 
         // Get the items that weren't marked as completed and add them in the
         // adapter
-        mSwipeLayout.setRefreshing(true);
+
         new AsyncTask<Void, Void, Void>() {
             @Override
 
@@ -121,6 +119,7 @@ public class RecentTransactions extends AppCompatActivity {
                             } else {
                                 for (MobileTransactions item : results) {
                                     mAdapter.add(item);
+                                    pull.setVisibility(View.GONE);
                                 }
                             }
                         }
@@ -134,11 +133,11 @@ public class RecentTransactions extends AppCompatActivity {
                 }
                 return null;
             }
+
             protected void onPostExecute(Void results) {
                 super.onPostExecute(results);
-
+//
             }
-
         }.execute();
 
         mAdapter.clear();
