@@ -25,6 +25,7 @@ public class Transaction extends Activity {
     int amount = 0;
 
 
+
     String[] operators = {
             "IDEA",
             "BSNL",
@@ -47,8 +48,9 @@ public class Transaction extends Activity {
         sbmt = (Button) findViewById(R.id.submit);
         spnr = (Spinner) findViewById(R.id.spinner);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, operators);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this, R.layout.spinner_selector, operators);
+        spnr.getDropDownVerticalOffset();
 
         spnr.setAdapter(adapter);
         spnr.setOnItemSelectedListener(
@@ -60,6 +62,8 @@ public class Transaction extends Activity {
 
                         position = spnr.getSelectedItemPosition();
                         //   Toast.makeText(getApplicationContext(), "You have selected " + operators[+position], Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "You have selected " + operators[+position], Toast.LENGTH_LONG).show();
+                        adapter.setDropDownViewResource(R.layout.spinner_dropdown);
                         // TODO Auto-generated method stub
                     }
 

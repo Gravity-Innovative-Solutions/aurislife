@@ -1,0 +1,18 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:padding="5dp"
+    android:text="DemoText"
+
+
+    android:textColor="@color/white"
+    android:textSize="20sp"
+
+
+    android:theme="@style/Base.Widget.AppCompat.TextView.SpinnerItem"
+
+
+    />
+
