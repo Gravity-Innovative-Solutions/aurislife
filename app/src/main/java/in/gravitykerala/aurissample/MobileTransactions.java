@@ -19,7 +19,7 @@ public class MobileTransactions {
 
     @com.google.gson.annotations.SerializedName("status")
     public String stats;
-    @com.google.gson.annotations.SerializedName("remark")
+    @com.google.gson.annotations.SerializedName("remarks")
     public String remark;
 }
 
