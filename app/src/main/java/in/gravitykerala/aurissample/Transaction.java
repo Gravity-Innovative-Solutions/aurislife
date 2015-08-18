@@ -3,6 +3,7 @@ package in.gravitykerala.aurissample;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -40,14 +41,18 @@ public class Transaction extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+
         mClient = LoginActivity.mClient;
         mToDoTable = mClient.getTable(MobileTransactions.class);
         phn = (EditText) findViewById(R.id.input_phn);
         sbmt = (Button) findViewById(R.id.submit);
         spnr = (Spinner) findViewById(R.id.spinner);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, operators);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this, R.layout.spinner_selector, operators);
+        spnr.getDropDownVerticalOffset();
 
         spnr.setAdapter(adapter);
         spnr.setOnItemSelectedListener(
@@ -59,6 +64,7 @@ public class Transaction extends Activity {
 
                         position = spnr.getSelectedItemPosition();
                         Toast.makeText(getApplicationContext(), "You have selected " + operators[+position], Toast.LENGTH_LONG).show();
+                        adapter.setDropDownViewResource(R.layout.spinner_dropdown);
                         // TODO Auto-generated method stub
                     }
 
@@ -151,4 +157,6 @@ public class Transaction extends Activity {
         }
         // createAndShowDialog(ex.getMessage(), title);
     }
+
+
 }

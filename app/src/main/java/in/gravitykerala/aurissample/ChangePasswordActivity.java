@@ -3,6 +3,7 @@ package in.gravitykerala.aurissample;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.microsoft.windowsazure.mobileservices.ApiOperationCallback;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
@@ -31,6 +31,11 @@ public class ChangePasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
         Curerntpwd = (EditText) findViewById(R.id.input_crnt_password);
@@ -48,6 +53,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
 
     public void submit() {
+
         {
             final ProgressDialog progressDialog = new ProgressDialog(ChangePasswordActivity.this,
                     R.style.AppTheme_Dark_Dialog);
@@ -68,8 +74,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
             ChangePassword req = new ChangePassword();
             req.cpwd = Curerntpwd.getText().toString();
             req.npwd = NewPwd.getText().toString();
-//            req.phno = _PHNO.getText().toString();
-//            req.Pword = _passwordText.getText().toString();
+            String new_pwd_s = NewPwd.getText().toString();
+            String rnew_pwd_s = ReNpwd.getText().toString();
+
 
             mClient.invokeApi("ChangePassword", req, String.class, new ApiOperationCallback<String>() {
                 @Override

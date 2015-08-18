@@ -31,6 +31,14 @@
         <item name="android:actionBarStyle">@style/MyActionBar</item>
     </style>
 
+    <style name="Widget.MyApp.HeaderBar.Spinner" parent="Widget.AppCompat.Spinner.DropDown">
+        <item name="android:background">?android:selectableItemBackground</item>
+        <item name="android:dropDownSelector">@color/primary</item>
+        <item name="android:divider">@color/white</item>
+        <item name="android:overlapAnchor">true</item>
+    </style>
+
+
     <!-- ActionBar styles -->
     <style name="MyActionBar" parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:background">#E43F3F</item>
