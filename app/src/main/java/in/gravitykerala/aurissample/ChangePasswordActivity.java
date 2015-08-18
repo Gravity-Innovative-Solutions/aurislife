@@ -18,6 +18,7 @@ import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
 
 import java.util.AbstractList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class ChangePasswordActivity extends AppCompatActivity {
@@ -46,7 +47,14 @@ public class ChangePasswordActivity extends AppCompatActivity {
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                submit();
+                String Npwd = NewPwd.getText().toString();
+                String cpwd = ReNpwd.getText().toString();
+                if (cpwd.equals(Npwd)) {
+                    submit();
+                } else {
+                    Toast.makeText(ChangePasswordActivity.this, "PASSWORD DOESNOT MATCH", Toast.LENGTH_LONG).show();
+
+                }
             }
         });
     }

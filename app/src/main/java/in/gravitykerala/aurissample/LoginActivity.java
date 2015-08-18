@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -17,6 +19,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.microsoft.windowsazure.mobileservices.ApiOperationCallback;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
@@ -208,33 +211,45 @@ public class LoginActivity extends AppCompatActivity {
         finish();
     }
 
+    public boolean isOnline() {
+
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        } else {
+//            progressDialog.dismiss();
+//            Toast.makeText(getBaseContext(), "YOU ARE NOT CONNECTED TO AN NETWORK", Toast.LENGTH_LONG).show();
+        }
+        return false;
+    }
     public void onLoginFailed() {
 //        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
 
 //        View.OnClickListener mOnClickListener;
+        if (isOnline() == true) {
+            Snackbar snackbar = Snackbar
+                    .make(coordinatorLayout, "Incorrect username or passsword", Snackbar.LENGTH_LONG)
+                    .setAction("Retry", mOnClickListener);
+            snackbar.setActionTextColor(Color.RED);
+            View snackbarView = snackbar.getView();
+            snackbarView.setBackgroundColor(Color.DKGRAY);
+            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+            textView.setTextColor(Color.YELLOW);
+            snackbar.show();
+            mOnClickListener = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    _emailText.setText("");
 
-        Snackbar snackbar = Snackbar
-                .make(coordinatorLayout, "Check your Internet Connectivity", Snackbar.LENGTH_LONG)
-                .setAction("Retry", mOnClickListener);
-        snackbar.setActionTextColor(Color.RED);
-        View snackbarView = snackbar.getView();
-        snackbarView.setBackgroundColor(Color.DKGRAY);
-        TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-        textView.setTextColor(Color.YELLOW);
-        snackbar.show();
-        mOnClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                _emailText.setText("");
+                }
+            };
 
-            }
-        };
-
-
+        } else {
+            Toast.makeText(getBaseContext(), "YOU ARE NOT CONNECTED TO AN NETWORK", Toast.LENGTH_LONG).show();
+        }
         _loginButton.setEnabled(true);
-
     }
-
     public boolean validate() {
         boolean valid = true;
 

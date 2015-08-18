@@ -18,12 +18,15 @@ package in.gravitykerala.aurissample;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -301,7 +304,7 @@ public class FirstPage extends FragmentActivity implements ActionBar.TabListener
         private static final int CAMERA_CAPTURE_VIDEO_REQUEST_CODE = 200;
         //    public static final int MEDIA_TYPE_VIDEO = 2;
         // directory name to store captured images and videos
-        private static final String IMAGE_DIRECTORY_NAME = "Auris Life";
+        private static final String IMAGE_DIRECTORY_NAME = "Hello Camera";
 
         private Uri fileUri; // file url to store image/video
 
@@ -391,6 +394,14 @@ public class FirstPage extends FragmentActivity implements ActionBar.TabListener
 //
 //                }
 //            });
+            Button mobpricss = (Button) rootView.findViewById(R.id.button4);
+            mobpricss.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(getActivity(), RecentTransactions.class);
+                    startActivity(i);
+                }
+            });
             return rootView;
         }
 
