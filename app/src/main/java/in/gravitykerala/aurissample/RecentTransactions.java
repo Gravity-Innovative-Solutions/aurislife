@@ -106,7 +106,7 @@ public class RecentTransactions extends AppCompatActivity {
 
                             mSwipeLayout.setRefreshing(false);
                             if (results.size() == 0) {
-                                Toast.makeText(RecentTransactions.this, "NO TRANSACTIPNS YET!!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(RecentTransactions.this, "NO TRANSACTIONS YET!!", Toast.LENGTH_LONG).show();
 
                             } else {
                                 for (MobileTransactions item : results) {

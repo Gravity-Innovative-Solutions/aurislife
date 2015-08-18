@@ -1,30 +1,22 @@
 package in.gravitykerala.aurissample;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
-import android.util.Pair;
+import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.common.util.concurrent.FutureCallback;
-import com.google.common.util.concurrent.Futures;
-import com.google.common.util.concurrent.ListenableFuture;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
-import com.microsoft.windowsazure.mobileservices.MobileServiceException;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
-import java.util.AbstractList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class PriscriptionDetails extends ActionBarActivity {
     private MobileServiceClient mClient;
@@ -39,6 +31,11 @@ public class PriscriptionDetails extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_priscription_details);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         // mProgressBar = (ProgressBar) findViewById(R.id.loadingProgressBar);
 
         //buttonRefresh = (Button) findViewById(R.id.button_refresh);
