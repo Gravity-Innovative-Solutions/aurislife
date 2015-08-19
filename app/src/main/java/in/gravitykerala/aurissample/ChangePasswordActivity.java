@@ -36,12 +36,17 @@ public class ChangePasswordActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
         }
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+
+        boolean enableBackNavigation = false;
+        if (enableBackNavigation) {
+            toolbar.setNavigationIcon(R.drawable.ic_back);
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onBackPressed();
+                }
+            });
+        }
 
 
         Curerntpwd = (EditText) findViewById(R.id.input_crnt_password);
