@@ -46,9 +46,11 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
+import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceUser;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -56,12 +58,27 @@ import java.util.Locale;
 
 
 public class FirstPage extends AppCompatActivity {
-
+    public static MobileServiceClient mClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        try {
+            mClient = new MobileServiceClient("https://gravityaurislife.azure-mobile.net",
+                    "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68",
+                    this);
+            String userId = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
+            String tok = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
+            MobileServiceUser user = new MobileServiceUser(userId);
+            user.setAuthenticationToken(tok);
+            mClient.setCurrentUser(user);
+            if (userId.equals("default") && tok.equals("default")) {
+                Intent i = new Intent(this, LoginActivity.class);
+                startActivity(i);
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 //        getSupportActionBar().setDisplayShowHomeEnabled(false);
@@ -125,7 +142,8 @@ public class FirstPage extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.activity_profile, container, false);
-            mClient = LoginActivity.mClient;
+            mClient = FirstPage.mClient;
+
             mProgressBar = (ProgressBar) rootView.findViewById(R.id.progressBar_CourseSelection);
             mProgressBar.setVisibility(ProgressBar.GONE);
             mToDoTable = mClient.getTable(MobileProfile.class);
@@ -358,7 +376,7 @@ public class FirstPage extends AppCompatActivity {
             mobpricss.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(getActivity(), RecentTransactions.class);
+                    Intent i = new Intent(getActivity(), PriscriptionDetails.class);
                     startActivity(i);
                 }
             });
