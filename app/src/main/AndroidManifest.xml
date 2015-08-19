@@ -45,7 +45,7 @@
         <activity
             android:name=".RecentTransactions"
             android:label="@string/title_activity_recent_transactions"
-            android:theme="@style/AppTheme.Dark"></activity>
+            android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".PriscriptionDetails"
             android:label="@string/title_activity_priscription_details"
