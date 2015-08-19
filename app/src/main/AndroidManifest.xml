@@ -37,7 +37,7 @@
         <activity
             android:name=".FirstPage"
 
-            android:theme="@style/MyActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
         <activity
             android:name=".Transaction"
             android:label="@string/title_activity_transaction"

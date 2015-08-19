@@ -73,9 +73,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:layout_marginTop="24dp"
+                android:elevation="10dp"
                 android:nestedScrollingEnabled="false"
-                android:padding="12dp"
 
+                android:padding="12dp"
                 android:text="Login" />
 
             <TextView
