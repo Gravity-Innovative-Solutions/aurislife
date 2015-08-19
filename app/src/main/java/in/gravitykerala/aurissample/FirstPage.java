@@ -43,6 +43,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -71,7 +72,7 @@ public class FirstPage extends FragmentActivity implements ActionBar.TabListener
      * time.
      */
     ViewPager mViewPager;
-
+    private ProgressBar mProgressBar;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -81,7 +82,8 @@ public class FirstPage extends FragmentActivity implements ActionBar.TabListener
         // Create the adapter that will return a fragment for each of the three primary sections
         // of the app.
         mAppSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());
-
+//        mProgressBar = (ProgressBar) findViewById(R.id.progressBar_CourseSelection);
+//        mProgressBar.setVisibility(ProgressBar.GONE);
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0000ff")));
@@ -186,16 +188,18 @@ public class FirstPage extends FragmentActivity implements ActionBar.TabListener
         private TextView tv;
         private TextView tv1;
         private TextView tv2;
-
+        private ProgressBar mProgressBar;
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.activity_profile, container, false);
             mClient = LoginActivity.mClient;
+            mProgressBar = (ProgressBar) rootView.findViewById(R.id.progressBar_CourseSelection);
+            mProgressBar.setVisibility(ProgressBar.GONE);
             mToDoTable = mClient.getTable(MobileProfile.class);
             tv = (TextView) rootView.findViewById(R.id.textView2);
             tv1 = (TextView) rootView.findViewById(R.id.textView7);
             tv2 = (TextView) rootView.findViewById(R.id.textView6);
-//            isOnline();
+            isOnline();
             refreshItemsFromTable();
             Button chngepswd = (Button) rootView.findViewById(R.id.btn_change_pswd);
             chngepswd.setOnClickListener(new View.OnClickListener() {
@@ -228,6 +232,17 @@ public class FirstPage extends FragmentActivity implements ActionBar.TabListener
                 public void onClick(View v) {
                     Intent i = new Intent(getActivity(), RecentTransactions.class);
                     startActivity(i);
+                }
+            });
+            Button refresh = (Button) rootView.findViewById(R.id.button5);
+            refresh.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (isOnline() == true) {
+                        refreshItemsFromTable();
+                    } else {
+
+                    }
                 }
             });
 
@@ -272,10 +287,10 @@ public class FirstPage extends FragmentActivity implements ActionBar.TabListener
 
                 protected void onPostExecute(Void results) {
                     super.onPostExecute(results);
-//
+                    mProgressBar.setVisibility(ProgressBar.GONE);
                 }
             }.execute();
-
+            mProgressBar.setVisibility(ProgressBar.VISIBLE);
         }
 //        public boolean isOnline() {
 //            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -295,6 +310,18 @@ public class FirstPage extends FragmentActivity implements ActionBar.TabListener
                 ex = exception.getCause();
             }
             // createAndShowDialog(ex.getMessage(), title);
+        }
+
+        public boolean isOnline() {
+            ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo netInfo = cm.getActiveNetworkInfo();
+            if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+                return true;
+            } else {
+                mProgressBar.setVisibility(View.GONE);
+                Toast.makeText(getActivity(), "YOU ARE NOT CONNECTED TO AN NETWORK", Toast.LENGTH_LONG).show();
+            }
+            return false;
         }
     }
 

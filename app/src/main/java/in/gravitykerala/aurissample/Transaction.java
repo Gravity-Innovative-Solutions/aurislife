@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -23,9 +24,6 @@ public class Transaction extends Activity {
     Button sbmt;
     int position = -1;
     int amount = 0;
-
-
-
     String[] operators = {
             "IDEA",
             "BSNL",
@@ -37,11 +35,14 @@ public class Transaction extends Activity {
             "UNINOR",
             "TATA INDICOM"
     };
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBar_3);
+        mProgressBar.setVisibility(ProgressBar.GONE);
         mClient = LoginActivity.mClient;
         mToDoTable = mClient.getTable(MobileTransactions.class);
         phn = (EditText) findViewById(R.id.input_phn);
@@ -134,9 +135,9 @@ public class Transaction extends Activity {
                         @Override
                         public void run() {
                             //if(!entity.isComplete()){
-                            // mAdapter.add(entity);
+                            // mAdapter.add(entity);0
 
-                            Toast.makeText(Transaction.this, Connction + "\t" + amt, Toast.LENGTH_LONG).show();
+                            Toast.makeText(Transaction.this, Connction + "\t" + amt + "SUCCESS", Toast.LENGTH_LONG).show();
                             //}
 
                         }
@@ -149,9 +150,15 @@ public class Transaction extends Activity {
                 }
 
                 return null;
+
+            }
+
+            protected void onPostExecute(Void results) {
+                super.onPostExecute(results);
+                mProgressBar.setVisibility(ProgressBar.GONE);
             }
         }.execute();
-
+        mProgressBar.setVisibility(ProgressBar.VISIBLE);
         phn.setText("");
         //pnr.setText("");
     }

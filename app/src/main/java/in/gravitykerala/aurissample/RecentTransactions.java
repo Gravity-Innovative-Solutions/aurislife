@@ -59,6 +59,7 @@ public class RecentTransactions extends AppCompatActivity {
                 //mSwipeLayout.setRefreshing(true);
                 isOnline();
                 refreshItemsFromTable();
+                pull.setVisibility(View.GONE);
 
                 //mSwipeLayout.setRefreshing(true);
             }
@@ -79,8 +80,15 @@ public class RecentTransactions extends AppCompatActivity {
         mAdapter = new RTAdapter(this, R.layout.transaction_single);
         ListView listViewToDo = (ListView) findViewById(R.id.list);
         listViewToDo.setAdapter(mAdapter);
+        mSwipeLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeLayout.setRefreshing(true);
+            }
+        });
         isOnline();
         refreshItemsFromTable();
+        // mProgressBar.setVisibility(ProgressBar.GONE);
     }
     // Load the items from the Mobile Service
     // refreshItemsFromTable();
