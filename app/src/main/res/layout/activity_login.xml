@@ -41,7 +41,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Phone Number"
-                    android:inputType="phone" />
+                    android:inputType="phone"
+                    android:text="9496515136" />
             </android.support.design.widget.TextInputLayout>
 
             <!-- Password Label -->
@@ -56,7 +57,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:text="nithinnew" />
             </android.support.design.widget.TextInputLayout>
 
             <CheckBox
