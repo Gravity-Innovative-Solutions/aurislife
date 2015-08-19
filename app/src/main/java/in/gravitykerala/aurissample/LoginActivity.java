@@ -110,6 +110,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         });
+//        finish();
     }
 
     public void login() {
@@ -123,13 +124,14 @@ public class LoginActivity extends AppCompatActivity {
 
         _loginButton.setEnabled(false);
 
+
         final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
                 R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
-        progressDialog.setCancelable(false);
         progressDialog.setCanceledOnTouchOutside(false);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 //        String email = _emailText.getText().toString();
 //        String password = _passwordText.getText().toString();
 
@@ -170,6 +172,8 @@ public class LoginActivity extends AppCompatActivity {
                     String userId = result.uId.replace("CUSTOM:", "");
                     MobileServiceUser user = new MobileServiceUser(userId);
                     String tok = result.Mtoken;
+                    PrefUtils.saveToPrefs(LoginActivity.this, PrefUtils.PREFS_LOGIN_USERNAME_KEY, userId);
+                    PrefUtils.saveToPrefs(LoginActivity.this, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, tok);
                     user.setAuthenticationToken(tok);
                     mClient.setCurrentUser(user);
                     Log.d("uid", userId);
@@ -180,6 +184,9 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     onLoginFailed();
                 }
+                progressDialog.setCanceledOnTouchOutside(true);
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 progressDialog.dismiss();
             }
         });

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -20,8 +21,9 @@ import java.util.List;
 
 public class PriscriptionDetails extends ActionBarActivity {
     private MobileServiceClient mClient;
-    private TextView tv;
-    private MobileServiceTable<MobilePriscriptionDTO> mToDoTable;
+    private TextView tv, pull;
+
+    private MobileServiceTable<MobilePrescriptions> mToDoTable;
     private SwipeRefreshLayout mSwipeLayout;
 
     private PDAdapter mAdapter;
@@ -49,6 +51,7 @@ public class PriscriptionDetails extends ActionBarActivity {
 //
 //                }
         // });
+        pull = (TextView) findViewById(R.id.textView_pull);
         mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
         //mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -68,7 +71,7 @@ public class PriscriptionDetails extends ActionBarActivity {
 
         // Get the Mobile Service Table instance to use
 
-        mToDoTable = mClient.getTable(MobilePriscriptionDTO.class);
+        mToDoTable = mClient.getTable(MobilePrescriptions.class);
 
         // mTextNewToDo = (EditText) findViewById(R.id.textNewToDo);
 
@@ -76,6 +79,12 @@ public class PriscriptionDetails extends ActionBarActivity {
         mAdapter = new PDAdapter(this, R.layout.priscription_single);
         ListView listViewToDo = (ListView) findViewById(R.id.list);
         listViewToDo.setAdapter(mAdapter);
+        mSwipeLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeLayout.setRefreshing(true);
+            }
+        });
         isOnline();
         refreshItemsFromTable();
     }
@@ -95,7 +104,7 @@ public class PriscriptionDetails extends ActionBarActivity {
 
             protected Void doInBackground(Void... params) {
                 try {
-                    final List<MobilePriscriptionDTO> results =
+                    final List<MobilePrescriptions> results =
                             mToDoTable.where().execute().get();
                     runOnUiThread(new Runnable() {
                         @Override
@@ -106,8 +115,9 @@ public class PriscriptionDetails extends ActionBarActivity {
                                 Toast.makeText(PriscriptionDetails.this, "NO TRANSACTIPNS YET!!", Toast.LENGTH_LONG).show();
 
                             } else {
-                                for (MobilePriscriptionDTO item : results) {
+                                for (MobilePrescriptions item : results) {
                                     mAdapter.add(item);
+                                    pull.setVisibility(View.GONE);
                                 }
                             }
                         }

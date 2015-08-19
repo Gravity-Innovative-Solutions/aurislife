@@ -11,7 +11,7 @@ import android.widget.TextView;
 /**
  * Adapter to bind a ToDoItem List to a view
  */
-public class PDAdapter extends ArrayAdapter<MobilePriscriptionDTO> {
+public class PDAdapter extends ArrayAdapter<MobilePrescriptions> {
 
     /**
      * Adapter context
@@ -38,7 +38,7 @@ public class PDAdapter extends ArrayAdapter<MobilePriscriptionDTO> {
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = convertView;
 
-        final MobilePriscriptionDTO currentItem = getItem(position);
+        final MobilePrescriptions currentItem = getItem(position);
 
         if (row == null) {
             LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
@@ -57,8 +57,8 @@ public class PDAdapter extends ArrayAdapter<MobilePriscriptionDTO> {
 
         final TextView tvContent0 = (TextView) row.findViewById(R.id.amt);
         final TextView tvContent1 = (TextView) row.findViewById(R.id.remark);
-        tvTitle.setText("RECHARGE STATUS" + ":" + "\t" + currentItem.stats);
-        tvContent0.setText("RECHARGE AMOUNT" + ":" + "\t" + currentItem.recAmnt);
+        tvTitle.setText("PRISCRIPTION STATUS" + ":" + "\t" + currentItem.stats);
+        tvContent0.setText("PRISCRIPTION NUMBER" + ":" + "\t" + currentItem.Prisno);
         tvContent1.setText("REMARK" + ":" + "\t" + currentItem.remark);
 //        tvContent.setOnClickListener(new View.OnClickListener() {
 //            //
