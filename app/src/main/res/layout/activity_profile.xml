@@ -15,6 +15,13 @@
         android:weightSum="1">
 
 
+        <ProgressBar
+            android:id="@+id/progressBar_CourseSelection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:indeterminate="false" />
+
         <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -148,15 +155,6 @@
             android:gravity="center"
             android:orientation="vertical"
             android:weightSum="1">
-
-            <ProgressBar
-                android:id="@+id/progressBar_CourseSelection"
-                style="?android:attr/progressBarStyleLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="0.05"
-                android:indeterminate="false" />
 
             <Button
                 android:id="@+id/button5"

@@ -51,7 +51,7 @@ public class Transaction extends Activity {
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this, R.layout.spinner_selector, operators);
-        spnr.getDropDownVerticalOffset();
+
 
         spnr.setAdapter(adapter);
         spnr.setOnItemSelectedListener(
