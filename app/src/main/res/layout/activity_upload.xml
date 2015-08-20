@@ -16,12 +16,30 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:weightSum="3">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="1"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <!-- To display picture taken -->
+                <ImageView
+                    android:id="@+id/imgPreview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+                <!-- To preview video recorded -->
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -32,12 +50,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <Button
                         android:id="@+id/btnCapturePicture"
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/take_a_pic"
                         android:textColor="@color/white" />
@@ -50,7 +70,7 @@
 
                     <Button
                         android:id="@+id/button"
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="@string/upload_img"
@@ -58,40 +78,11 @@
 
                     <Button
                         android:id="@+id/button4"
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Priscription Details"
                         android:textColor="@color/white" />
                 </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="10dp">
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="@string/prevw"
-                    android:textSize="15dp" />
-
-                <!-- To display picture taken -->
-                <ImageView
-                    android:id="@+id/imgPreview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
-
-                <!-- To preview video recorded -->
-                <VideoView
-                    android:id="@+id/videoPreview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="400dp"
-                    android:visibility="gone" />
             </LinearLayout>
 
         </LinearLayout>

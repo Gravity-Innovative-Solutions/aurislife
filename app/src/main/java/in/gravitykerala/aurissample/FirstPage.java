@@ -445,7 +445,7 @@ public class FirstPage extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.activity_upload, container, false);
             imgPreview = (ImageView) rootView.findViewById(R.id.imgPreview);
-            videoPreview = (VideoView) rootView.findViewById(R.id.videoPreview);
+//            videoPreview = (VideoView) rootView.findViewById(R.id.videoPreview);
             btnCapturePicture = (Button) rootView.findViewById(R.id.btnCapturePicture);
             btnCapturePicture.setOnClickListener(new View.OnClickListener() {
 
