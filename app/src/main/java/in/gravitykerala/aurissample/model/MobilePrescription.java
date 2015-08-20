@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Created by Prakash on 8/20/2015.
  */
-public class MobilePrescriptions {
+public class MobilePrescription {
 
     /**
      * prescription_Number : 3

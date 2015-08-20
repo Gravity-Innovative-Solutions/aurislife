@@ -20,7 +20,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
                 FirstPage.ProfileFragment tab1 = new FirstPage.ProfileFragment();
                 return tab1;
             case 1:
-                FirstPage.UploadFragment tab2 = new FirstPage.UploadFragment();
+                UploadFragment tab2 = new UploadFragment();
                 return tab2;
 
             default:

@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by USER on 8/17/2015.
  */
-public class MobilePrescriptions {
+public class MobilePrescriptionsOld {
     @com.google.gson.annotations.SerializedName("id")
     public String Mid;
 

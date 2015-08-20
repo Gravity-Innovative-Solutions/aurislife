@@ -19,11 +19,13 @@ import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
 import java.util.List;
 
+import in.gravitykerala.aurissample.model.MobilePrescription;
+
 public class PriscriptionDetails extends ActionBarActivity {
     private MobileServiceClient mClient;
     private TextView tv, pull;
 
-    private MobileServiceTable<MobilePrescriptions> mToDoTable;
+    private MobileServiceTable<MobilePrescription> mToDoTable;
     private SwipeRefreshLayout mSwipeLayout;
 
     private PDAdapter mAdapter;
@@ -71,7 +73,7 @@ public class PriscriptionDetails extends ActionBarActivity {
 
         // Get the Mobile Service Table instance to use
 
-        mToDoTable = mClient.getTable(MobilePrescriptions.class);
+        mToDoTable = mClient.getTable("MobilePrescriptions", MobilePrescription.class);
 
         // mTextNewToDo = (EditText) findViewById(R.id.textNewToDo);
 
@@ -104,7 +106,7 @@ public class PriscriptionDetails extends ActionBarActivity {
 
             protected Void doInBackground(Void... params) {
                 try {
-                    final List<MobilePrescriptions> results =
+                    final List<MobilePrescription> results =
                             mToDoTable.where().execute().get();
                     runOnUiThread(new Runnable() {
                         @Override
@@ -115,7 +117,7 @@ public class PriscriptionDetails extends ActionBarActivity {
                                 Toast.makeText(PriscriptionDetails.this, R.string.no_transaction, Toast.LENGTH_LONG).show();
 
                             } else {
-                                for (MobilePrescriptions item : results) {
+                                for (MobilePrescription item : results) {
                                     mAdapter.add(item);
                                     pull.setVisibility(View.GONE);
                                 }
