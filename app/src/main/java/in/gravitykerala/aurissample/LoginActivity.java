@@ -255,7 +255,7 @@ public class LoginActivity extends AppCompatActivity {
             };
 
         } else {
-            Toast.makeText(getBaseContext(), "YOU ARE NOT CONNECTED TO AN NETWORK", Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), R.string.no_connection, Toast.LENGTH_LONG).show();
         }
         _loginButton.setEnabled(true);
     }

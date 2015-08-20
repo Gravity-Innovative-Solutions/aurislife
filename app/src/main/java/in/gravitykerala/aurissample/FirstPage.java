@@ -16,11 +16,16 @@
 
 package in.gravitykerala.aurissample;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -39,6 +44,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnticipateInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -52,6 +59,7 @@ import com.microsoft.azure.storage.blob.CloudBlockBlob;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceUser;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
+import com.ogaclejapan.arclayout.ArcLayout;
 
 import java.io.File;
 import java.io.IOException;
@@ -59,6 +67,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -142,6 +151,10 @@ public class FirstPage extends AppCompatActivity {
         MobileServiceClient mClient;
         MobileServiceTable<MobileProfile> mToDoTable;
         int currnt_blnce = 0;
+        Toast toast = null;
+        View fab;
+        View menuLayout;
+        ArcLayout arcLayout;
         private TextView tv;
         private TextView tv1;
         private TextView tv2;
@@ -149,14 +162,35 @@ public class FirstPage extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.activity_profile, container, false);
+            fab = rootView.findViewById(R.id.fab);
+            menuLayout = rootView.findViewById(R.id.menu_layout);
+            arcLayout = (ArcLayout) rootView.findViewById(R.id.arc_layout);
+
+//            for (int i = 0, size = arcLayout.getChildCount(); i < size; i++) {
+//                arcLayout.getChildAt(i).setOnClickListener(this);
+//            }
+
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (v.isSelected()) {
+                        hideMenu();
+                    } else {
+                        showMenu();
+                    }
+                }
+            });
+
             mClient = FirstPage.mClient;
+
 
             mProgressBar = (ProgressBar) rootView.findViewById(R.id.progressBar_CourseSelection);
             mProgressBar.setVisibility(ProgressBar.GONE);
+            mProgressBar.setBackgroundColor(Color.RED);
             mToDoTable = mClient.getTable(MobileProfile.class);
-            tv = (TextView) rootView.findViewById(R.id.textView2);
-            tv1 = (TextView) rootView.findViewById(R.id.textView7);
-            tv2 = (TextView) rootView.findViewById(R.id.textView6);
+            tv = (TextView) rootView.findViewById(R.id.textView_points);
+            tv1 = (TextView) rootView.findViewById(R.id.textView_email);
+            tv2 = (TextView) rootView.findViewById(R.id.textView_phn);
             isOnline();
             refreshItemsFromTable();
             Button chngepswd = (Button) rootView.findViewById(R.id.btn_change_pswd);
@@ -206,6 +240,87 @@ public class FirstPage extends AppCompatActivity {
 
 
             return rootView;
+        }
+
+        private void hideMenu() {
+
+            List<Animator> animList = new ArrayList<>();
+
+            for (int i = arcLayout.getChildCount() - 1; i >= 0; i--) {
+                animList.add(createHideItemAnimator(arcLayout.getChildAt(i)));
+            }
+
+            AnimatorSet animSet = new AnimatorSet();
+            animSet.setDuration(400);
+            animSet.setInterpolator(new AnticipateInterpolator());
+            animSet.playTogether(animList);
+            animSet.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    menuLayout.setVisibility(View.INVISIBLE);
+                }
+            });
+            animSet.start();
+
+        }
+
+        private void showMenu() {
+            menuLayout.setVisibility(View.VISIBLE);
+
+            List<Animator> animList = new ArrayList<>();
+
+            for (int i = 0, len = arcLayout.getChildCount(); i < len; i++) {
+                animList.add(createShowItemAnimator(arcLayout.getChildAt(i)));
+            }
+
+            AnimatorSet animSet = new AnimatorSet();
+            animSet.setDuration(400);
+            animSet.setInterpolator(new OvershootInterpolator());
+            animSet.playTogether(animList);
+            animSet.start();
+        }
+
+        private Animator createShowItemAnimator(View item) {
+
+            float dx = fab.getX() - item.getX();
+            float dy = fab.getY() - item.getY();
+
+            item.setRotation(0f);
+            item.setTranslationX(dx);
+            item.setTranslationY(dy);
+
+            Animator anim = ObjectAnimator.ofPropertyValuesHolder(
+                    item,
+                    AnimatorUtils.rotation(0f, 720f),
+                    AnimatorUtils.translationX(dx, 0f),
+                    AnimatorUtils.translationY(dy, 0f)
+            );
+
+            return anim;
+        }
+
+        private Animator createHideItemAnimator(final View item) {
+            float dx = fab.getX() - item.getX();
+            float dy = fab.getY() - item.getY();
+
+            Animator anim = ObjectAnimator.ofPropertyValuesHolder(
+                    item,
+                    AnimatorUtils.rotation(720f, 0f),
+                    AnimatorUtils.translationX(0f, dx),
+                    AnimatorUtils.translationY(0f, dy)
+            );
+
+            anim.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    item.setTranslationX(0f);
+                    item.setTranslationY(0f);
+                }
+            });
+
+            return anim;
         }
 
         public void refreshItemsFromTable() {
@@ -277,7 +392,7 @@ public class FirstPage extends AppCompatActivity {
                 return true;
             } else {
                 mProgressBar.setVisibility(View.GONE);
-                Toast.makeText(getActivity(), "YOU ARE NOT CONNECTED TO AN NETWORK", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), R.string.no_connection, Toast.LENGTH_LONG).show();
             }
             return false;
         }
@@ -289,7 +404,7 @@ public class FirstPage extends AppCompatActivity {
         private static final int CAMERA_CAPTURE_VIDEO_REQUEST_CODE = 200;
         //    public static final int MEDIA_TYPE_VIDEO = 2;
         // directory name to store captured images and videos
-        private static final String IMAGE_DIRECTORY_NAME = "Hello Camera";
+        private static final String IMAGE_DIRECTORY_NAME = "AurisLife";
         PowerManager.WakeLock wakeLock;
         MobileServiceClient mClient;
         private Uri fileUri; // file url to store image/video
@@ -353,7 +468,7 @@ public class FirstPage extends AppCompatActivity {
 
             if (!isDeviceSupportCamera()) {
                 Toast.makeText(getActivity(),
-                        "Sorry! Your device doesn't support camera",
+                        R.string.camera_not_support,
                         Toast.LENGTH_LONG).show();
                 // will close the app if the device does't have camera
                 // finish();
@@ -488,7 +603,7 @@ public class FirstPage extends AppCompatActivity {
                 } else if (resultCode == RESULT_CANCELED) {
                     // user cancelled Image capture
                     Toast.makeText(getActivity(),
-                            "User cancelled image capture", Toast.LENGTH_SHORT)
+                            R.string.user_cancelled, Toast.LENGTH_SHORT)
                             .show();
                 } else {
                     // failed to capture image
