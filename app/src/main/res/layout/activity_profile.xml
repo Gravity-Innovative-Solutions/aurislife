@@ -196,7 +196,7 @@
 
 
                         android:textColor="@color/path_orange"
-                        app:arc_angle="45" />
+                        app:arc_angle="25" />
 
                     <Button
                         android:id="@+id/button3"
@@ -204,7 +204,7 @@
 
 
                         android:textColor="@color/path_blue"
-                        app:arc_angle="90" />
+                        app:arc_angle="68" />
 
 
 
@@ -215,7 +215,7 @@
 
 
                         android:textColor="@color/path_green"
-                        app:arc_angle="135" />
+                        app:arc_angle="111" />
 
                     <Button
                         android:id="@+id/button2"
@@ -223,7 +223,7 @@
 
 
                         android:textColor="@color/path_purple"
-                        app:arc_angle="180" />
+                        app:arc_angle="155" />
 
                 </com.ogaclejapan.arclayout.ArcLayout>
 
