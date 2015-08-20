@@ -1,8 +1,9 @@
 package in.gravitykerala.aurissample;
 
-import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,7 +17,7 @@ import android.widget.Toast;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
-public class Transaction extends Activity {
+public class Transaction extends AppCompatActivity {
     MobileServiceClient mClient;
     MobileServiceTable<MobileTransactions> mToDoTable;
     EditText phn;
@@ -41,6 +42,11 @@ public class Transaction extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar_3);
         mProgressBar.setVisibility(ProgressBar.GONE);
         mClient = LoginActivity.mClient;
