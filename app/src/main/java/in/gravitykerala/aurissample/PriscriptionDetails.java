@@ -112,7 +112,7 @@ public class PriscriptionDetails extends ActionBarActivity {
 
                             mSwipeLayout.setRefreshing(false);
                             if (results.size() == 0) {
-                                Toast.makeText(PriscriptionDetails.this, "NO TRANSACTIPNS YET!!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(PriscriptionDetails.this, R.string.no_transaction, Toast.LENGTH_LONG).show();
 
                             } else {
                                 for (MobilePrescriptions item : results) {
@@ -148,7 +148,7 @@ public class PriscriptionDetails extends ActionBarActivity {
             return true;
         } else {
             mSwipeLayout.setRefreshing(false);
-            Toast.makeText(getBaseContext(), "YOU ARE NOT CONNECTED TO AN NETWORK", Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), R.string.no_connection, Toast.LENGTH_LONG).show();
         }
         return false;
     }

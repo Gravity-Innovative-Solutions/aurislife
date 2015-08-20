@@ -62,7 +62,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 if (cpwd.equals(Npwd)) {
                     submit();
                 } else {
-                    Toast.makeText(ChangePasswordActivity.this, "PASSWORD DOESNOT MATCH", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ChangePasswordActivity.this, R.string.mismatch_pswd, Toast.LENGTH_LONG).show();
 
                 }
             }

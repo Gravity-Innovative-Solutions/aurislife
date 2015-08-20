@@ -31,7 +31,7 @@
                 android:id="@+id/input_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Name"
+                android:hint="@string/name"
                 android:inputType="textCapWords" />
         </android.support.design.widget.TextInputLayout>
 
@@ -47,7 +47,7 @@
                 android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
+                android:hint="@string/email"
                 android:inputType="textEmailAddress" />
         </android.support.design.widget.TextInputLayout>
 
@@ -64,7 +64,7 @@
                 android:id="@+id/input_phn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Phone Number"
+                android:hint="@string/phn_no"
                 android:inputType="phone" />
         </android.support.design.widget.TextInputLayout>
 
@@ -81,7 +81,7 @@
                 android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
 
@@ -91,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:elevation="10dp"
-            android:text="Show Password" />
+            android:text="@string/show_pswd" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_signup"
@@ -102,7 +102,7 @@
             android:elevation="10dp"
 
             android:padding="12dp"
-            android:text="Create Account" />
+            android:text="@string/btn_signup" />
 
         <TextView
             android:id="@+id/link_login"
@@ -111,7 +111,7 @@
             android:layout_marginBottom="24dp"
             android:elevation="10dp"
             android:gravity="center"
-            android:text="Already a member? Login"
+            android:text="@string/btn_member_login"
             android:textSize="16dip" />
 
     </LinearLayout>

@@ -386,7 +386,7 @@ public class FirstPage extends AppCompatActivity {
                 return true;
             } else {
                 mProgressBar.setVisibility(View.GONE);
-                Toast.makeText(getActivity(), "YOU ARE NOT CONNECTED TO AN NETWORK", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), R.string.no_connection, Toast.LENGTH_LONG).show();
             }
             return false;
         }
@@ -457,7 +457,7 @@ public class FirstPage extends AppCompatActivity {
             });
             if (!isDeviceSupportCamera()) {
                 Toast.makeText(getActivity(),
-                        "Sorry! Your device doesn't support camera",
+                        R.string.camera_not_support,
                         Toast.LENGTH_LONG).show();
                 // will close the app if the device does't have camera
                 // finish();
@@ -549,7 +549,7 @@ public class FirstPage extends AppCompatActivity {
                 } else if (resultCode == RESULT_CANCELED) {
                     // user cancelled Image capture
                     Toast.makeText(getActivity(),
-                            "User cancelled image capture", Toast.LENGTH_SHORT)
+                            R.string.user_cancelled, Toast.LENGTH_SHORT)
                             .show();
                 } else {
                     // failed to capture image

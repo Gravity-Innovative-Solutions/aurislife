@@ -69,7 +69,7 @@ public class Transaction extends AppCompatActivity {
 
                         position = spnr.getSelectedItemPosition();
                         //   Toast.makeText(getApplicationContext(), "You have selected " + operators[+position], Toast.LENGTH_LONG).show();
-                        Toast.makeText(getApplicationContext(), "You have selected " + operators[+position], Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), R.string.youhaveslcted + operators[+position], Toast.LENGTH_LONG).show();
                         adapter.setDropDownViewResource(R.layout.spinner_dropdown);
                         // TODO Auto-generated method stub
                     }
@@ -92,12 +92,12 @@ public class Transaction extends AppCompatActivity {
 
 
                 if (amount == 0) {
-                    Toast.makeText(Transaction.this, "Enter your Recharge Amount", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Transaction.this, R.string.enter_rchrg_amnt, Toast.LENGTH_SHORT).show();
                 } else {
                     String phn_string = phn.getText().toString();
                     int a = Integer.parseInt(phn_string);
                     if (a > bal) {
-                        Toast.makeText(Transaction.this, "Your Balance Is Less Than You Request", Toast.LENGTH_LONG).show();
+                        Toast.makeText(Transaction.this, R.string.lesser_blnce, Toast.LENGTH_LONG).show();
                     } else {
 
 
@@ -143,7 +143,7 @@ public class Transaction extends AppCompatActivity {
                             //if(!entity.isComplete()){
                             // mAdapter.add(entity);0
 
-                            Toast.makeText(Transaction.this, Connction + "\t" + amt + "SUCCESS", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Transaction.this, Connction + "\t" + amt + R.string.success, Toast.LENGTH_LONG).show();
                             //}
 
                         }

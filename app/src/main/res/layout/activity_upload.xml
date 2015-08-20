@@ -39,7 +39,7 @@
                         android:id="@+id/btnCapturePicture"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Take a Picture"
+                        android:text="@string/take_a_pic"
                         android:textColor="@color/white" />
 
                     <!--<Button-->
@@ -53,7 +53,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="Upload Image"
+                        android:text="@string/upload_img"
                         android:textColor="@color/white" />
 
                     <Button
@@ -76,7 +76,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:text="Preview"
+                    android:text="@string/prevw"
                     android:textSize="15dp" />
 
                 <!-- To display picture taken -->
