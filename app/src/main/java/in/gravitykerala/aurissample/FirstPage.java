@@ -27,6 +27,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.PowerManager;
 import android.provider.MediaStore;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -45,12 +46,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.microsoft.azure.storage.StorageCredentialsSharedAccessSignature;
+import com.microsoft.azure.storage.blob.CloudBlobContainer;
+import com.microsoft.azure.storage.blob.CloudBlockBlob;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceUser;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -283,12 +290,13 @@ public class FirstPage extends AppCompatActivity {
         //    public static final int MEDIA_TYPE_VIDEO = 2;
         // directory name to store captured images and videos
         private static final String IMAGE_DIRECTORY_NAME = "Hello Camera";
-
+        PowerManager.WakeLock wakeLock;
+        MobileServiceClient mClient;
         private Uri fileUri; // file url to store image/video
-
         private ImageView imgPreview;
         private VideoView videoPreview;
         private Button btnCapturePicture, btnRecordVideo;
+        private Button uploadPrescription;
 
         /*
          * returning image / video
@@ -327,18 +335,22 @@ public class FirstPage extends AppCompatActivity {
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+            mClient = FirstPage.mClient;
+
             View rootView = inflater.inflate(R.layout.activity_upload, container, false);
             imgPreview = (ImageView) rootView.findViewById(R.id.imgPreview);
             videoPreview = (VideoView) rootView.findViewById(R.id.videoPreview);
             btnCapturePicture = (Button) rootView.findViewById(R.id.btnCapturePicture);
-            btnCapturePicture.setOnClickListener(new View.OnClickListener() {
+            uploadPrescription = (Button) rootView.findViewById(R.id.button_uploadpresc);
 
+            btnCapturePicture.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // capture picture
                     captureImage();
                 }
             });
+
             if (!isDeviceSupportCamera()) {
                 Toast.makeText(getActivity(),
                         "Sorry! Your device doesn't support camera",
@@ -381,6 +393,49 @@ public class FirstPage extends AppCompatActivity {
                 }
             });
             return rootView;
+        }
+
+        private void wakelockAcquire() {
+            if (wakeLock == null) {
+                PowerManager powerManager = (PowerManager) getActivity().getSystemService(POWER_SERVICE);
+                wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "ImageUploadWakelock");
+            }
+            wakeLock.acquire();
+        }
+
+        private void wakelockRelease() {
+            if (wakeLock != null)
+                wakeLock.release();
+        }
+
+        private boolean uploadFileBlob(Uri fileURI, String blobURL, String sharedAccessSignatureToken, String containerName, String resourceName) {
+            try {
+                StorageCredentialsSharedAccessSignature cred = new StorageCredentialsSharedAccessSignature(sharedAccessSignatureToken);
+                URI imageURI = new URI(blobURL);
+
+                URI containerUri = new URI("https://" + imageURI.getHost() + "/" + containerName);
+//            Log.d("ContainerURI:", containerUri.toString());
+
+                CloudBlobContainer container = new CloudBlobContainer(containerUri, cred);
+//            Log.d("ContainerDetails:", container.getUri().toString());
+
+                CloudBlockBlob blobFromSASCredential = container.getBlockBlobReference(resourceName);
+                InputStream is = null;
+                try {
+                    is = getActivity().getContentResolver().openInputStream(fileURI);
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                Log.d("Blob Upload", "Upload Starting");
+                blobFromSASCredential.upload(is, -1);
+//              blobFromSASCredential.uploadText("Sample text");
+                Log.d("Blob Upload", "Done:" + blobURL);
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
         }
 
         private boolean isDeviceSupportCamera() {
