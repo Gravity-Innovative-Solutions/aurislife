@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:layout_margin="2dp"
 
-    android:background="@drawable/spinner_ripple"
+
     android:ellipsize="marquee"
     android:gravity="center"
     android:padding="5dp"

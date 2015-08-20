@@ -32,7 +32,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Name"
-                android:inputType="textCapWords" />
+                android:inputType="textCapWords"
+                android:textColor="#020202" />
         </android.support.design.widget.TextInputLayout>
 
         <!--  Email Label -->
@@ -48,7 +49,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:textColor="#020202" />
         </android.support.design.widget.TextInputLayout>
 
         <!--Phone Number-->
@@ -65,7 +67,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Phone Number"
-                android:inputType="phone" />
+                android:inputType="phone"
+                android:textColor="#020202" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -82,7 +85,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:textColor="#020202" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Signup Button -->

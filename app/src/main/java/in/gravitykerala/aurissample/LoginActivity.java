@@ -97,6 +97,7 @@ public class LoginActivity extends AppCompatActivity {
             mClient = new MobileServiceClient("https://gravityaurislife.azure-mobile.net",
                     "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68",
                     this);
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

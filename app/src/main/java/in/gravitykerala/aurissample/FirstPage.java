@@ -58,27 +58,27 @@ import java.util.Locale;
 
 
 public class FirstPage extends AppCompatActivity {
-    public static MobileServiceClient mClient;
+    //public static MobileServiceClient mClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        try {
-            mClient = new MobileServiceClient("https://gravityaurislife.azure-mobile.net",
-                    "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68",
-                    this);
-            String userId = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
-            String tok = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
-            MobileServiceUser user = new MobileServiceUser(userId);
-            user.setAuthenticationToken(tok);
-            mClient.setCurrentUser(user);
-            if (userId.equals("default") && tok.equals("default")) {
-                Intent i = new Intent(this, LoginActivity.class);
-                startActivity(i);
-            }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            mClient = new MobileServiceClient("https://gravityaurislife.azure-mobile.net",
+//                    "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68",
+//                    this);
+//            String userId = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
+//            String tok = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
+//            MobileServiceUser user = new MobileServiceUser(userId);
+//            user.setAuthenticationToken(tok);
+//            mClient.setCurrentUser(user);
+//            if (userId.equals("default") && tok.equals("default")) {
+//                Intent i = new Intent(this, LoginActivity.class);
+//                startActivity(i);
+//            }
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 //        getSupportActionBar().setDisplayShowHomeEnabled(false);
@@ -142,7 +142,7 @@ public class FirstPage extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.activity_profile, container, false);
-            mClient = FirstPage.mClient;
+            mClient = LoginActivity.mClient;
 
             mProgressBar = (ProgressBar) rootView.findViewById(R.id.progressBar_CourseSelection);
             mProgressBar.setVisibility(ProgressBar.GONE);
