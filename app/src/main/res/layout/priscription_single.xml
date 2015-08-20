@@ -22,7 +22,7 @@
                 android:id="@+id/status"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Title"
+                android:text="@string/title"
 
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/primary"
@@ -35,7 +35,7 @@
                 android:layout_marginLeft="3dp"
                 android:gravity="left"
 
-                android:text="Content: sadasdasd asd sadas asdasdasdas asdasdasdas sadasdasdas asdasdasda"
+                android:text=" "
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/primary" />
 
@@ -46,7 +46,7 @@
                 android:layout_marginLeft="3dp"
                 android:gravity="left"
                 android:paddingBottom="4dp"
-                android:text="Content: sadasdasd asd sadas asdasdasdas asdasdasdas sadasdasdas asdasdasda"
+                android:text=" "
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/primary" />
         </LinearLayout>

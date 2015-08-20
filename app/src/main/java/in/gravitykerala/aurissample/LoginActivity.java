@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final int REQUEST_SIGNUP = 0;
     public static MobileServiceClient mClient;
     CheckBox saveLoginCheckBox;
+    ScrollView loginSV;
 //    String username, password;
 //    String KEY_username = "username";
 //    String KEY_password = "password";
@@ -60,7 +62,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
-        saveLoginCheckBox = (CheckBox) findViewById(R.id.checkBox_remember);
+//        saveLoginCheckBox = (CheckBox) findViewById(R.id.checkBox_remember);
+        loginSV = (ScrollView) findViewById(R.id.login_scrollview);
 //        prefs = this.getSharedPreferences("in.gravity", Context.MODE_PRIVATE);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id
                 .coordinatorLayout);
@@ -122,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
             onLoginFailed();
             return;
         }
-
+        loginSV.setVisibility(ScrollView.GONE);
         _loginButton.setEnabled(false);
 
 
@@ -183,11 +186,9 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
 
                 } else {
+                    loginSV.setVisibility(ScrollView.VISIBLE);
                     onLoginFailed();
                 }
-                progressDialog.setCanceledOnTouchOutside(true);
-                getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 progressDialog.dismiss();
             }
         });
@@ -255,7 +256,7 @@ public class LoginActivity extends AppCompatActivity {
             };
 
         } else {
-            Toast.makeText(getBaseContext(), "YOU ARE NOT CONNECTED TO AN NETWORK", Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), R.string.no_connection, Toast.LENGTH_LONG).show();
         }
         _loginButton.setEnabled(true);
     }

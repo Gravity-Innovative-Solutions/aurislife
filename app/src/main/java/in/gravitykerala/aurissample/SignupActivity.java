@@ -139,7 +139,7 @@ public class SignupActivity extends AppCompatActivity {
                 @Override
                 public void onCompleted(HttpResponse result, Exception exception, ServiceFilterResponse response) {
                     if (exception == null) {
-                        Toast.makeText(SignupActivity.this, "success", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SignupActivity.this, R.string.success, Toast.LENGTH_LONG).show();
                         finish();
 
                     } else {
@@ -159,7 +159,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), R.string.login_failed, Toast.LENGTH_LONG).show();
 
         _signupButton.setEnabled(true);
     }

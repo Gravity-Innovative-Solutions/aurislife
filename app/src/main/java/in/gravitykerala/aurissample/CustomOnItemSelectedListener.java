@@ -11,7 +11,7 @@ public class CustomOnItemSelectedListener implements OnItemSelectedListener {
                                long id) {
 
         Toast.makeText(parent.getContext(),
-                "On Item Select : \n" + parent.getItemAtPosition(pos).toString(),
+                R.string.item_select + parent.getItemAtPosition(pos).toString(),
                 Toast.LENGTH_LONG).show();
         String Operator = parent.getItemAtPosition(pos).toString();
     }

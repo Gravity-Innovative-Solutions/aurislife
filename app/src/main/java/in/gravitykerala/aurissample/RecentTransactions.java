@@ -114,7 +114,7 @@ public class RecentTransactions extends AppCompatActivity {
 
                             mSwipeLayout.setRefreshing(false);
                             if (results.size() == 0) {
-                                Toast.makeText(RecentTransactions.this, "NO TRANSACTIONS YET!!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(RecentTransactions.this, R.string.no_transaction, Toast.LENGTH_LONG).show();
 
                             } else {
                                 for (MobileTransactions item : results) {
@@ -150,7 +150,7 @@ public class RecentTransactions extends AppCompatActivity {
             return true;
         } else {
             mSwipeLayout.setRefreshing(false);
-            Toast.makeText(getBaseContext(), "YOU ARE NOT CONNECTED TO AN NETWORK", Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), R.string.no_connection, Toast.LENGTH_LONG).show();
         }
         return false;
     }

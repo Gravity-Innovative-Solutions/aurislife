@@ -10,6 +10,7 @@
 
     <ScrollView
 
+        android:id="@+id/login_scrollview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:fitsSystemWindows="true">
@@ -40,7 +41,7 @@
                     android:id="@+id/input_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Phone Number"
+                    android:hint="@string/phn_no"
                     android:inputType="phone"
                     android:text="9496515136"
                     android:textColor="#010101" />
@@ -57,17 +58,17 @@
                     android:id="@+id/input_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password"
+                    android:hint="@string/password"
                     android:inputType="textPassword"
                     android:text="nithinnew"
                     android:textColor="#010101" />
             </android.support.design.widget.TextInputLayout>
 
-            <CheckBox
-                android:id="@+id/checkBox_remember"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Remember me..." />
+            <!--<CheckBox-->
+            <!--android:id="@+id/checkBox_remember"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Remember me..." />-->
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn_login"
@@ -79,7 +80,7 @@
                 android:nestedScrollingEnabled="false"
 
                 android:padding="12dp"
-                android:text="Login" />
+                android:text="@string/login" />
 
             <TextView
                 android:id="@+id/link_signup"
@@ -87,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:gravity="center"
-                android:text="No account yet? Create one"
+                android:text="@string/signup"
                 android:textSize="16dip" />
 
         </LinearLayout>
