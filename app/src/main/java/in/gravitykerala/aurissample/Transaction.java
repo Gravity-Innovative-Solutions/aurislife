@@ -1,5 +1,6 @@
 package in.gravitykerala.aurissample;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -144,6 +145,8 @@ public class Transaction extends AppCompatActivity {
                             // mAdapter.add(entity);0
 
                             Toast.makeText(Transaction.this, Connction + "\t" + amt + R.string.success, Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(Transaction.this, RecentTransactions.class);
+                            startActivity(i);
                             //}
 
                         }
@@ -161,9 +164,15 @@ public class Transaction extends AppCompatActivity {
 
             protected void onPostExecute(Void results) {
                 super.onPostExecute(results);
+                phn.setVisibility(EditText.VISIBLE);
+                spnr.setVisibility(Spinner.VISIBLE);
+                sbmt.setVisibility(Button.VISIBLE);
                 mProgressBar.setVisibility(ProgressBar.GONE);
             }
         }.execute();
+        sbmt.setVisibility(Button.GONE);
+        phn.setVisibility(EditText.GONE);
+        spnr.setVisibility(Spinner.GONE);
         mProgressBar.setVisibility(ProgressBar.VISIBLE);
         phn.setText("");
         //pnr.setText("");
