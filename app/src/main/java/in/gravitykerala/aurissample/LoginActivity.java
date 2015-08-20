@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
-        saveLoginCheckBox = (CheckBox) findViewById(R.id.checkBox_remember);
+//        saveLoginCheckBox = (CheckBox) findViewById(R.id.checkBox_remember);
         loginSV = (ScrollView) findViewById(R.id.login_scrollview);
 //        prefs = this.getSharedPreferences("in.gravity", Context.MODE_PRIVATE);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id
