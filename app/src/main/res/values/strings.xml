@@ -34,7 +34,9 @@
     <string name="upload_img">Upload Image</string>
     <string name="prec_details">Prescription Details</string>
     <string name="prevw">Preview</string>
+    <string name="profile">Profile</string>
     <string name="title">Title</string>
+    <string name="upld_presc">Upload Prescription</string>
 
 
     <string name="currentpassword">Current Password</string>

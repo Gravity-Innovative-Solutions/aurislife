@@ -72,6 +72,7 @@
         <activity
             android:name=".SplashPage"
             android:label="@string/title_activity_splash_page"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
 
             >
             <intent-filter>

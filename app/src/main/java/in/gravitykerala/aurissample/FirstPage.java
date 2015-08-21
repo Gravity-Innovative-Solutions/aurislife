@@ -100,8 +100,8 @@ public class FirstPage extends AppCompatActivity {
 //        setSupportActionBar(toolbar);
 //        getSupportActionBar().setDisplayShowHomeEnabled(false);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Profile"));
-        tabLayout.addTab(tabLayout.newTab().setText("Upload Priscription"));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.profile));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.upld_presc));
         // tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 

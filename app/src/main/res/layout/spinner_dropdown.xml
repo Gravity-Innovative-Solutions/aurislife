@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_margin="2dp"
+    android:background="@drawable/spinner_bg"
 
 
     android:ellipsize="marquee"
@@ -19,7 +20,7 @@
     android:text="Demo"
 
 
-    android:textColor="@color/white"
+    android:textColor="@color/primary_darker"
 
 
     android:textSize="20sp" />
