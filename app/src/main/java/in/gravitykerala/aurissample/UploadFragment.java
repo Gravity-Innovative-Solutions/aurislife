@@ -101,11 +101,11 @@ public class UploadFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mClient = FirstPage.mClient;
+        mClient = LoginActivity.mClient;
+        ;
 
         View rootView = inflater.inflate(R.layout.activity_upload, container, false);
         imgPreview = (ImageView) rootView.findViewById(R.id.imgPreview);
-        videoPreview = (VideoView) rootView.findViewById(R.id.videoPreview);
         btnCapturePicture = (Button) rootView.findViewById(R.id.btnCapturePicture);
         uploadPrescription = (Button) rootView.findViewById(R.id.button_uploadpresc);
 
