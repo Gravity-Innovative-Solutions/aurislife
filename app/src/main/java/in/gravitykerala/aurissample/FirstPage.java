@@ -32,6 +32,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.PowerManager;
 import android.provider.MediaStore;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -52,13 +53,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.microsoft.azure.storage.StorageCredentialsSharedAccessSignature;
+import com.microsoft.azure.storage.blob.CloudBlobContainer;
+import com.microsoft.azure.storage.blob.CloudBlockBlob;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceUser;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 import com.ogaclejapan.arclayout.ArcLayout;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -75,6 +82,9 @@ public class FirstPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_local_phone_white_48dp);
 //        uid=getIntent().getExtras().getString("Uid");
 //        token=getIntent().getExtras().getString("Tok");
         try {
@@ -97,8 +107,8 @@ public class FirstPage extends AppCompatActivity {
 //        setSupportActionBar(toolbar);
 //        getSupportActionBar().setDisplayShowHomeEnabled(false);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Profile"));
-        tabLayout.addTab(tabLayout.newTab().setText("Upload Priscription"));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.profile));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.upld_presc));
         // tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
@@ -133,19 +143,29 @@ public class FirstPage extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        switch (item.getItemId()) {
+            case R.id.home:
+                onBackPressed();
+                return true;
 
-        return super.onOptionsItemSelected(item);
+            default:
+                return false;
+        }
     }
 
+    public void onBackPressed() {
+        // Disable going back to the MainActivity
+        moveTaskToBack(true);
+    }
 
     /**
      * A fragment that launches other parts of the demo application.
      */
     public static class ProfileFragment extends Fragment {
+//        MobileServiceClient mClient;
 
         // MobileServiceClient mClient;
         MobileServiceTable<MobileProfile> mToDoTable;
@@ -404,205 +424,7 @@ public class FirstPage extends AppCompatActivity {
         }
     }
 
-    public static class UploadFragment extends Fragment {
-        public static final int MEDIA_TYPE_IMAGE = 1;
-        private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 100;
-        private static final int CAMERA_CAPTURE_VIDEO_REQUEST_CODE = 200;
-        //    public static final int MEDIA_TYPE_VIDEO = 2;
-        // directory name to store captured images and videos
-        private static final String IMAGE_DIRECTORY_NAME = "Auris Life";
-
-        private Uri fileUri; // file url to store image/video
-
-        private ImageView imgPreview;
-        private VideoView videoPreview;
-        private Button btnCapturePicture, btnRecordVideo;
-
-        /*
-         * returning image / video
-         */
-        private static File getOutputMediaFile(int type) {
-
-            // External sdcard location
-            File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-                    IMAGE_DIRECTORY_NAME);
-
-            // Create the storage directory if it does not exist
-            if (!mediaStorageDir.exists()) {
-                if (!mediaStorageDir.mkdirs()) {
-                    Log.d(IMAGE_DIRECTORY_NAME, "Oops! Failed create "
-                            + IMAGE_DIRECTORY_NAME + " directory");
-                    return null;
-                }
-            }
-
-            // Create a media file name
-            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss",
-                    Locale.getDefault()).format(new Date());
-            File mediaFile;
-            if (type == MEDIA_TYPE_IMAGE) {
-                mediaFile = new File(mediaStorageDir.getPath() + File.separator
-                        + "IMG_" + timeStamp + ".jpg");
-//        } else if (type == MEDIA_TYPE_VIDEO) {
-//            mediaFile = new File(mediaStorageDir.getPath() + File.separator
-//                    + "VID_" + timeStamp + ".mp4");
-            } else {
-                return null;
-            }
-
-            return mediaFile;
-        }
-
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.activity_upload, container, false);
-            imgPreview = (ImageView) rootView.findViewById(R.id.imgPreview);
-//            videoPreview = (VideoView) rootView.findViewById(R.id.videoPreview);
-            btnCapturePicture = (Button) rootView.findViewById(R.id.btnCapturePicture);
-            btnCapturePicture.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    // capture picture
-                    captureImage();
-                }
-            });
-            if (!isDeviceSupportCamera()) {
-                Toast.makeText(getActivity(),
-                        R.string.camera_not_support,
-                        Toast.LENGTH_LONG).show();
-                // will close the app if the device does't have camera
-                // finish();
-            }
-//        public void onCreate(Bundle savedInstanceState) {
-//            super.onCreate(savedInstanceState);
-//            setContentView(R.layout.activity_tab1);
-            // Button apply = (Button) rootView.findViewById(R.id.button_apply);
-//            apply.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Intent i= new Intent(getActivity(),Admission_Act.class);
-//                    startActivity(i);
-//                }
-//            });
-
-//            ListView listView = (ListView) rootView.findViewById(R.id.listView2);
-//            String[] value = new String[]{
-//                    " COMPUTER SCIENCE", " APPLIED ELECTRONICS & COMMUNICATION", " THERMAL ENGINEERING", " ENVIRONMENTAL ENGINEERING"
-//            };
-//            ArrayAdapter<String> Listviewadapter = new ArrayAdapter<String>(getActivity(),
-//                    R.layout.list_item, R.id.text, value);
-//            listView.setAdapter(Listviewadapter);
-//            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                public void onItemClick(AdapterView parent, View v,
-//                                        int position, long id) {
-//
-//
-//                }
-//            });
-            Button mobpricss = (Button) rootView.findViewById(R.id.button4);
-            mobpricss.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(getActivity(), PriscriptionDetails.class);
-                    startActivity(i);
-                }
-            });
-            return rootView;
-        }
-
-        private boolean isDeviceSupportCamera() {
-            if (getActivity().getPackageManager().hasSystemFeature(
-                    PackageManager.FEATURE_CAMERA)) {
-                // this device has a camera
-                return true;
-            } else {
-                // no camera on this device
-                return false;
-            }
-        }
-
-        private void captureImage() {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-            fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
-
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-
-            // start the image capture Intent
-            startActivityForResult(intent, CAMERA_CAPTURE_IMAGE_REQUEST_CODE);
-        }
-
-        // @Override
-//        protected void onRestoreInstanceState(Bundle savedInstanceState) {
-//            super.onRestoreInstanceState(savedInstanceState);
-//
-//            // get the file url
-//            fileUri = savedInstanceState.getParcelable("file_uri");
-//        }
-
-        @Override
-        public void onSaveInstanceState(Bundle outState) {
-            super.onSaveInstanceState(outState);
-
-            // save file url in bundle as it will be null on scren orientation
-            // changes
-            outState.putParcelable("file_uri", fileUri);
-        }
-
-        @Override
-        public void onActivityResult(int requestCode, int resultCode, Intent data) {
-            // if the result is capturing Image
-            if (requestCode == CAMERA_CAPTURE_IMAGE_REQUEST_CODE) {
-                if (resultCode == RESULT_OK) {
-                    // successfully captured the image
-                    // display it in image view
-                    previewCapturedImage();
-                } else if (resultCode == RESULT_CANCELED) {
-                    // user cancelled Image capture
-                    Toast.makeText(getActivity(),
-                            R.string.user_cancelled, Toast.LENGTH_SHORT)
-                            .show();
-                } else {
-                    // failed to capture image
-                    Toast.makeText(getActivity(),
-                            "Sorry! Failed to capture image", Toast.LENGTH_SHORT)
-                            .show();
-                }
-            }
-        }
-
-        private void previewCapturedImage() {
-            try {
-                // hide video preview
-//            videoPreview.setVisibility(View.GONE);
-
-                imgPreview.setVisibility(View.VISIBLE);
-
-                // bimatp factory
-                BitmapFactory.Options options = new BitmapFactory.Options();
-
-                // downsizing image as it throws OutOfMemory Exception for larger
-                // images
-                options.inSampleSize = 8;
-
-                final Bitmap bitmap = BitmapFactory.decodeFile(fileUri.getPath(),
-                        options);
-
-                imgPreview.setImageBitmap(bitmap);
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            }
-        }
-
-        public Uri getOutputMediaFileUri(int type) {
-            Log.d("URI type", "" + type);
-            File file = getOutputMediaFile(type);
-            return Uri.fromFile(file);
-        }
-
-    }
-//
+    //
 //        @Override
 //        public View onCreateView(LayoutInflater inflater, ViewGroup container,
 //                Bundle savedInstanceState) {

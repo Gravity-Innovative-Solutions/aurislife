@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import in.gravitykerala.aurissample.model.MobilePrescription;
+
 /**
  * Adapter to bind a ToDoItem List to a view
  */
-public class PDAdapter extends ArrayAdapter<MobilePrescriptions> {
+public class PDAdapter extends ArrayAdapter<MobilePrescription> {
 
     /**
      * Adapter context
@@ -38,7 +40,7 @@ public class PDAdapter extends ArrayAdapter<MobilePrescriptions> {
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = convertView;
 
-        final MobilePrescriptions currentItem = getItem(position);
+        final MobilePrescription currentItem = getItem(position);
 
         if (row == null) {
             LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
@@ -57,9 +59,9 @@ public class PDAdapter extends ArrayAdapter<MobilePrescriptions> {
 
         final TextView tvContent0 = (TextView) row.findViewById(R.id.amt);
         final TextView tvContent1 = (TextView) row.findViewById(R.id.remark);
-        tvTitle.setText("PRISCRIPTION STATUS" + ":" + "\t" + currentItem.stats);
-        tvContent0.setText("PRISCRIPTION NUMBER" + ":" + "\t" + currentItem.Prisno);
-        tvContent1.setText("REMARK" + ":" + "\t" + currentItem.remark);
+        tvTitle.setText("PRISCRIPTION STATUS" + ":" + "\t" + currentItem.getStatus());
+        tvContent0.setText("PRISCRIPTION NUMBER" + ":" + "\t" + currentItem.getPrescriptionNumber());
+        tvContent1.setText("REMARK" + ":" + "\t" + currentItem.getRemarks());
 //        tvContent.setOnClickListener(new View.OnClickListener() {
 //            //
 //            @Override
