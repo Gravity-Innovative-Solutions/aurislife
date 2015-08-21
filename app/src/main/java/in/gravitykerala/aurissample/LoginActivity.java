@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
 //                    prefs.edit().clear().commit();
 //
 //                }
-
+                Log.d("loginstatus:", "Login operation call finished");
 
             }
         });
