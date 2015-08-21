@@ -101,7 +101,7 @@ public class UploadFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mClient = LoginActivity.mClient;
+        mClient = FirstPage.mClient;
         ;
 
         View rootView = inflater.inflate(R.layout.activity_upload, container, false);

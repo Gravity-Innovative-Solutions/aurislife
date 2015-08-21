@@ -138,23 +138,23 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
         loginSV.setVisibility(ScrollView.GONE);
-        _loginButton.setEnabled(false);
+        // _loginButton.setEnabled(false);
 
 
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
-                R.style.AppTheme_Dark_Dialog);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Authenticating...");
-        progressDialog.show();
-        progressDialog.setCanceledOnTouchOutside(false);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-//        String email = _emailText.getText().toString();
-//        String password = _passwordText.getText().toString();
-
-        // TODO: Implement your own authentication logic here.
-
+//        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
+//                R.style.AppTheme_Dark_Dialog);
+//        progressDialog.setIndeterminate(true);
+//        progressDialog.setMessage("Authenticating...");
+//        progressDialog.show();
+//        progressDialog.setCanceledOnTouchOutside(false);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+////        String email = _emailText.getText().toString();
+////        String password = _passwordText.getText().toString();
+//
+//        // TODO: Implement your own authentication logic here.
+//
         loginreq();
-        progressDialog.dismiss();
+//        progressDialog.dismiss();
 
 
 //
@@ -167,6 +167,7 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
+        progressDialog.setCanceledOnTouchOutside(false);
         List<Pair<String, String>> parameters = new AbstractList<Pair<String, String>>() {
             @Override
             public Pair<String, String> get(int i) {
