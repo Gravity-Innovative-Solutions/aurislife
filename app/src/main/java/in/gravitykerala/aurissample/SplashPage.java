@@ -17,7 +17,7 @@ import java.util.logging.LogRecord;
 
 public class SplashPage extends AppCompatActivity {
     public static MobileServiceClient mClient;
-    private static int SPLASH_TIME_OUT = 3000;
+    private static int SPLASH_TIME_OUT = 1200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
