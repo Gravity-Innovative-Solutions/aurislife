@@ -56,6 +56,8 @@ public class LoginActivity extends AppCompatActivity {
     Button _loginButton;
     @InjectView(R.id.link_signup)
     TextView _signupLink;
+    @InjectView(R.id.button7)
+    Button _forgetPword;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -111,6 +113,16 @@ public class LoginActivity extends AppCompatActivity {
                 // Start the Signup activity
                 Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
                 startActivityForResult(intent, REQUEST_SIGNUP);
+            }
+
+        });
+        _forgetPword.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // Start the Signup activity
+                Intent intent = new Intent(getApplicationContext(), ForgetPasswordActivity.class);
+                startActivity(intent);
             }
 
         });

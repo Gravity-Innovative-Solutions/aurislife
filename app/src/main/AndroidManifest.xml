@@ -56,7 +56,10 @@
         </activity>
         <activity
             android:name=".Uidtoken"
-            android:label="@string/title_activity_uidtoken">
+            android:label="@string/title_activity_uidtoken"></activity>
+        <activity
+            android:name=".ForgetPasswordActivity"
+            android:label="@string/title_activity_forget_password">
         </activity>
     </application>
 

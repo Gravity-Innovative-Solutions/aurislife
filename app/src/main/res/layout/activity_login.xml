@@ -91,6 +91,12 @@
                 android:text="@string/signup"
                 android:textSize="16dip" />
 
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Forget Password" />
+
         </LinearLayout>
     </ScrollView>
 </android.support.design.widget.CoordinatorLayout>

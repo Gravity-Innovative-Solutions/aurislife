@@ -235,6 +235,14 @@ public class FirstPage extends AppCompatActivity {
                     }
                 }
             });
+//            Button logout = (Button) rootView.findViewById(R.id.button6);
+//            logout.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                  Intent i=new Intent(getActivity(),LoginActivity.class );
+//                    startActivity(i);
+//                }
+//            });
 
 
             return rootView;
