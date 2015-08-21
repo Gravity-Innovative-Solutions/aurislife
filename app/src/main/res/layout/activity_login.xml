@@ -43,7 +43,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/phn_no"
                     android:inputType="phone"
-                    android:text="9496515136" />
+                    android:text="9496515136"
+                    android:textColor="#010101" />
             </android.support.design.widget.TextInputLayout>
 
             <!-- Password Label -->
@@ -59,7 +60,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/password"
                     android:inputType="textPassword"
-                    android:text="nithinnew" />
+                    android:text="nithinnew"
+                    android:textColor="#010101" />
             </android.support.design.widget.TextInputLayout>
 
             <!--<CheckBox-->

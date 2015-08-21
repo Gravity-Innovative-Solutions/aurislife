@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="140dp"
         android:layout_margin="10dp"
         android:background="@drawable/button_border_white"
@@ -18,9 +18,9 @@
 
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="1.25"
             android:gravity="center_vertical"
             android:orientation="vertical">
 
@@ -64,9 +64,9 @@
 
         <LinearLayout
             android:id="@+id/li_pro"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight=".75"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -114,8 +114,9 @@
         android:layout_below="@+id/linearLayout">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
             android:orientation="vertical"
             android:weightSum="1">
 
@@ -174,7 +175,7 @@
 
             <FrameLayout
                 android:id="@+id/menu_layout"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="match_parent"
 
                 android:visibility="invisible">
@@ -192,43 +193,37 @@
                     <Button
                         android:id="@+id/btn_change_pswd"
                         style="@style/Item.Path"
-                        
 
-                        android:text="abcdefghij"
+
                         android:textColor="@color/path_orange"
-                        app:arc_angle="30" />
+                        app:arc_angle="25" />
 
                     <Button
                         android:id="@+id/button3"
-                        style="@style/Item.Path"
+                        style="@style/Item.Path_one"
 
-                        android:text="B"
+
                         android:textColor="@color/path_blue"
-                        app:arc_angle="60" />
+                        app:arc_angle="68" />
 
-                    <Button
-                        android:id="@+id/button4"
-                        style="@style/Item.Path"
 
-                        android:text="Cklkk"
-                        android:textColor="@color/path_black"
-                        app:arc_angle="90" />
+
 
                     <Button
                         android:id="@+id/button5"
-                        style="@style/Item.Path"
-                        android:text="D"
+                        style="@style/Item.Path_two"
+
 
                         android:textColor="@color/path_green"
-                        app:arc_angle="120" />
+                        app:arc_angle="111" />
 
                     <Button
                         android:id="@+id/button2"
-                        style="@style/Item.Path"
+                        style="@style/Item.Path_three"
 
-                        android:text="E"
+
                         android:textColor="@color/path_purple"
-                        app:arc_angle="150" />
+                        app:arc_angle="155" />
 
                 </com.ogaclejapan.arclayout.ArcLayout>
 
