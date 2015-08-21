@@ -46,8 +46,9 @@ public class Transaction extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar_3);
         mProgressBar.setVisibility(ProgressBar.GONE);
         mClient = FirstPage.mClient;

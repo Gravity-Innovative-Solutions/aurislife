@@ -36,8 +36,8 @@ public class PriscriptionDetails extends ActionBarActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
         // mProgressBar = (ProgressBar) findViewById(R.id.loadingProgressBar);
 
         //buttonRefresh = (Button) findViewById(R.id.button_refresh);

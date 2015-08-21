@@ -32,7 +32,7 @@
     <string name="mismatch_pswd">"PASSWORD DOESN'T MATCH" </string>
     <string name="take_a_pic">Take a Picture</string>
     <string name="upload_img">Upload Image</string>
-    <string name="prec_details">Priscription Details</string>
+    <string name="prec_details">Prescription Details</string>
     <string name="prevw">Preview</string>
     <string name="title">Title</string>
 
@@ -43,9 +43,11 @@
     <string name="title_activity_change_password">Change Password</string>
     <string name="title_activity_transaction">Transaction</string>
     <string name="title_activity_recent_transactions">Recent Transactions</string>
-    <string name="title_activity_priscription_details">Priscription Details</string>
+    <string name="title_activity_priscription_details">Prescription Details</string>
     <string name="title_activity_splash_page">SplashPage</string>
     <string name="title_activity_uidtoken">Uidtoken</string>
+    <string name="view_presc_details">Pull to view Recent Prescription details</string>
+    <string name="view_rcnt_transactions">Pull to view Recent Transactions</string>
 
     <string name="hello_world">Hello world!</string>
 </resources>
