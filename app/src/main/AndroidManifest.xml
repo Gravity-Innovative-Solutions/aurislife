@@ -33,7 +33,6 @@
         <activity
             android:name=".FirstPage"
             android:theme="@style/AppTheme.Dark">
-
         </activity>
         <activity
             android:name=".Transaction"
@@ -46,7 +45,7 @@
         <activity
             android:name=".PriscriptionDetails"
             android:label="@string/title_activity_priscription_details"
-            android:theme="@style/AppTheme.Dark"></activity>
+            android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".SplashPage"
             android:label="@string/title_activity_splash_page">
@@ -55,6 +54,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".Uidtoken"
+            android:label="@string/title_activity_uidtoken">
         </activity>
     </application>
 

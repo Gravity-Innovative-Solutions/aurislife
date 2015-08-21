@@ -53,7 +53,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         NewPwd = (EditText) findViewById(R.id.input_new_password);
         ReNpwd = (EditText) findViewById(R.id.input_new_confirm_password);
         Submit = (Button) findViewById(R.id.button);
-        mClient = LoginActivity.mClient;
+        mClient = FirstPage.mClient;
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

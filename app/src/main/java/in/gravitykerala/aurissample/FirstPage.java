@@ -74,27 +74,32 @@ import java.util.Locale;
 
 
 public class FirstPage extends AppCompatActivity {
-    //public static MobileServiceClient mClient;
+
+    //    String uid;
+//    String token;
+    public static MobileServiceClient mClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        try {
-//            mClient = new MobileServiceClient("https://gravityaurislife.azure-mobile.net",
-//                    "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68",
-//                    this);
-//            String userId = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
-//            String tok = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
-//            MobileServiceUser user = new MobileServiceUser(userId);
-//            user.setAuthenticationToken(tok);
-//            mClient.setCurrentUser(user);
-//            if (userId.equals("default") && tok.equals("default")) {
-//                Intent i = new Intent(this, LoginActivity.class);
-//                startActivity(i);
-//            }
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        }
+//        uid=getIntent().getExtras().getString("Uid");
+//        token=getIntent().getExtras().getString("Tok");
+        try {
+            mClient = new MobileServiceClient("https://gravityaurislife.azure-mobile.net",
+                    "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68",
+                    this);
+            String userId = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
+            String tok = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
+            MobileServiceUser user = new MobileServiceUser(userId);
+            user.setAuthenticationToken(tok);
+            mClient.setCurrentUser(user);
+            if (userId.equals("default") && tok.equals("default")) {
+                Intent i = new Intent(this, LoginActivity.class);
+                startActivity(i);
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 //        getSupportActionBar().setDisplayShowHomeEnabled(false);
@@ -148,7 +153,9 @@ public class FirstPage extends AppCompatActivity {
      * A fragment that launches other parts of the demo application.
      */
     public static class ProfileFragment extends Fragment {
-        MobileServiceClient mClient;
+//        MobileServiceClient mClient;
+
+        // MobileServiceClient mClient;
         MobileServiceTable<MobileProfile> mToDoTable;
         int currnt_blnce = 0;
         Toast toast = null;
@@ -162,7 +169,7 @@ public class FirstPage extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.activity_profile, container, false);
-            mClient = LoginActivity.mClient;
+
             fab = rootView.findViewById(R.id.fab);
             menuLayout = rootView.findViewById(R.id.menu_layout);
             arcLayout = (ArcLayout) rootView.findViewById(R.id.arc_layout);
@@ -181,8 +188,6 @@ public class FirstPage extends AppCompatActivity {
                     }
                 }
             });
-
-            mClient = LoginActivity.mClient;
 
 
             mProgressBar = (ProgressBar) rootView.findViewById(R.id.progressBar_CourseSelection);

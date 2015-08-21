@@ -66,7 +66,7 @@ public class SignupActivity extends AppCompatActivity {
                 signup();
             }
         });
-        mClient = LoginActivity.mClient;
+        mClient = FirstPage.mClient;
 
         _loginLink.setOnClickListener(new View.OnClickListener() {
             @Override
