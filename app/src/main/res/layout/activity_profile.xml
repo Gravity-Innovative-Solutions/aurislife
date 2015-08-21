@@ -34,10 +34,11 @@
                 <TextView
                     android:id="@+id/textView_email"
                     android:layout_width="wrap_content"
-
                     android:layout_height="wrap_content"
+
                     android:layout_marginLeft="5dp"
-                    android:drawableLeft="@drawable/ic_local_post_office_white_18dp"
+                    android:drawableLeft="@drawable/ic_local_post_office_white_48dp"
+
                     android:textColor="@color/white" />
             </TableRow>
 
@@ -55,8 +56,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:drawableLeft="@drawable/ic_local_phone_white_48dp"
 
-                    android:drawableLeft="@drawable/ic_local_phone_white_18dp"
+
                     android:textColor="@color/white" />
 
             </TableRow>

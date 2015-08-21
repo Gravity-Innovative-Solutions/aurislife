@@ -82,6 +82,9 @@ public class FirstPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_local_phone_white_48dp);
 //        uid=getIntent().getExtras().getString("Uid");
 //        token=getIntent().getExtras().getString("Tok");
         try {
@@ -104,8 +107,8 @@ public class FirstPage extends AppCompatActivity {
 //        setSupportActionBar(toolbar);
 //        getSupportActionBar().setDisplayShowHomeEnabled(false);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Profile"));
-        tabLayout.addTab(tabLayout.newTab().setText("Upload Priscription"));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.profile));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.upld_presc));
         // tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
@@ -140,14 +143,23 @@ public class FirstPage extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        switch (item.getItemId()) {
+            case R.id.home:
+                onBackPressed();
+                return true;
 
-        return super.onOptionsItemSelected(item);
+            default:
+                return false;
+        }
     }
 
+    public void onBackPressed() {
+        // Disable going back to the MainActivity
+        moveTaskToBack(true);
+    }
 
     /**
      * A fragment that launches other parts of the demo application.
