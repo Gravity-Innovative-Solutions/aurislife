@@ -182,6 +182,8 @@ public class LoginActivity extends AppCompatActivity {
                     mClient.setCurrentUser(user);
                     Log.d("uid", userId);
                     Intent intent = new Intent(getApplicationContext(), FirstPage.class);
+                    intent.putExtra("Uid", userId);
+                    intent.putExtra("Tok", tok);
                     startActivity(intent);
                     finish();
 

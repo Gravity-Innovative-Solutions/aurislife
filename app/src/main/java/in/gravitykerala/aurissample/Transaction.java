@@ -50,7 +50,7 @@ public class Transaction extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar_3);
         mProgressBar.setVisibility(ProgressBar.GONE);
-        mClient = LoginActivity.mClient;
+        mClient = FirstPage.mClient;
         mToDoTable = mClient.getTable(MobileTransactions.class);
         phn = (EditText) findViewById(R.id.input_phn);
         sbmt = (Button) findViewById(R.id.submit);

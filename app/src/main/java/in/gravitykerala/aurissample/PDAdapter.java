@@ -64,7 +64,7 @@ public class PDAdapter extends ArrayAdapter<MobilePrescriptions> {
 //            //
 //            @Override
 //            public void onClick(View arg0) {
-//                Attendance activity = (Attendance) mContext;
+//                Attendance activity = (Attendance) ontext;
 //                activity.Attendance(currentItem);
 //            }
 //        });
