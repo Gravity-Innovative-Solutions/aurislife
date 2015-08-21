@@ -71,7 +71,7 @@ public class Transaction extends AppCompatActivity {
 
                         position = spnr.getSelectedItemPosition();
                         //   Toast.makeText(getApplicationContext(), "You have selected " + operators[+position], Toast.LENGTH_LONG).show();
-                        Toast.makeText(getApplicationContext(), R.string.youhaveslcted + operators[+position], Toast.LENGTH_LONG).show();
+                        // Toast.makeText(getApplicationContext(), R.string.youhaveslcted + operators[+position], Toast.LENGTH_LONG).show();
                         adapter.setDropDownViewResource(R.layout.spinner_dropdown);
                         // TODO Auto-generated method stub
                     }
