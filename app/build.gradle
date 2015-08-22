@@ -6,7 +6,7 @@ android {
 
 
     defaultConfig {
-        applicationId "in.gravitykerala.aurissample"
+        applicationId "in.gravitykerala.aurislife"
         minSdkVersion 15
         targetSdkVersion 22
         versionCode 1

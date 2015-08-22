@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="in.gravitykerala.aurissample">
+    package="in.gravitykerala.aurislife">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,65 +13,65 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LoginActivity"
+            android:name="in.gravitykerala.aurislife.LoginActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.Dark">
         </activity>
         <activity
-            android:name=".Profile"
+            android:name="in.gravitykerala.aurislife.Profile"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.Dark">
         </activity>
         <activity
-            android:name=".SignupActivity"
+            android:name="in.gravitykerala.aurislife.SignupActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".ChangePasswordActivity"
+            android:name="in.gravitykerala.aurislife.ChangePasswordActivity"
             android:label="@string/title_activity_change_password"
-            android:parentActivityName="in.gravitykerala.aurissample.FirstPage"
+            android:parentActivityName="in.gravitykerala.aurislife.FirstPage"
             android:theme="@style/AppTheme.Dark">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".FirstPage" />
+                android:value="in.gravitykerala.aurislife.FirstPage" />
         </activity>
         <activity
-            android:name=".FirstPage"
+            android:name="in.gravitykerala.aurislife.FirstPage"
             android:theme="@style/AppTheme.Dark">
         </activity>
         <activity
-            android:name=".Transaction"
+            android:name="in.gravitykerala.aurislife.Transaction"
             android:label="@string/title_activity_transaction"
-            android:parentActivityName="in.gravitykerala.aurissample.FirstPage"
+            android:parentActivityName="in.gravitykerala.aurislife.FirstPage"
             android:theme="@style/AppTheme.Dark">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".FirstPage" />
+                android:value="in.gravitykerala.aurislife.FirstPage" />
         </activity>
         <activity
-            android:name=".RecentTransactions"
+            android:name="in.gravitykerala.aurislife.RecentTransactions"
             android:label="@string/title_activity_recent_transactions"
-            android:parentActivityName="in.gravitykerala.aurissample.FirstPage"
+            android:parentActivityName="in.gravitykerala.aurislife.FirstPage"
             android:theme="@style/AppTheme.Dark">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".FirstPage" />
+                android:value="in.gravitykerala.aurislife.FirstPage" />
         </activity>
         <activity
-            android:name=".PriscriptionDetails"
+            android:name="in.gravitykerala.aurislife.PriscriptionDetails"
             android:label="@string/title_activity_priscription_details"
-            android:parentActivityName="in.gravitykerala.aurissample.FirstPage"
+            android:parentActivityName="in.gravitykerala.aurislife.FirstPage"
             android:theme="@style/AppTheme.Dark">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".FirstPage" />
+                android:value="in.gravitykerala.aurislife.FirstPage" />
         </activity>
         <activity
-            android:name=".SplashPage"
+            android:name="in.gravitykerala.aurislife.SplashPage"
 
             android:label="@string/title_activity_splash_page"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
@@ -84,10 +84,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Uidtoken"
+            android:name="in.gravitykerala.aurislife.Uidtoken"
             android:label="@string/title_activity_uidtoken"></activity>
         <activity
-            android:name=".ForgetPasswordActivity"
+            android:name="in.gravitykerala.aurislife.ForgetPasswordActivity"
             android:label="@string/title_activity_forget_password">
         </activity>
     </application>
