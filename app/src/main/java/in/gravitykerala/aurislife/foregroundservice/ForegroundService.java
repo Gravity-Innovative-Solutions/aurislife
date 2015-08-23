@@ -109,7 +109,7 @@ public class ForegroundService extends Service {
                     stopForeground(false);
                     mNotificationManager.notify(Constants.NOTIFICATION_ID.FOREGROUND_SERVICE, notificationFailed);
                     wakelockRelease();
-
+//                    stopSelf();
                 }
                 return null;
             }
@@ -165,7 +165,7 @@ public class ForegroundService extends Service {
                 Log.d("UpdateStatusPresc:", "Uploading failed");
                 Log.d("UpdateStatusPresc:", "Request Error");
                 wakelockRelease();
-
+//                stopSelf();
             }
 
             @Override
@@ -182,13 +182,16 @@ public class ForegroundService extends Service {
                         .setSmallIcon(R.drawable.ic_not_aurislife)
                         .setContentIntent(pendingIntent)
                         .setOngoing(false).build();
-                stopForeground(false);
+
                 mNotificationManager.notify(Constants.NOTIFICATION_ID.FOREGROUND_SERVICE,
                         notificationFailed);
+                stopForeground(false);
 
                 Toast.makeText(ForegroundService.this, "Prescription " + result, Toast.LENGTH_LONG).show();
                 Log.d("UpdateStatusPresc:", result);
                 wakelockRelease();
+
+//                stopSelf();
             }
         });
 
