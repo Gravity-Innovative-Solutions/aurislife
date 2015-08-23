@@ -72,7 +72,7 @@ public class ForegroundService extends Service {
                 .setContentTitle(getString(R.string.presc_upld))
                 .setTicker(getString(R.string.uplding_prgrs))
                 .setContentText(getString(R.string.uplding_prgrs))
-                .setSmallIcon(R.drawable.ic_not_aurislife)
+                .setSmallIcon(R.drawable.icon_notification)
                 .setProgress(0, 0, true)
                 .setContentIntent(pendingIntent)
                 .setOngoing(true).build();
@@ -104,7 +104,7 @@ public class ForegroundService extends Service {
                             .setContentTitle(getString(R.string.presc_upld))
                             .setTicker(getString(R.string.pres_upld_failed))
                             .setContentText(getString(R.string.pres_upld_failed_bcoz_nw_issue))
-                            .setSmallIcon(R.drawable.ic_not_aurislife)
+                            .setSmallIcon(R.drawable.icon_notification)
                             .setContentIntent(pendingIntent)
                             .setOngoing(false).build();
                     stopForeground(true);
@@ -154,7 +154,7 @@ public class ForegroundService extends Service {
                         .setContentTitle(getString(R.string.presc_upld))
                         .setTicker(getString(R.string.pres_upld_failed))
                         .setContentText(getString(R.string.pres_upld_failed_bcoz_nw_issue))
-                        .setSmallIcon(R.drawable.ic_not_aurislife)
+                        .setSmallIcon(R.drawable.icon_notification)
                         .setContentIntent(pendingIntent)
                         .setOngoing(false).build();
                 stopForeground(true);
@@ -180,7 +180,7 @@ public class ForegroundService extends Service {
                         .setContentTitle(getString(R.string.presc_upld))
                         .setTicker(getString(R.string.pres_upld_success))
                         .setContentText(getString(R.string.upld_finished))
-                        .setSmallIcon(R.drawable.ic_not_aurislife)
+                        .setSmallIcon(R.drawable.icon_notification)
                         .setContentIntent(pendingIntent)
                         .setOngoing(false).build();
 
