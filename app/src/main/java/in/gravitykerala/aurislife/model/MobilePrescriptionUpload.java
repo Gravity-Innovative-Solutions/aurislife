@@ -18,7 +18,7 @@ public class MobilePrescriptionUpload {
      */
     @SerializedName("imageUri")
     private String imageUri;
-    @SerializedName("uploadStatus")
+    @SerializedName("upload_Status")
     private String uploadStatus;
     @SerializedName("containerName")
     private String containerName;
@@ -26,7 +26,7 @@ public class MobilePrescriptionUpload {
     private String sasQueryString;
     @SerializedName("resourceName")
     private String resourceName;
-    @SerializedName("prescriptionId")
+    @SerializedName("prescription_Id")
     private String prescriptionId;
     @SerializedName("id")
     private String id;
