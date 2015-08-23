@@ -19,17 +19,17 @@
     <string name="submit">Submit</string>
     <string name="youhaveslcted">You have selected </string>
     <string name="enter_rchrg_amnt">Enter your Recharge Amount </string>
-    <string name="lesser_blnce">Your Balance Is Less Than You Request </string>
+    <string name="lesser_blnce">Your points are less than Your Request </string>
     <string name="success">Success</string>
     <string name="login_failed">Login failed</string>
     <string name="three_chrcter">at least 3 characters</string>
     <string name="no_transaction">NO TRANSACTIONS YET!!</string>
-    <string name="no_connection">You are not Connected</string>
+    <string name="no_connection">YOU ARE NOT CONNECTED</string>
     <string name="camera_not_support">Sorry! Your device doesnot support camera</string>
     <string name="user_cancelled">User cancelled image capture</string>
     <string name="capture_failed">Sorry! Failed to capture image</string>
     <string name="item_select">"On Item Select : \n" </string>
-    <string name="mismatch_pswd">"PASSWORD DOESN'T MATCH" </string>
+    <string name="mismatch_pswd">"Password doesn't match" </string>
     <string name="take_a_pic">Take a Picture</string>
     <string name="upload_img">Upload Image</string>
     <string name="prec_details">Prescription Details</string>
@@ -48,9 +48,9 @@
     <string name="title_activity_priscription_details">Prescription Details</string>
     <string name="title_activity_splash_page">Aurislife</string>
     <string name="title_activity_uidtoken">Uidtoken</string>
-    <string name="view_presc_details">Pull to view Recent Prescription details</string>
-    <string name="view_rcnt_transactions">Pull to view Recent Transactions</string>
+    <string name="view_presc_details">Pull to view reecent Prescription uploads</string>
+    <string name="view_rcnt_transactions">Pull to view recent recharges</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_forget_password">ForgetPassword</string>
+    <string name="title_activity_forget_password">ForgotPassword</string>
 </resources>
