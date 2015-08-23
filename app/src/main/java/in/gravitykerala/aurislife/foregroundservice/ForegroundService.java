@@ -77,7 +77,9 @@ public class ForegroundService extends Service {
                 .setContentIntent(pendingIntent)
                 .setOngoing(true).build();
 
-        startForeground(Constants.NOTIFICATION_ID.FOREGROUND_SERVICE,
+//        startForeground
+//        mNotificationManager.notify
+        startForeground(Constants.NOTIFICATION_ID.SERVICE_FOREGROUND,
                 notification);
 
 
@@ -105,10 +107,10 @@ public class ForegroundService extends Service {
                             .setSmallIcon(R.drawable.ic_not_aurislife)
                             .setContentIntent(pendingIntent)
                             .setOngoing(false).build();
-                    stopForeground(false);
-                    mNotificationManager.notify(Constants.NOTIFICATION_ID.FOREGROUND_SERVICE, notificationFailed);
+                    stopForeground(true);
+                    mNotificationManager.notify(Constants.NOTIFICATION_ID.SERVICE_RESULT, notificationFailed);
                     wakelockRelease();
-//                    stopSelf();
+                    stopSelf();
                 }
                 return null;
             }
@@ -119,7 +121,7 @@ public class ForegroundService extends Service {
 //            stopForeground(true);
 //            stopSelf();
 //        }
-        return START_STICKY;
+        return START_NOT_STICKY;
     }
 
     private void wakelockAcquire() {
@@ -155,8 +157,8 @@ public class ForegroundService extends Service {
                         .setSmallIcon(R.drawable.ic_not_aurislife)
                         .setContentIntent(pendingIntent)
                         .setOngoing(false).build();
-                stopForeground(false);
-                mNotificationManager.notify(Constants.NOTIFICATION_ID.FOREGROUND_SERVICE,
+                stopForeground(true);
+                mNotificationManager.notify(Constants.NOTIFICATION_ID.SERVICE_RESULT,
                         notificationFailed);
                 exc.printStackTrace();
                 //RequestFailed
@@ -164,7 +166,7 @@ public class ForegroundService extends Service {
                 Log.d("UpdateStatusPresc:", getString(R.string.pres_upld_failed));
                 Log.d("UpdateStatusPresc:", getString(R.string.req_err));
                 wakelockRelease();
-//                stopSelf();
+                stopSelf();
             }
 
             @Override
@@ -182,15 +184,15 @@ public class ForegroundService extends Service {
                         .setContentIntent(pendingIntent)
                         .setOngoing(false).build();
 
-                mNotificationManager.notify(Constants.NOTIFICATION_ID.FOREGROUND_SERVICE,
+                mNotificationManager.notify(Constants.NOTIFICATION_ID.SERVICE_RESULT,
                         notificationFailed);
-                stopForeground(false);
+                stopForeground(true);
 
                 Toast.makeText(ForegroundService.this, getString(R.string.prescrptn) + result, Toast.LENGTH_LONG).show();
                 Log.d("UpdateStatusPresc:", result);
                 wakelockRelease();
 
-//                stopSelf();
+                stopSelf();
             }
         });
 
