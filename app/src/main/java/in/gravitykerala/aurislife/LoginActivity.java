@@ -19,7 +19,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.microsoft.windowsazure.mobileservices.ApiOperationCallback;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
@@ -252,8 +251,9 @@ public class LoginActivity extends AppCompatActivity {
 
 //        View.OnClickListener mOnClickListener;
         if (isOnline() == true) {
+//            Toast.makeText(getBaseContext(), "Incorrect Username or Password", Toast.LENGTH_LONG).show();
             Snackbar snackbar = Snackbar
-                    .make(coordinatorLayout, "Incorrect username or passsword", Snackbar.LENGTH_LONG)
+                    .make(coordinatorLayout, "Incorrect Username or Password", Snackbar.LENGTH_LONG)
                     .setAction("Retry", mOnClickListener);
             snackbar.setActionTextColor(Color.RED);
             View snackbarView = snackbar.getView();
@@ -265,12 +265,30 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     _emailText.setText("");
+                    _passwordText.setText("");
 
                 }
             };
 
+
         } else {
-            Toast.makeText(getBaseContext(), R.string.no_connection, Toast.LENGTH_LONG).show();
+
+            Snackbar snackbar = Snackbar
+                    .make(coordinatorLayout, R.string.no_connection, Snackbar.LENGTH_LONG)
+                    .setAction("Retry", mOnClickListener);
+            snackbar.setActionTextColor(Color.RED);
+            View snackbarView = snackbar.getView();
+            snackbarView.setBackgroundColor(Color.DKGRAY);
+            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+            textView.setTextColor(Color.YELLOW);
+            snackbar.show();
+            mOnClickListener = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    login();
+
+                }
+            };
         }
         _loginButton.setEnabled(true);
     }

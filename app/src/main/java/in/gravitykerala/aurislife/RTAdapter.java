@@ -59,7 +59,7 @@ public class RTAdapter extends ArrayAdapter<MobileTransactions> {
         final TextView tvContent1 = (TextView) row.findViewById(R.id.remark);
         tvTitle.setText("RECHARGE STATUS" + ":" + "\t" + currentItem.stats);
         tvContent0.setText("RECHARGE AMOUNT" + ":" + "\t" + currentItem.recAmnt);
-        tvContent1.setText("REMARK" + ":" + "\t" + currentItem.remark);
+        tvContent1.setText("REMARKS" + ":" + "\t" + currentItem.remark);
 //        tvContent.setOnClickListener(new View.OnClickListener() {
 //            //
 //            @Override

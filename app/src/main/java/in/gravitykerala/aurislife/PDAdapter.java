@@ -59,9 +59,9 @@ public class PDAdapter extends ArrayAdapter<MobilePrescription> {
 
         final TextView tvContent0 = (TextView) row.findViewById(R.id.amt);
         final TextView tvContent1 = (TextView) row.findViewById(R.id.remark);
-        tvTitle.setText("PRISCRIPTION STATUS" + ":" + "\t" + currentItem.getStatus());
-        tvContent0.setText("PRISCRIPTION NUMBER" + ":" + "\t" + currentItem.getPrescriptionNumber());
-        tvContent1.setText("REMARK" + ":" + "\t" + currentItem.getRemarks());
+        tvTitle.setText("PRESCRIPTION STATUS" + ":" + "\t" + currentItem.getStatus());
+        tvContent0.setText("PRESCRIPTION NUMBER" + ":" + "\t" + currentItem.getPrescriptionNumber());
+        tvContent1.setText("REMARKS" + ":" + "\t" + currentItem.getRemarks());
 //        tvContent.setOnClickListener(new View.OnClickListener() {
 //            //
 //            @Override

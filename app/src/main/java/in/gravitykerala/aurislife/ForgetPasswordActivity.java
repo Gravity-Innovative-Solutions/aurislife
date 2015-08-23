@@ -3,6 +3,7 @@ package in.gravitykerala.aurislife;
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +30,11 @@ public class ForgetPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         try {
             mClient = new MobileServiceClient("https://gravityaurislife.azure-mobile.net",
                     "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68",
@@ -87,6 +93,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                 public void onCompleted(String result, Exception exception, ServiceFilterResponse response) {
                     if (exception == null) {
                         Toast.makeText(ForgetPasswordActivity.this, result, Toast.LENGTH_LONG).show();
+
                         finish();
 
                     } else {

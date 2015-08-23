@@ -22,7 +22,6 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -184,7 +183,7 @@ public class FirstPage extends AppCompatActivity {
 
             mProgressBar = (ProgressBar) rootView.findViewById(R.id.progressBar_CourseSelection);
             mProgressBar.setVisibility(ProgressBar.GONE);
-            mProgressBar.setBackgroundColor(Color.RED);
+//            mProgressBar.setBackgroundColor(Color.RED);
             mToDoTable = mClient.getTable(MobileProfile.class);
             tv = (TextView) rootView.findViewById(R.id.textView_points);
             tv1 = (TextView) rootView.findViewById(R.id.textView_email);
