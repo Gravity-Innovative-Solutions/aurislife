@@ -187,23 +187,37 @@ public class SignupActivity extends AppCompatActivity {
         String name = _nameText.getText().toString();
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
+        String phNo = _PHNO.getText().toString();
 
         if (name.isEmpty() || name.length() < 3) {
-            _nameText.setError("at least 3 characters");
+            _nameText.setError("At least 3 characters");
+//            Toast.makeText(this, "Check your name", Toast.LENGTH_LONG).show();
+//            Toast.makeText(this, "Password minimum 8 characters required", Toast.LENGTH_LONG);
             valid = false;
         } else {
             _nameText.setError(null);
         }
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText.setError(getString(R.string.frgt_pswd));
+            _emailText.setError("Email error");
+//            Toast.makeText(this, "Check email", Toast.LENGTH_LONG).show();
             valid = false;
         } else {
             _emailText.setError(null);
         }
 
-        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            _passwordText.setError("between 4 and 10 alphanumeric characters");
+        if (phNo.isEmpty() || phNo.length() != 10) {
+            _PHNO.setError("10 digit mobile number");
+//            Toast.makeText(this, "Check phone no", Toast.LENGTH_LONG).show();
+            valid = false;
+        } else {
+            _PHNO.setError(null);
+        }
+
+
+        if (password.isEmpty() || password.length() < 8 || password.length() > 15) {
+            _passwordText.setError("between 8 and 15 alphanumeric characters");
+//            Toast.makeText(this, "Password between 8 and 15 characters", Toast.LENGTH_LONG).show();
             valid = false;
         } else {
             _passwordText.setError(null);
