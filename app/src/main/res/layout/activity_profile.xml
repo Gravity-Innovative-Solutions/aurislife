@@ -43,7 +43,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:hint="Your Points"
+                    android:hint="@string/points"
                     android:padding="5dp"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@color/primary"
@@ -173,7 +173,7 @@
                         android:drawableLeft="@drawable/ic_local_phone_white_48dp"
 
 
-                        android:hint="Phone Number"
+                        android:hint="@string/phn_no"
                         android:textColor="@color/primary_darker"
                         android:textSize="20sp" />
 

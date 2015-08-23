@@ -5,11 +5,13 @@
     <string name="confirm_pswd">Confirm Password</string>
     <string name="set_pswd">Set Password</string>
     <string name="phn_no">Phone Number</string>
+    <string name="points">Your Points</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="signup">No account yet? Create one</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
+    <string name="capture_upld">Capture Or Upload Image</string>
 
     <string name="show_pswd">Show Password</string>
     <string name="btn_signup">Create Account</string>
@@ -33,10 +35,27 @@
     <string name="take_a_pic">Take a Picture</string>
     <string name="upload_img">Upload Image</string>
     <string name="prec_details">Prescription Details</string>
+    <string name="prec_status">PRESCRIPTION STATUS</string>
+    <string name="enter_valid_email">enter a valid email address</string>
+
+
     <string name="prevw">Preview</string>
     <string name="profile">Profile</string>
     <string name="title">Title</string>
     <string name="upld_presc">Upload Prescription</string>
+    <string name="presc_upld">Prescription upload</string>
+    <string name="uplding_prgrs">Uploading in progress</string>
+    <string name="pres_upld_failed">Prescription Upload failed</string>
+    <string name="pres_upld_success">Prescription Upload Success</string>
+    <string name="upld_failed">Uploading failed</string>
+    <string name="upld_finished">Uploading has finished</string>
+    <string name="upld_starting">Upload starting</string>
+    <string name="pres_upld_failed_bcoz_nw_issue">Prescription Upload failed because network issue, please reupload</string>
+    <string name="req_err">Request Error</string>
+    <string name="prescrptn">Prescription</string>
+    <string name="authenticating">Authenticating...</string>
+    <string name="frgt_pswd">Forgot Password</string>
+    <string name="login_oprtn_call_finished">Login operation call finished</string>
 
 
     <string name="currentpassword">Current Password</string>
@@ -50,6 +69,8 @@
     <string name="title_activity_uidtoken">Uidtoken</string>
     <string name="view_presc_details">Pull to view reecent Prescription uploads</string>
     <string name="view_rcnt_transactions">Pull to view recent recharges</string>
+    <string name="initializing">Initializing prescription upload</string>
+    <string name="take_photo">Take photo of your prescription first</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_forget_password">ForgotPassword</string>
