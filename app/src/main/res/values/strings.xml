@@ -25,8 +25,8 @@
     <string name="success">Success</string>
     <string name="login_failed">Login failed</string>
     <string name="three_chrcter">at least 3 characters</string>
-    <string name="no_transaction">NO TRANSACTIONS YET!!</string>
-    <string name="no_connection">YOU ARE NOT CONNECTED</string>
+    <string name="no_transaction">There are no recarges!</string>
+    <string name="no_connection">You are not connected network</string>
     <string name="camera_not_support">Sorry! Your device doesnot support camera</string>
     <string name="user_cancelled">User cancelled image capture</string>
     <string name="capture_failed">Sorry! Failed to capture image</string>

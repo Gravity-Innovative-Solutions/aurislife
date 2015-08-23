@@ -111,7 +111,7 @@ public class SignupActivity extends AppCompatActivity {
 //        progressDialog.show();
 
 //        String name = _nameText.getText().toString();
-//        String email = _emailText.getText().toString();
+//        String email = _phNo.getText().toString();
 //        String password = _passwordText.getText().toString();
 
         // TODO: Implement your own signup logic here.

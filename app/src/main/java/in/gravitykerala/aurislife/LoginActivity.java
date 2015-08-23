@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     CoordinatorLayout coordinatorLayout;
     View.OnClickListener mOnClickListener = null;
     @InjectView(R.id.input_email)
-    EditText _emailText;
+    EditText _phNo;
     @InjectView(R.id.input_password)
     EditText _passwordText;
     @InjectView(R.id.btn_login)
@@ -75,9 +75,9 @@ public class LoginActivity extends AppCompatActivity {
                 login();
 //                username = prefs.getString(KEY_username, "");
 //                password = prefs.getString(KEY_password, "");
-//                _emailText.setText(username);
+//                _phNo.setText(username);
 //                _passwordText.setText(password);
-//                String email = _emailText.getText().toString();
+//                String email = _phNo.getText().toString();
 //                String password = _passwordText.getText().toString();
 //                if (saveLoginCheckBox.isChecked()) {
 //
@@ -146,7 +146,7 @@ public class LoginActivity extends AppCompatActivity {
 //        progressDialog.show();
 //        progressDialog.setCanceledOnTouchOutside(false);
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-////        String email = _emailText.getText().toString();
+////        String email = _phNo.getText().toString();
 ////        String password = _passwordText.getText().toString();
 //
 //        // TODO: Implement your own authentication logic here.
@@ -178,7 +178,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
         LoginRequest req = new LoginRequest();
-        req.uName = _emailText.getText().toString();
+        req.uName = _phNo.getText().toString();
         req.Pword = _passwordText.getText().toString();
         mClient.invokeApi("CustomLogin", req, CustomLoginResult.class, new ApiOperationCallback<CustomLoginResult>() {
             @Override
@@ -251,24 +251,26 @@ public class LoginActivity extends AppCompatActivity {
 
 //        View.OnClickListener mOnClickListener;
         if (isOnline() == true) {
+
 //            Toast.makeText(getBaseContext(), "Incorrect Username or Password", Toast.LENGTH_LONG).show();
+            mOnClickListener = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    _phNo.setText("");
+                    _passwordText.setText("");
+
+                }
+            };
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayout, "Incorrect Username or Password", Snackbar.LENGTH_LONG)
-                    .setAction("Retry", mOnClickListener);
+                    .setAction("Clear", mOnClickListener);
             snackbar.setActionTextColor(Color.RED);
             View snackbarView = snackbar.getView();
             snackbarView.setBackgroundColor(Color.DKGRAY);
             TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
             textView.setTextColor(Color.YELLOW);
             snackbar.show();
-            mOnClickListener = new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    _emailText.setText("");
-                    _passwordText.setText("");
 
-                }
-            };
 
 
         } else {
@@ -295,20 +297,23 @@ public class LoginActivity extends AppCompatActivity {
     public boolean validate() {
         boolean valid = true;
 
+        String phNo = _phNo.getText().toString();
+        String password = _passwordText.getText().toString();
 
-//        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-//            _emailText.setError("enter a valid email address");
-//            valid = false;
-//        } else {
-//            _emailText.setError(null);
-//        }
+        if (phNo.isEmpty() || phNo.length() != 10) {
+            _phNo.setError("10 digit mobile number required");
+//            Toast.makeText(this, "Check phone no", Toast.LENGTH_LONG).show();
+            valid = false;
+        } else {
+            _phNo.setError(null);
+        }
 
-//        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-//            _passwordText.setError("between 4 and 10 alphanumeric characters");
-//            valid = false;
-//        } else {
-//            _passwordText.setError(null);
-//        }
+        if (password.isEmpty() || password.length() < 8 || password.length() > 15) {
+            _passwordText.setError("Between 8 and 15 characters");
+            valid = false;
+        } else {
+            _passwordText.setError(null);
+        }
 
         return valid;
     }

@@ -91,7 +91,9 @@ public class Transaction extends AppCompatActivity {
                 amount = phn.getText().length();
 
                 int bal = getIntent().getIntExtra("bal", 0);
-
+                if (!validate(bal)) {
+                    return;
+                }
 
                 if (amount == 0) {
                     Toast.makeText(Transaction.this, R.string.enter_rchrg_amnt, Toast.LENGTH_SHORT).show();
@@ -108,6 +110,30 @@ public class Transaction extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public boolean validate(Integer userBalance) {
+        boolean valid = true;
+
+        String requestAmount = phn.getText().toString();
+        if (requestAmount.isEmpty() || requestAmount.length() > 3) {
+            phn.setError("Request recharge up to Rs " + userBalance + " (Your balance)");
+            valid = false;
+//            return false;
+        } else {
+            int amount = Integer.parseInt(requestAmount);
+
+
+            if (amount < 0 || amount > userBalance) {
+                phn.setError("Request recharge up to Rs " + userBalance + " (Your balance");
+//            Toast.makeText(this, "Check phone no", Toast.LENGTH_LONG).show();
+                valid = false;
+            } else {
+                phn.setError(null);
+            }
+        }
+
+        return valid;
     }
 
     public void addItem() {
