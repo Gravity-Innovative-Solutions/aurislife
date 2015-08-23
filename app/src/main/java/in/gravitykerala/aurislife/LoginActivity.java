@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
 //                    prefs.edit().clear().commit();
 //
 //                }
-                Log.d("loginstatus:", "Login operation call finished");
+                Log.d("loginstatus:", getString(R.string.login_oprtn_call_finished));
 
             }
         });
@@ -128,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login() {
-        Log.d(TAG, "Login");
+        Log.d(TAG, getString(R.string.login));
 
 
         if (!validate()) {

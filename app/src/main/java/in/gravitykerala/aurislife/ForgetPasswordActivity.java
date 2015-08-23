@@ -68,7 +68,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
             final ProgressDialog progressDialog = new ProgressDialog(ForgetPasswordActivity.this,
                     R.style.AppTheme_Dark_Dialog);
             progressDialog.setIndeterminate(true);
-            progressDialog.setMessage("Authenticating...");
+            progressDialog.setMessage(getString(R.string.authenticating));
             progressDialog.show();
             List<Pair<String, String>> parameters = new AbstractList<Pair<String, String>>() {
                 @Override
@@ -88,7 +88,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 //            String rnew_pwd_s = ReNpwd.getText().toString();
 
 
-            mClient.invokeApi("ForgetPassword", req, String.class, new ApiOperationCallback<String>() {
+            mClient.invokeApi(getString(R.string.frgt_pswd), req, String.class, new ApiOperationCallback<String>() {
                 @Override
                 public void onCompleted(String result, Exception exception, ServiceFilterResponse response) {
                     if (exception == null) {

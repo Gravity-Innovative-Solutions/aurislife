@@ -16,7 +16,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.os.PowerManager;
-import android.support.v7.app.*;
+import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.util.Pair;
 import android.widget.Toast;
@@ -29,7 +29,6 @@ import com.microsoft.azure.storage.blob.CloudBlobContainer;
 import com.microsoft.azure.storage.blob.CloudBlockBlob;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.util.ArrayList;
@@ -70,9 +69,9 @@ public class ForegroundService extends Service {
 
 
         Notification notification = new NotificationCompat.Builder(this)
-                .setContentTitle("Prescription upload")
-                .setTicker("Uploading in progress")
-                .setContentText("Uploading in progress")
+                .setContentTitle(getString(R.string.presc_upld))
+                .setTicker(getString(R.string.uplding_prgrs))
+                .setContentText(getString(R.string.uplding_prgrs))
                 .setSmallIcon(R.drawable.ic_not_aurislife)
                 .setProgress(0, 0, true)
                 .setContentIntent(pendingIntent)
@@ -100,9 +99,9 @@ public class ForegroundService extends Service {
                     PendingIntent pendingIntent = PendingIntent.getActivity(ForegroundService.this, 0,
                             notificationIntent, 0);
                     Notification notificationFailed = new NotificationCompat.Builder(ForegroundService.this)
-                            .setContentTitle("Prescription upload")
-                            .setTicker("Prescription Upload failed")
-                            .setContentText("Prescription Upload failed because network issue, please reupload")
+                            .setContentTitle(getString(R.string.presc_upld))
+                            .setTicker(getString(R.string.pres_upld_failed))
+                            .setContentText(getString(R.string.pres_upld_failed_bcoz_nw_issue))
                             .setSmallIcon(R.drawable.ic_not_aurislife)
                             .setContentIntent(pendingIntent)
                             .setOngoing(false).build();
@@ -150,9 +149,9 @@ public class ForegroundService extends Service {
                 PendingIntent pendingIntent = PendingIntent.getActivity(ForegroundService.this, 0,
                         notificationIntent, 0);
                 Notification notificationFailed = new NotificationCompat.Builder(ForegroundService.this)
-                        .setContentTitle("Prescription upload")
-                        .setTicker("Uploading has failed")
-                        .setContentText("Prescription Upload failed because network issue, please reupload")
+                        .setContentTitle(getString(R.string.presc_upld))
+                        .setTicker(getString(R.string.pres_upld_failed))
+                        .setContentText(getString(R.string.pres_upld_failed_bcoz_nw_issue))
                         .setSmallIcon(R.drawable.ic_not_aurislife)
                         .setContentIntent(pendingIntent)
                         .setOngoing(false).build();
@@ -162,8 +161,8 @@ public class ForegroundService extends Service {
                 exc.printStackTrace();
                 //RequestFailed
                 Toast.makeText(ForegroundService.this, "Uploading failed", Toast.LENGTH_LONG).show();
-                Log.d("UpdateStatusPresc:", "Uploading failed");
-                Log.d("UpdateStatusPresc:", "Request Error");
+                Log.d("UpdateStatusPresc:", getString(R.string.pres_upld_failed));
+                Log.d("UpdateStatusPresc:", getString(R.string.req_err));
                 wakelockRelease();
 //                stopSelf();
             }
@@ -176,9 +175,9 @@ public class ForegroundService extends Service {
                 PendingIntent pendingIntent = PendingIntent.getActivity(ForegroundService.this, 0,
                         notificationIntent, 0);
                 Notification notificationFailed = new NotificationCompat.Builder(ForegroundService.this)
-                        .setContentTitle("Prescription upload")
-                        .setTicker("Prescription Upload success")
-                        .setContentText("Uploading has finished")
+                        .setContentTitle(getString(R.string.presc_upld))
+                        .setTicker(getString(R.string.pres_upld_success))
+                        .setContentText(getString(R.string.upld_finished))
                         .setSmallIcon(R.drawable.ic_not_aurislife)
                         .setContentIntent(pendingIntent)
                         .setOngoing(false).build();
@@ -187,7 +186,7 @@ public class ForegroundService extends Service {
                         notificationFailed);
                 stopForeground(false);
 
-                Toast.makeText(ForegroundService.this, "Prescription " + result, Toast.LENGTH_LONG).show();
+                Toast.makeText(ForegroundService.this, getString(R.string.prescrptn) + result, Toast.LENGTH_LONG).show();
                 Log.d("UpdateStatusPresc:", result);
                 wakelockRelease();
 

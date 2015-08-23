@@ -31,9 +31,7 @@ import com.google.common.util.concurrent.ListenableFuture;
 import com.microsoft.azure.storage.StorageCredentialsSharedAccessSignature;
 import com.microsoft.azure.storage.blob.CloudBlobContainer;
 import com.microsoft.azure.storage.blob.CloudBlockBlob;
-import com.microsoft.windowsazure.mobileservices.ApiOperationCallback;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
-import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
 import java.io.File;
@@ -41,16 +39,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.text.SimpleDateFormat;
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import in.gravitykerala.aurislife.foregroundservice.ForegroundService;
-import in.gravitykerala.aurislife.model.*;
-
-import org.apache.http.client.methods.*;
+import in.gravitykerala.aurislife.model.BlobUploadDetails;
+import in.gravitykerala.aurislife.model.MobilePrescription;
+import in.gravitykerala.aurislife.model.MobilePrescriptionUpload;
 
 /**
  * Created by Prakash on 8/20/2015.
@@ -130,11 +127,11 @@ public class UploadFragment extends Fragment {
             public void onClick(View v) {
 
                 if (imageTaken) {
-                    Toast.makeText(getActivity(), "Initializing prescription upload", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), (getString(R.string.initializing)), Toast.LENGTH_LONG).show();
                     disableUI();
                     addItem();
                 } else {
-                    Toast.makeText(getActivity(), "Take photo of your prescription first", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), (getString(R.string.take_photo)), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -187,15 +184,15 @@ public class UploadFragment extends Fragment {
             public void onFailure(Throwable exc) {
                 exc.printStackTrace();
                 //RequestFailed
-                Toast.makeText(getActivity(), "Uploading failed", Toast.LENGTH_LONG).show();
-                Log.d("UpdateStatusPresc:", "Uploading failed");
-                Log.d("UpdateStatusPresc:", "Request Error");
+                Toast.makeText(getActivity(), getString(R.string.upld_failed), Toast.LENGTH_LONG).show();
+                Log.d("UpdateStatusPresc:", getString(R.string.upld_failed));
+                Log.d("UpdateStatusPresc:", getString(R.string.req_err));
             }
 
             @Override
             public void onSuccess(String result) {
                 //RequestSuccess
-                Toast.makeText(getActivity(), "Prescription " + result, Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), getString(R.string.prescrptn) + result, Toast.LENGTH_LONG).show();
                 Log.d("UpdateStatusPresc:", result);
             }
         });
@@ -285,7 +282,7 @@ public class UploadFragment extends Fragment {
                         @Override
                         public void run() {
                             //Put UI operation Here When uploading service start is successfull
-                            Toast.makeText(getActivity(), "Uploading in progress", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), getString(R.string.uplding_prgrs), Toast.LENGTH_LONG).show();
                             enableUI();
                         }
                     });
@@ -344,7 +341,7 @@ public class UploadFragment extends Fragment {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            Log.d("Blob Upload", "Upload Starting");
+            Log.d("Blob Upload", getString(R.string.upld_starting));
             blobFromSASCredential.upload(is, -1);
 //              blobFromSASCredential.uploadText("Sample text");
             Log.d("Blob Upload", "Done:" + blobURL);
@@ -410,7 +407,7 @@ public class UploadFragment extends Fragment {
             } else {
                 // failed to capture image
                 Toast.makeText(getActivity(),
-                        "Sorry! Failed to capture image", Toast.LENGTH_SHORT)
+                        getString(R.string.capture_failed), Toast.LENGTH_SHORT)
                         .show();
             }
         }

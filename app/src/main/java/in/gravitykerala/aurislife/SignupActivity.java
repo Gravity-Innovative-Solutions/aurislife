@@ -133,7 +133,7 @@ public class SignupActivity extends AppCompatActivity {
             final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this,
                     R.style.AppTheme_Dark_Dialog);
             progressDialog.setIndeterminate(true);
-            progressDialog.setMessage("Authenticating...");
+            progressDialog.setMessage("Creating Account...");
             progressDialog.show();
             List<Pair<String, String>> parameters = new AbstractList<Pair<String, String>>() {
                 @Override
@@ -176,7 +176,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), R.string.login_failed, Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Registration Failed", Toast.LENGTH_LONG).show();
 
         _signupButton.setEnabled(true);
     }
@@ -196,7 +196,7 @@ public class SignupActivity extends AppCompatActivity {
         }
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText.setError("enter a valid email address");
+            _emailText.setError(getString(R.string.frgt_pswd));
             valid = false;
         } else {
             _emailText.setError(null);

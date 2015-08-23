@@ -64,7 +64,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             final ProgressDialog progressDialog = new ProgressDialog(ChangePasswordActivity.this,
                     R.style.AppTheme_Dark_Dialog);
             progressDialog.setIndeterminate(true);
-            progressDialog.setMessage("Authenticating...");
+            progressDialog.setMessage(getString(R.string.authenticating));
             progressDialog.show();
             List<Pair<String, String>> parameters = new AbstractList<Pair<String, String>>() {
                 @Override
@@ -84,7 +84,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             String rnew_pwd_s = ReNpwd.getText().toString();
 
 
-            mClient.invokeApi("ChangePassword", req, String.class, new ApiOperationCallback<String>() {
+            mClient.invokeApi(getString(R.string.title_activity_change_password), req, String.class, new ApiOperationCallback<String>() {
                 @Override
                 public void onCompleted(String result, Exception exception, ServiceFilterResponse response) {
                     if (exception == null) {
