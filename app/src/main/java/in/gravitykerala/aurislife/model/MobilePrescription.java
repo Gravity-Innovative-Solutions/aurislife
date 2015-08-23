@@ -20,13 +20,13 @@ public class MobilePrescription {
      * points : 4
      * clinic_Name : sample string 6
      */
-    @SerializedName("prescriptionNumber")
+    @SerializedName("prescription_Number")
     private int prescriptionNumber;
-    @SerializedName("doctorName")
+    @SerializedName("doctor_Name")
     private String doctorName;
-    @SerializedName("userId")
+    @SerializedName("user_Id")
     private String userId;
-    @SerializedName("eventDate")
+    @SerializedName("event_Date")
     private Date eventDate;
     @SerializedName("id")
     private String id;
@@ -36,7 +36,7 @@ public class MobilePrescription {
     private String status;
     @SerializedName("points")
     private int points;
-    @SerializedName("clinicName")
+    @SerializedName("clinic_Name")
     private String clinicName;
 
     public int getPrescriptionNumber() {
