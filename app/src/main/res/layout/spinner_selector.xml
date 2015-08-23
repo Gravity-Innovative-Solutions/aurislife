@@ -7,7 +7,7 @@
     android:text="DemoText"
 
 
-    android:textColor="@color/white"
+    android:textColor="@color/primary_darker"
     android:textSize="20sp"
 
 

@@ -149,7 +149,6 @@
                         android:layout_height="wrap_content"
 
                         android:layout_marginLeft="5dp"
-                        android:drawableLeft="@drawable/ic_local_post_office_white_48dp"
 
                         android:hint="Email"
                         android:textColor="@color/primary_darker"
@@ -170,7 +169,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:drawableLeft="@drawable/ic_local_phone_white_48dp"
 
 
                         android:hint="@string/phn_no"

@@ -28,7 +28,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_margin="10dp" />
 
 
         <android.support.design.widget.TextInputLayout
@@ -44,7 +45,8 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/rchrg_amnt"
                 android:inputType="phone"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:textColor="@color/primary_darker" />
         </android.support.design.widget.TextInputLayout>
 
         <Button
@@ -55,8 +57,9 @@
             android:layout_centerVertical="true"
             android:layout_margin="10dp"
             android:elevation="10dp"
+            android:text="@string/submit"
 
-            android:text="@string/submit" />
+            android:textColor="@color/white" />
     </LinearLayout>
 
 </RelativeLayout>
