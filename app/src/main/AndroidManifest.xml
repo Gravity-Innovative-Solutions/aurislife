@@ -90,6 +90,8 @@
             android:name="in.gravitykerala.aurislife.ForgetPasswordActivity"
             android:label="@string/title_activity_forget_password">
         </activity>
+
+        <service android:name=".foregroundservice.ForegroundService"></service>
     </application>
 
 </manifest>

@@ -20,9 +20,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
 import com.microsoft.azure.storage.StorageCredentialsSharedAccessSignature;
 import com.microsoft.azure.storage.blob.CloudBlobContainer;
 import com.microsoft.azure.storage.blob.CloudBlockBlob;
@@ -37,11 +42,15 @@ import java.io.InputStream;
 import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import in.gravitykerala.aurislife.foregroundservice.ForegroundService;
 import in.gravitykerala.aurislife.model.*;
+
+import org.apache.http.client.methods.*;
 
 /**
  * Created by Prakash on 8/20/2015.
@@ -62,6 +71,10 @@ public class UploadFragment extends Fragment {
     private Button uploadPrescription;
     private MobileServiceTable<MobilePrescription> mPrescriptionsTable;
     private MobileServiceTable<MobilePrescriptionUpload> mPrescriptionUploadTable;
+    private ScrollView scrollView_upload;
+    private ProgressBar progressBar_upload;
+
+    private boolean imageTaken = false;
 
     /*
      * returning image / video
@@ -107,14 +120,22 @@ public class UploadFragment extends Fragment {
         imgPreview = (ImageView) rootView.findViewById(R.id.imgPreview);
         btnCapturePicture = (Button) rootView.findViewById(R.id.btnCapturePicture);
         uploadPrescription = (Button) rootView.findViewById(R.id.button_uploadpresc);
-
+        scrollView_upload = (ScrollView) rootView.findViewById(R.id.scrollView_upload);
+        progressBar_upload = (ProgressBar) rootView.findViewById(R.id.progressBar_upload);
         mPrescriptionsTable = mClient.getTable("MobilePrescriptions", MobilePrescription.class);
         mPrescriptionUploadTable = mClient.getTable("MobilePrescriptionUpload", MobilePrescriptionUpload.class);
 
         uploadPrescription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addItem();
+
+                if (imageTaken) {
+                    Toast.makeText(getActivity(), "Initializing prescription upload", Toast.LENGTH_LONG).show();
+                    disableUI();
+                    addItem();
+                } else {
+                    Toast.makeText(getActivity(), "Take photo of your prescription first", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -145,34 +166,58 @@ public class UploadFragment extends Fragment {
         return rootView;
     }
 
-    public void submit(String Prescriptionid) {
+    private void disableUI() {
+        progressBar_upload.setVisibility(ProgressBar.VISIBLE);
+        scrollView_upload.setVisibility(ScrollView.GONE);
+    }
+
+    private void enableUI() {
+        scrollView_upload.setVisibility(ScrollView.VISIBLE);
+        progressBar_upload.setVisibility(ProgressBar.GONE);
+    }
+
+    public void submit(String prescriptionid) {
 
 
-        List<Pair<String, String>> parameters = new AbstractList<Pair<String, String>>() {
+        List<Pair<String, String>> parameters = new ArrayList<>();
+        parameters.add(new Pair<>("PrescriptionId", prescriptionid));
+        ListenableFuture<String> result = mClient.invokeApi("UpdateStatusPrescription", null, "POST", parameters, String.class);
+        Futures.addCallback(result, new FutureCallback<String>() {
             @Override
-            public Pair<String, String> get(int i) {
-                return null;
+            public void onFailure(Throwable exc) {
+                exc.printStackTrace();
+                //RequestFailed
+                Toast.makeText(getActivity(), "Uploading failed", Toast.LENGTH_LONG).show();
+                Log.d("UpdateStatusPresc:", "Uploading failed");
+                Log.d("UpdateStatusPresc:", "Request Error");
             }
 
             @Override
-            public int size() {
-                return 0;
-            }
-        };
-
-        mClient.invokeApi("UpdateStatusPrescription?PrescriptionId=" + Prescriptionid, String.class, new ApiOperationCallback<String>() {
-            @Override
-            public void onCompleted(String result, Exception exception, ServiceFilterResponse response) {
-                if (exception == null) {
-                    Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
-
-
-                } else {
-                    Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
-                }
-
+            public void onSuccess(String result) {
+                //RequestSuccess
+                Toast.makeText(getActivity(), "Prescription " + result, Toast.LENGTH_LONG).show();
+                Log.d("UpdateStatusPresc:", result);
             }
         });
+
+//        mClient.invokeApi("UpdateStatusPrescription?PrescriptionId=" + prescriptionid, String.class, new ApiOperationCallback<String>() {
+//            @Override
+//            public void onCompleted(String result, Exception exception, ServiceFilterResponse response) {
+//                if (exception == null) {
+//
+//                    //RequestSuccess
+//                    Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
+//                } else {
+//                    //RequestFailed
+//                    Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
+//                    Log.d("UpdateStatusPresc:", result);
+//                    exception.printStackTrace();
+//                    Log.d("UpdateStatusPresc:", "Request Error");
+//                }
+//
+//
+//            }
+//        });
     }
 
     private void addItem() {
@@ -206,14 +251,28 @@ public class UploadFragment extends Fragment {
                         MobilePrescriptionUpload resultImageUpload = mPrescriptionUploadTable.insert(mobilePrescriptionUpload).get();
 
                         if ((resultImageUpload.getSasQueryString() != null) && (!resultImageUpload.getSasQueryString().isEmpty())) {
-                            Boolean uploadSuccess = uploadFileBlob(fileUri, resultImageUpload.getImageUri(), resultImageUpload.getSasQueryString(), resultImageUpload.getContainerName(), resultImageUpload.getResourceName());
-                            if (uploadSuccess) {
-                                Log.d("UploadStatus:", "Upload Success");
-                                submit(resultPrescription.getId());
 
-                            } else {
-                                throw new Exception("CustomExceptionAndroid: Blob ploading Failed");
-                            }
+                            BlobUploadDetails imageUpload = new BlobUploadDetails();
+                            imageUpload.fileURI = fileUri;
+                            imageUpload.blobURL = resultImageUpload.getImageUri();
+                            imageUpload.sharedAccessSignatureToken = resultImageUpload.getSasQueryString();
+                            imageUpload.containerName = resultImageUpload.getContainerName();
+                            imageUpload.resourceName = resultImageUpload.getResourceName();
+
+                            Intent forgroundService = new Intent(getActivity(), ForegroundService.class);
+                            ForegroundService.imageUploaddata = imageUpload;
+                            ForegroundService.mClient = mClient;
+                            ForegroundService.prescriptionId = resultPrescription.getId();
+                            getActivity().startService(forgroundService);
+
+//                            Boolean uploadSuccess = uploadFileBlob(fileUri, resultImageUpload.getImageUri(), resultImageUpload.getSasQueryString(), resultImageUpload.getContainerName(), resultImageUpload.getResourceName());
+//                            if (uploadSuccess) {
+//                                Log.d("UploadStatus:", "Upload Success");
+//                                submit(resultPrescription.getId());
+//
+//                            } else {
+//                                throw new Exception("CustomExceptionAndroid: Blob uploading Failed");
+//                            }
                         } else {
                             throw new Exception("CustomExceptionAndroid: blob data not inserted in Database; Did not recieve SecureAccessSignatureToken");
                         }
@@ -225,7 +284,9 @@ public class UploadFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            //Put UI operation Here When uploading successfull
+                            //Put UI operation Here When uploading service start is successfull
+                            Toast.makeText(getActivity(), "Uploading in progress", Toast.LENGTH_LONG).show();
+                            enableUI();
                         }
                     });
                     wakelockRelease();
@@ -235,7 +296,8 @@ public class UploadFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            //Put UI operation Here When uploading Failed
+                            //Put UI operation Here When uploading service start Failed
+                            enableUI();
                         }
                     });
                     wakelockRelease();
@@ -372,6 +434,7 @@ public class UploadFragment extends Fragment {
                     options);
 
             imgPreview.setImageBitmap(bitmap);
+            imageTaken = true;
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
