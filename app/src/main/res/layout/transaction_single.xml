@@ -25,8 +25,22 @@
                 android:text="@string/title"
 
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/primary"
+                android:textColor="#fc0f6808"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView_success"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#fc0f6808" />
+
+            <TextView
+                android:id="@+id/textView_failed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ebff0c0c" />
 
             <TextView
                 android:id="@+id/amt"
@@ -37,7 +51,7 @@
 
                 android:text="Content: sadasdasd asd sadas asdasdasdas asdasdasdas sadasdasdas asdasdasda"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/primary" />
+                android:textColor="@color/path_orange" />
 
             <TextView
                 android:id="@+id/remark"
@@ -48,7 +62,7 @@
                 android:paddingBottom="4dp"
                 android:text="Content: sadasdasd asd sadas asdasdasdas asdasdasdas sadasdasdas asdasdasda"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/primary" />
+                android:textColor="@color/path_blue" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
