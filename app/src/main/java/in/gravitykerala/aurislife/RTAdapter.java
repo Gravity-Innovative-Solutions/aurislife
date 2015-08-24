@@ -60,8 +60,12 @@ public class RTAdapter extends ArrayAdapter<MobileTransactions> {
         final TextView tvContent1 = (TextView) row.findViewById(R.id.remark);
         tvTitle.setText("RECHARGE STATUS" + ":" + "\t" + currentItem.stats);
         tvContent0.setText("RECHARGE AMOUNT" + ":" + "\t" + currentItem.recAmnt);
-        tvContent1.setText("REMARKS" + ":" + "\t" + currentItem.remark);
-
+        if (currentItem.remark == null) {
+            String remarks = "Not Completed";
+            tvContent1.setText("REMARKS" + ":" + "\t" + remarks);
+        } else {
+            tvContent1.setText("REMARKS" + ":" + "\t" + currentItem.remark);
+        }
 //        tvContent.setOnClickListener(new View.OnClickListener() {
 //            //
 //            @Override

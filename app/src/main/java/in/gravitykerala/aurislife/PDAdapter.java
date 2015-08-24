@@ -86,10 +86,13 @@ public class PDAdapter extends ArrayAdapter<MobilePrescription> {
         tvdate.setText("DATE" + ":" + "\t" + ourformat);
 //        tv_success.setText(currentItem.getStatus());
 //        tv_success.setText(currentItem.getStatus());
-
-
         tvContent0.setText("PRESCRIPTION NUMBER" + ":" + "\t" + currentItem.getPrescriptionNumber());
-        tvContent1.setText("REMARKS" + ":" + "\t" + currentItem.getRemarks());
+        if (currentItem.getRemarks() == null) {
+            String remarks = "Not Completed";
+            tvContent1.setText("REMARKS" + ":" + "\t" + remarks);
+        } else {
+            tvContent1.setText("REMARKS" + ":" + "\t" + currentItem.getRemarks());
+        }
 //        tvContent.setOnClickListener(new View.OnClickListener() {
 //            //
 //            @Override
