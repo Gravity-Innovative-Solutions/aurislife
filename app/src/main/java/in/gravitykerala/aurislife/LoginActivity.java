@@ -290,8 +290,9 @@ public class LoginActivity extends AppCompatActivity {
             _phNo.setError(null);
         }
 
-        if (password.isEmpty() || password.length() < 8 || password.length() > 15) {
-            _passwordText.setError("Between 8 and 15 characters");
+        if (password.isEmpty()) { //|| password.length() < 8 || password.length() > 15) {
+
+            _passwordText.setError("Check your password");
             valid = false;
         } else {
             _passwordText.setError(null);
