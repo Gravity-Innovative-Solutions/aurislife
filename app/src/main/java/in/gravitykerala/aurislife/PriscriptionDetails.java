@@ -116,7 +116,7 @@ public class PriscriptionDetails extends ActionBarActivity {
 
                             mSwipeLayout.setRefreshing(false);
                             if (results.size() == 0) {
-                                Toast.makeText(PriscriptionDetails.this, R.string.no_prescriptions, Toast.LENGTH_LONG).show();
+                                Toast.makeText(PriscriptionDetails.this, R.string.no_prescription, Toast.LENGTH_LONG).show();
 
                             } else {
                                 for (MobilePrescription item : results) {

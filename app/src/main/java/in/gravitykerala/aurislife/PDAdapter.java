@@ -2,6 +2,7 @@ package in.gravitykerala.aurislife;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,14 +60,34 @@ public class PDAdapter extends ArrayAdapter<MobilePrescription> {
 //            status = "failed";
 //        }
         final TextView tvTitle = (TextView) row.findViewById(R.id.status);
+        final TextView tv_success = (TextView) row.findViewById(R.id.textView_success);
+        final TextView tv_failed = (TextView) row.findViewById(R.id.textView_failed);
+
+
         final TextView tvdate = (TextView) row.findViewById(R.id.date);
         final TextView tvContent0 = (TextView) row.findViewById(R.id.amt);
         final TextView tvContent1 = (TextView) row.findViewById(R.id.remark);
+//        tv_success.setText(currentItem.getStatus());
+        if (currentItem.getStatus().matches("Pending")) {
+            tvTitle.setTextColor(Color.BLUE);
+
+        } else if (currentItem.getStatus().matches("Success")) {
+            tvTitle.setTextColor(Color.GREEN);
+
+        } else if (currentItem.getStatus().matches("Failed")) {
+            tvTitle.setTextColor(Color.RED);
+
+        }
+
         tvTitle.setText("PRESCRIPTION STATUS" + ":" + "\t" + currentItem.getStatus());
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         Date date = new Date();
         String ourformat = formatter.format(currentItem.getEventDate());
         tvdate.setText("DATE" + ":" + "\t" + ourformat);
+//        tv_success.setText(currentItem.getStatus());
+//        tv_success.setText(currentItem.getStatus());
+
+
         tvContent0.setText("PRESCRIPTION NUMBER" + ":" + "\t" + currentItem.getPrescriptionNumber());
         tvContent1.setText("REMARKS" + ":" + "\t" + currentItem.getRemarks());
 //        tvContent.setOnClickListener(new View.OnClickListener() {

@@ -175,6 +175,7 @@ public class Transaction extends AppCompatActivity {
 
                             Toast.makeText(Transaction.this, R.string.success, Toast.LENGTH_LONG).show();
                             Intent i = new Intent(Transaction.this, RecentTransactions.class);
+
                             startActivity(i);
                             //}
 

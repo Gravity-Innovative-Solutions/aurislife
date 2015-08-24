@@ -2,6 +2,7 @@ package in.gravitykerala.aurislife;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,10 +58,10 @@ public class RTAdapter extends ArrayAdapter<MobileTransactions> {
 
         final TextView tvContent0 = (TextView) row.findViewById(R.id.amt);
         final TextView tvContent1 = (TextView) row.findViewById(R.id.remark);
-
         tvTitle.setText("RECHARGE STATUS" + ":" + "\t" + currentItem.stats);
         tvContent0.setText("RECHARGE AMOUNT" + ":" + "\t" + currentItem.recAmnt);
         tvContent1.setText("REMARKS" + ":" + "\t" + currentItem.remark);
+
 //        tvContent.setOnClickListener(new View.OnClickListener() {
 //            //
 //            @Override
