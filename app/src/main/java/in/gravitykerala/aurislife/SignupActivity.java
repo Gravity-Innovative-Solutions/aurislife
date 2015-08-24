@@ -48,7 +48,7 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         SplashPage.initializeMclient(this);
-        SplashPage.Storetok(this);
+        
         mClient = SplashPage.mClient;
         CheckBox checkbox = (CheckBox) findViewById(R.id.checkBox);
         ButterKnife.inject(this);

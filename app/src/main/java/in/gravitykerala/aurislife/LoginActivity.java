@@ -159,7 +159,7 @@ public class LoginActivity extends AppCompatActivity {
         mClient = SplashPage.mClient;
 //        try {
 //
-//            //LoginActivity.mClient = new MobileServiceClient("https://gravityaurislife.azure-mobile.net", "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68", LoginActivity.this);
+//           LoginActivity.mClient = new MobileServiceClient("https://gravityaurislife.azure-mobile.net", "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68", LoginActivity.this);
 //        } catch (MalformedURLException e) {
 //            e.printStackTrace();
 //        }
