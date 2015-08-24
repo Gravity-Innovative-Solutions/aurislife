@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import in.gravitykerala.aurislife.model.MobilePrescription;
 
 /**
@@ -56,10 +59,14 @@ public class PDAdapter extends ArrayAdapter<MobilePrescription> {
 //            status = "failed";
 //        }
         final TextView tvTitle = (TextView) row.findViewById(R.id.status);
-
+        final TextView tvdate = (TextView) row.findViewById(R.id.date);
         final TextView tvContent0 = (TextView) row.findViewById(R.id.amt);
         final TextView tvContent1 = (TextView) row.findViewById(R.id.remark);
         tvTitle.setText("PRESCRIPTION STATUS" + ":" + "\t" + currentItem.getStatus());
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        Date date = new Date();
+        String ourformat = formatter.format(currentItem.getEventDate());
+        tvdate.setText("DATE" + ":" + "\t" + ourformat);
         tvContent0.setText("PRESCRIPTION NUMBER" + ":" + "\t" + currentItem.getPrescriptionNumber());
         tvContent1.setText("REMARKS" + ":" + "\t" + currentItem.getRemarks());
 //        tvContent.setOnClickListener(new View.OnClickListener() {

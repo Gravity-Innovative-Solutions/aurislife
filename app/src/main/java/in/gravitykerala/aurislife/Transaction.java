@@ -51,7 +51,9 @@ public class Transaction extends AppCompatActivity {
 
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar_3);
         mProgressBar.setVisibility(ProgressBar.GONE);
-        mClient = FirstPage.mClient;
+        SplashPage.initializeMclient(this);
+        SplashPage.Storetok(this);
+        mClient = SplashPage.mClient;
         mToDoTable = mClient.getTable(MobileTransactions.class);
         phn = (EditText) findViewById(R.id.input_phn);
         sbmt = (Button) findViewById(R.id.submit);
@@ -171,7 +173,7 @@ public class Transaction extends AppCompatActivity {
                             //if(!entity.isComplete()){
                             // mAdapter.add(entity);0
 
-                            Toast.makeText(Transaction.this, Connction + "\t" + amt + R.string.success, Toast.LENGTH_LONG).show();
+                            Toast.makeText(Transaction.this, R.string.success, Toast.LENGTH_LONG).show();
                             Intent i = new Intent(Transaction.this, RecentTransactions.class);
                             startActivity(i);
                             //}

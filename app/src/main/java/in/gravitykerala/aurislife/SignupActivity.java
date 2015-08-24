@@ -47,22 +47,9 @@ public class SignupActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        try {
-            mClient = new MobileServiceClient("https://gravityaurislife.azure-mobile.net",
-                    "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68",
-                    this);
-//            String userId = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
-//            String tok = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
-//            MobileServiceUser user = new MobileServiceUser(userId);
-//            user.setAuthenticationToken(tok);
-//            mClient.setCurrentUser(user);
-//            if (userId.equals("default") && tok.equals("default")) {
-//                Intent i = new Intent(this, LoginActivity.class);
-//                startActivity(i);
-//            }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        SplashPage.initializeMclient(this);
+        SplashPage.Storetok(this);
+        mClient = SplashPage.mClient;
         CheckBox checkbox = (CheckBox) findViewById(R.id.checkBox);
         ButterKnife.inject(this);
 

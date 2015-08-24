@@ -62,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
+
 //        saveLoginCheckBox = (CheckBox) findViewById(R.id.checkBox_remember);
         loginSV = (ScrollView) findViewById(R.id.login_scrollview);
 //        prefs = this.getSharedPreferences("in.gravity", Context.MODE_PRIVATE);
@@ -73,37 +74,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 login();
-//                username = prefs.getString(KEY_username, "");
-//                password = prefs.getString(KEY_password, "");
-//                _phNo.setText(username);
-//                _passwordText.setText(password);
-//                String email = _phNo.getText().toString();
-//                String password = _passwordText.getText().toString();
-//                if (saveLoginCheckBox.isChecked()) {
-//
-//                    prefs.edit().putString(KEY_username, username).commit();
-//                    prefs.edit().putString(KEY_password, password).commit();
-//
-////                        SharedPreferences prefs = getSharedPreferences(SPF_NAME, Context.MODE_PRIVATE);
-//                    // prefs.edit().putString(username, us).putString(password, ps).commit();
-//                } else {
-//
-//                    //  SharedPreferences prefs = getSharedPreferences(SPF_NAME, Context.MODE_PRIVATE);
-//                    prefs.edit().clear().commit();
-//
-//                }
                 Log.d("loginstatus:", getString(R.string.login_oprtn_call_finished));
 
             }
         });
-        try {
-            mClient = new MobileServiceClient("https://gravityaurislife.azure-mobile.net",
-                    "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68",
-                    this);
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
         _signupLink.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -180,6 +155,15 @@ public class LoginActivity extends AppCompatActivity {
         LoginRequest req = new LoginRequest();
         req.uName = _phNo.getText().toString();
         req.Pword = _passwordText.getText().toString();
+        SplashPage.initializeMclient(this);
+        mClient = SplashPage.mClient;
+//        try {
+//
+//            //LoginActivity.mClient = new MobileServiceClient("https://gravityaurislife.azure-mobile.net", "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68", LoginActivity.this);
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
+
         mClient.invokeApi("CustomLogin", req, CustomLoginResult.class, new ApiOperationCallback<CustomLoginResult>() {
             @Override
             public void onCompleted(CustomLoginResult result, Exception exception, ServiceFilterResponse response) {
@@ -193,8 +177,6 @@ public class LoginActivity extends AppCompatActivity {
                     mClient.setCurrentUser(user);
                     Log.d("uid", userId);
                     Intent intent = new Intent(getApplicationContext(), FirstPage.class);
-                    intent.putExtra("Uid", userId);
-                    intent.putExtra("Tok", tok);
                     startActivity(intent);
                     finish();
 

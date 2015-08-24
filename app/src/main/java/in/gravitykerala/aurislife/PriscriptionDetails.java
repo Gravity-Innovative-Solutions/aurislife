@@ -69,7 +69,9 @@ public class PriscriptionDetails extends ActionBarActivity {
                 android.R.color.holo_green_light, android.R.color.holo_orange_light,
                 android.R.color.holo_blue_light);
         mSwipeLayout.setEnabled(true);
-        mClient = FirstPage.mClient;
+        SplashPage.initializeMclient(this);
+        SplashPage.Storetok(this);
+        mClient = SplashPage.mClient;
 
         // Get the Mobile Service Table instance to use
 
@@ -114,7 +116,7 @@ public class PriscriptionDetails extends ActionBarActivity {
 
                             mSwipeLayout.setRefreshing(false);
                             if (results.size() == 0) {
-                                Toast.makeText(PriscriptionDetails.this, R.string.no_transaction, Toast.LENGTH_LONG).show();
+                                Toast.makeText(PriscriptionDetails.this, R.string.no_prescriptions, Toast.LENGTH_LONG).show();
 
                             } else {
                                 for (MobilePrescription item : results) {

@@ -68,7 +68,9 @@ public class RecentTransactions extends AppCompatActivity {
                 android.R.color.holo_green_light, android.R.color.holo_orange_light,
                 android.R.color.holo_blue_light);
         mSwipeLayout.setEnabled(true);
-        mClient = FirstPage.mClient;
+        SplashPage.initializeMclient(this);
+        SplashPage.Storetok(this);
+        mClient = SplashPage.mClient;
         // Get the Mobile Service Table instance to use
 
         mToDoTable = mClient.getTable(MobileTransactions.class);

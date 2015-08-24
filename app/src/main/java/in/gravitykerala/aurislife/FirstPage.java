@@ -47,6 +47,8 @@ import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceUse
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 import com.ogaclejapan.arclayout.ArcLayout;
 
+import org.apache.http.StatusLine;
+
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,22 +68,17 @@ public class FirstPage extends AppCompatActivity {
 //        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_local_phone_white_48dp);
 //        uid=getIntent().getExtras().getString("Uid");
 //        token=getIntent().getExtras().getString("Tok");
-        try {
-            mClient = new MobileServiceClient("https://gravityaurislife.azure-mobile.net",
-                    "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68",
-                    this);
+
+        SplashPage.initializeMclient(this);
+        SplashPage.Storetok(this);
+        mClient = SplashPage.mClient;
             String userId = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
             String tok = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
-            MobileServiceUser user = new MobileServiceUser(userId);
-            user.setAuthenticationToken(tok);
-            mClient.setCurrentUser(user);
             if (userId.equals("default") && tok.equals("default")) {
                 Intent i = new Intent(this, LoginActivity.class);
                 startActivity(i);
             }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 //        getSupportActionBar().setDisplayShowHomeEnabled(false);
@@ -234,14 +231,16 @@ public class FirstPage extends AppCompatActivity {
                     }
                 }
             });
-//            Button logout = (Button) rootView.findViewById(R.id.button6);
-//            logout.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                  Intent i=new Intent(getActivity(),LoginActivity.class );
-//                    startActivity(i);
-//                }
-//            });
+            Button logout = (Button) rootView.findViewById(R.id.button6);
+            logout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PrefUtils.saveToPrefs(getActivity(), PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
+                    PrefUtils.saveToPrefs(getActivity(), PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
+                    Intent i = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(i);
+                }
+            });
 
 
             return rootView;
@@ -339,6 +338,7 @@ public class FirstPage extends AppCompatActivity {
                     try {
                         final List<MobileProfile> results =
                                 mToDoTable.where().execute().get();
+
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -351,6 +351,7 @@ public class FirstPage extends AppCompatActivity {
                                     currnt_blnce = item.bal;
 
                                 }
+
                             }
                         });
                     } catch (Exception e) {
