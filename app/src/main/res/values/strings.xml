@@ -38,6 +38,7 @@
     <string name="prec_details">Prescription Details</string>
     <string name="prec_status">PRESCRIPTION STATUS</string>
     <string name="enter_valid_email">enter a valid email address</string>
+    <string name="button_forget_pswd">Forgot Password</string>
 
 
     <string name="prevw">Preview</string>
