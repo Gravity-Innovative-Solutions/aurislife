@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Proud to be part of India&apos;s first medical survey through mobile application conducted by Auris life and wellness foundation"
+            android:text="@string/splash_text"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/white" />
     </LinearLayout>

@@ -58,21 +58,14 @@ public class RTAdapter extends ArrayAdapter<MobileTransactions> {
 
         final TextView tvContent0 = (TextView) row.findViewById(R.id.amt);
         final TextView tvContent1 = (TextView) row.findViewById(R.id.remark);
-        if (currentItem.stats.matches("Pending")) {
-            tvTitle.setTextColor(Color.BLUE);
-
-        } else if (currentItem.stats.matches("Success")) {
-            tvTitle.setTextColor(Color.GREEN);
-
-        } else if (currentItem.stats.matches("Failed")) {
-            tvTitle.setTextColor(Color.RED);
-
-        }
-
         tvTitle.setText("RECHARGE STATUS" + ":" + "\t" + currentItem.stats);
         tvContent0.setText("RECHARGE AMOUNT" + ":" + "\t" + currentItem.recAmnt);
-        tvContent1.setText("REMARKS" + ":" + "\t" + currentItem.remark);
-
+        if (currentItem.remark == null) {
+            String remarks = "Not Completed";
+            tvContent1.setText("REMARKS" + ":" + "\t" + remarks);
+        } else {
+            tvContent1.setText("REMARKS" + ":" + "\t" + currentItem.remark);
+        }
 //        tvContent.setOnClickListener(new View.OnClickListener() {
 //            //
 //            @Override

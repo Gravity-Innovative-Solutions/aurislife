@@ -1,13 +1,16 @@
 package in.gravitykerala.aurislife;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceUser;
+import com.microsoft.windowsazure.notifications.NotificationsManager;
 
 import java.net.MalformedURLException;
 
@@ -16,6 +19,34 @@ import android.os.Handler;
 public class SplashPage extends AppCompatActivity {
     public static MobileServiceClient mClient;
     private static int SPLASH_TIME_OUT = 1200;
+
+    public static void initializeMclient(Context context) {
+
+        try {
+            SplashPage.mClient = new MobileServiceClient("https://gravityaurislife.azure-mobile.net", "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68", context);
+//                String userId = PrefUtils.getFromPrefs(context, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
+//                String tok = PrefUtils.getFromPrefs(context, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
+//                MobileServiceUser user = new MobileServiceUser(userId);
+//                user.setAuthenticationToken(tok);
+//                mClient.setCurrentUser(user);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            //TODO check for Netowrk connectivity and add Exception handling
+
+        }
+
+    }
+
+    public static void Storetok(Context context) {
+
+
+        String userId = PrefUtils.getFromPrefs(context, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
+        String tok = PrefUtils.getFromPrefs(context, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
+        MobileServiceUser user = new MobileServiceUser(userId);
+        user.setAuthenticationToken(tok);
+        mClient.setCurrentUser(user);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +63,7 @@ public class SplashPage extends AppCompatActivity {
             public void run() {
                 // This method will be executed once the timer is over
                 // Start your app main activity
+                initializeMclient(SplashPage.this);
                 usertok();
                 // close this activity
                 finish();
@@ -65,15 +97,9 @@ public class SplashPage extends AppCompatActivity {
     }
 
     public void usertok() {
-        try {
-            mClient = new MobileServiceClient("https://gravityaurislife.azure-mobile.net",
-                    "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68",
-                    this);
-            String userId = PrefUtils.getFromPrefs(SplashPage.this, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
+
+        String userId = PrefUtils.getFromPrefs(SplashPage.this, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
             String tok = PrefUtils.getFromPrefs(SplashPage.this, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
-            MobileServiceUser user = new MobileServiceUser(userId);
-            user.setAuthenticationToken(tok);
-            mClient.setCurrentUser(user);
             if (userId.equals("default") && tok.equals("default")) {
                 Intent i = new Intent(this, LoginActivity.class);
                 startActivity(i);
@@ -81,8 +107,6 @@ public class SplashPage extends AppCompatActivity {
                 Intent i = new Intent(this, FirstPage.class);
                 startActivity(i);
             }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+
     }
 }

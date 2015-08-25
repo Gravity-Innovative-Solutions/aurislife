@@ -110,7 +110,9 @@ public class UploadFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mClient = FirstPage.mClient;
+        SplashPage.initializeMclient(getActivity());
+        SplashPage.Storetok(getActivity());
+        mClient = SplashPage.mClient;
         ;
 
         View rootView = inflater.inflate(R.layout.activity_upload, container, false);

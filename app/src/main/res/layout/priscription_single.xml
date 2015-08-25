@@ -48,6 +48,17 @@
                 android:paddingBottom="4dp"
                 android:text=" "
                 android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/primary" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:gravity="left"
+                android:paddingBottom="4dp"
+                android:text=" "
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/path_blue" />
         </LinearLayout>
     </android.support.v7.widget.CardView>

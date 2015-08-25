@@ -35,22 +35,9 @@ public class ForgetPasswordActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        try {
-            mClient = new MobileServiceClient("https://gravityaurislife.azure-mobile.net",
-                    "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68",
-                    this);
-//            String userId = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
-//            String tok = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
-//            MobileServiceUser user = new MobileServiceUser(userId);
-//            user.setAuthenticationToken(tok);
-//            mClient.setCurrentUser(user);
-//            if (userId.equals("default") && tok.equals("default")) {
-//                Intent i = new Intent(this, LoginActivity.class);
-//                startActivity(i);
-//            }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        SplashPage.initializeMclient(this);
+
+        mClient = SplashPage.mClient;
         PhnNum = (EditText) findViewById(R.id.input_phnnum);
         Email = (EditText) findViewById(R.id.input_email);
         Submit = (Button) findViewById(R.id.button);
