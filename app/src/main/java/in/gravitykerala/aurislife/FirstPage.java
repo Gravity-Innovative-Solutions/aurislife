@@ -58,7 +58,7 @@ public class FirstPage extends AppCompatActivity {
 
     //    String uid;
 //    String token;
-    public static MobileServiceClient mClient;
+    // public static MobileServiceClient mClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +71,7 @@ public class FirstPage extends AppCompatActivity {
 
         SplashPage.initializeMclient(this);
         SplashPage.Storetok(this);
-        mClient = SplashPage.mClient;
+        //mClient = SplashPage.mClient;
             String userId = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
             String tok = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
             if (userId.equals("default") && tok.equals("default")) {
@@ -181,7 +181,7 @@ public class FirstPage extends AppCompatActivity {
             mProgressBar = (ProgressBar) rootView.findViewById(R.id.progressBar_CourseSelection);
             mProgressBar.setVisibility(ProgressBar.GONE);
 //            mProgressBar.setBackgroundColor(Color.RED);
-            mToDoTable = mClient.getTable(MobileProfile.class);
+            mToDoTable = SplashPage.mClient.getTable(MobileProfile.class);
             tv = (TextView) rootView.findViewById(R.id.textView_points);
             tv1 = (TextView) rootView.findViewById(R.id.textView_email);
             tv2 = (TextView) rootView.findViewById(R.id.textView_phn);

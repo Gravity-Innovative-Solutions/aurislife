@@ -60,7 +60,7 @@ public class UploadFragment extends Fragment {
     // directory name to store captured images and videos
     private static final String IMAGE_DIRECTORY_NAME = "AurisLife";
     PowerManager.WakeLock wakeLock;
-    MobileServiceClient mClient;
+    // MobileServiceClient mClient;
     private Uri fileUri; // file url to store image/video
     private ImageView imgPreview;
     private VideoView videoPreview;
@@ -112,8 +112,7 @@ public class UploadFragment extends Fragment {
                              Bundle savedInstanceState) {
         SplashPage.initializeMclient(getActivity());
         SplashPage.Storetok(getActivity());
-        mClient = SplashPage.mClient;
-        ;
+        //mClient = SplashPage.mClient;
 
         View rootView = inflater.inflate(R.layout.activity_upload, container, false);
         imgPreview = (ImageView) rootView.findViewById(R.id.imgPreview);
@@ -121,8 +120,8 @@ public class UploadFragment extends Fragment {
         uploadPrescription = (Button) rootView.findViewById(R.id.button_uploadpresc);
         scrollView_upload = (ScrollView) rootView.findViewById(R.id.scrollView_upload);
         progressBar_upload = (ProgressBar) rootView.findViewById(R.id.progressBar_upload);
-        mPrescriptionsTable = mClient.getTable("MobilePrescriptions", MobilePrescription.class);
-        mPrescriptionUploadTable = mClient.getTable("MobilePrescriptionUpload", MobilePrescriptionUpload.class);
+        mPrescriptionsTable = SplashPage.mClient.getTable("MobilePrescriptions", MobilePrescription.class);
+        mPrescriptionUploadTable = SplashPage.mClient.getTable("MobilePrescriptionUpload", MobilePrescriptionUpload.class);
 
         uploadPrescription.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,7 +179,7 @@ public class UploadFragment extends Fragment {
 
         List<Pair<String, String>> parameters = new ArrayList<>();
         parameters.add(new Pair<>("PrescriptionId", prescriptionid));
-        ListenableFuture<String> result = mClient.invokeApi("UpdateStatusPrescription", null, "POST", parameters, String.class);
+        ListenableFuture<String> result = SplashPage.mClient.invokeApi("UpdateStatusPrescription", null, "POST", parameters, String.class);
         Futures.addCallback(result, new FutureCallback<String>() {
             @Override
             public void onFailure(Throwable exc) {
@@ -260,7 +259,7 @@ public class UploadFragment extends Fragment {
 
                             Intent forgroundService = new Intent(getActivity(), ForegroundService.class);
                             ForegroundService.imageUploaddata = imageUpload;
-                            ForegroundService.mClient = mClient;
+                            ForegroundService.mClient = SplashPage.mClient;
                             ForegroundService.prescriptionId = resultPrescription.getId();
                             getActivity().startService(forgroundService);
 

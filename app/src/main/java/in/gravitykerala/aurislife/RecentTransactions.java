@@ -20,7 +20,7 @@ import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 import java.util.List;
 
 public class RecentTransactions extends AppCompatActivity {
-    private MobileServiceClient mClient;
+    // private MobileServiceClient mClient;
     private TextView tv, pull;
     private MobileServiceTable<MobileTransactions> mToDoTable;
     private SwipeRefreshLayout mSwipeLayout;
@@ -32,6 +32,8 @@ public class RecentTransactions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recent_transactions);
+        SplashPage.initializeMclient(this);
+        SplashPage.Storetok(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
@@ -68,12 +70,11 @@ public class RecentTransactions extends AppCompatActivity {
                 android.R.color.holo_green_light, android.R.color.holo_orange_light,
                 android.R.color.holo_blue_light);
         mSwipeLayout.setEnabled(true);
-        SplashPage.initializeMclient(this);
-        SplashPage.Storetok(this);
-        mClient = SplashPage.mClient;
+
+        // mClient = SplashPage.mClient;
         // Get the Mobile Service Table instance to use
 
-        mToDoTable = mClient.getTable(MobileTransactions.class);
+        mToDoTable = SplashPage.mClient.getTable(MobileTransactions.class);
 
         // mTextNewToDo = (EditText) findViewById(R.id.textNewToDo);
 

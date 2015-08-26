@@ -21,7 +21,7 @@ import java.util.AbstractList;
 import java.util.List;
 
 public class ForgetPasswordActivity extends AppCompatActivity {
-    public static MobileServiceClient mClient;
+    //  public static MobileServiceClient mClient;
     EditText PhnNum;
     EditText Email;
     Button Submit;
@@ -37,7 +37,15 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         }
         SplashPage.initializeMclient(this);
 
-        mClient = SplashPage.mClient;
+//        try {
+//            SplashPage.mClient = new MobileServiceClient("https://gravityaurislife.azure-mobile.net", "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68", this);
+////
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//            //TODO check for Netowrk connectivity and add Exception handling
+//
+//        }
+
         PhnNum = (EditText) findViewById(R.id.input_phnnum);
         Email = (EditText) findViewById(R.id.input_email);
         Submit = (Button) findViewById(R.id.button);
@@ -75,7 +83,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 //            String rnew_pwd_s = ReNpwd.getText().toString();
 
 
-            mClient.invokeApi(getString(R.string.frgt_pswd), req, String.class, new ApiOperationCallback<String>() {
+            SplashPage.mClient.invokeApi(getString(R.string.frgt_pswd), req, String.class, new ApiOperationCallback<String>() {
                 @Override
                 public void onCompleted(String result, Exception exception, ServiceFilterResponse response) {
                     if (exception == null) {

@@ -19,7 +19,7 @@ import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
 public class Transaction extends AppCompatActivity {
-    MobileServiceClient mClient;
+    //MobileServiceClient mClient;
     MobileServiceTable<MobileTransactions> mToDoTable;
     EditText phn;
     Spinner spnr;
@@ -43,6 +43,8 @@ public class Transaction extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
+        SplashPage.initializeMclient(this);
+        SplashPage.Storetok(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
@@ -51,10 +53,9 @@ public class Transaction extends AppCompatActivity {
 
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar_3);
         mProgressBar.setVisibility(ProgressBar.GONE);
-        SplashPage.initializeMclient(this);
-        SplashPage.Storetok(this);
-        mClient = SplashPage.mClient;
-        mToDoTable = mClient.getTable(MobileTransactions.class);
+
+        // mClient = SplashPage.mClient;
+        mToDoTable = SplashPage.mClient.getTable(MobileTransactions.class);
         phn = (EditText) findViewById(R.id.input_phn);
         sbmt = (Button) findViewById(R.id.submit);
         spnr = (Spinner) findViewById(R.id.spinner);
@@ -139,7 +140,7 @@ public class Transaction extends AppCompatActivity {
     }
 
     public void addItem() {
-        if (mClient == null) {
+        if (SplashPage.mClient == null) {
             return;
         }
 
