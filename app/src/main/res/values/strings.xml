@@ -7,6 +7,8 @@
     <string name="phn_no">Phone Number</string>
     <string name="points">Your Points</string>
     <string name="password">Password</string>
+    <string name="verify">Verify</string>
+    <string name="send_otp">Send OTP</string>
     <string name="login">Login</string>
     <string name="signup">No account yet? Create one</string>
     <string name="name">Name</string>
@@ -58,6 +60,7 @@
     <string name="authenticating">Authenticating...</string>
     <string name="frgt_pswd">ForgetPassword</string>
     <string name="login_oprtn_call_finished">Login operation call finished</string>
+    <string name="enter_otp">Enter Your OTP</string>
 
 
     <string name="currentpassword">Current Password</string>
@@ -77,4 +80,5 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_forget_password">ForgotPassword</string>
     <string name="splash_text">Be part of India\'s first medical survey through mobile application conducted by Auris life and wellness foundation</string>
+    <string name="title_activity_otpverification">OTP</string>
 </resources>
