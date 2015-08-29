@@ -187,7 +187,7 @@ public class FirstPage extends AppCompatActivity {
             chngepswd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(getActivity(), ChangePasswordActivity
+                    Intent i = new Intent(getActivity(), OTPverification
                             .class);
                     startActivity(i);
                 }

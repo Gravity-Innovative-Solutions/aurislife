@@ -1,10 +1,14 @@
 package in.gravitykerala.aurislife;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class OTPverification extends AppCompatActivity {
 
@@ -17,6 +21,27 @@ public class OTPverification extends AppCompatActivity {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        // Creates textview for centre title
+        TextView myMsg = new TextView(this);
+        myMsg.setText("Update AurisLife");
+        myMsg.setBackgroundColor(Color.WHITE);
+        myMsg.setGravity(Gravity.CENTER_HORIZONTAL);
+        myMsg.setTextSize(20);
+        myMsg.setTextColor(Color.BLUE);
+        //set custom title
+        builder.setCustomTitle(myMsg);
+        builder.setMessage("New Version available...adfsf ffmdnfdnf fjsfndkfnf jsafnjfns afdd");
+
+        builder.setPositiveButton("OK", null);
+        AlertDialog dialog = builder.show();
+        //Create custom message
+        TextView messageText = (TextView) dialog.findViewById(android.R.id.message);
+        messageText.setGravity(Gravity.CENTER);
+
+
+
+
     }
 
     @Override
