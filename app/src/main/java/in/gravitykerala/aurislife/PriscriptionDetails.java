@@ -22,7 +22,7 @@ import java.util.List;
 import in.gravitykerala.aurislife.model.MobilePrescription;
 
 public class PriscriptionDetails extends ActionBarActivity {
-    private MobileServiceClient mClient;
+    // private MobileServiceClient mClient;
     private TextView tv, pull;
 
     private MobileServiceTable<MobilePrescription> mToDoTable;
@@ -71,11 +71,11 @@ public class PriscriptionDetails extends ActionBarActivity {
         mSwipeLayout.setEnabled(true);
         SplashPage.initializeMclient(this);
         SplashPage.Storetok(this);
-        mClient = SplashPage.mClient;
+        // mClient = SplashPage.mClient;
 
         // Get the Mobile Service Table instance to use
 
-        mToDoTable = mClient.getTable("MobilePrescriptions", MobilePrescription.class);
+        mToDoTable = SplashPage.mClient.getTable("MobilePrescriptions", MobilePrescription.class);
 
         // mTextNewToDo = (EditText) findViewById(R.id.textNewToDo);
 

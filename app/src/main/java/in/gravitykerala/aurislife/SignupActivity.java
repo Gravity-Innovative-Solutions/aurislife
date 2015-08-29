@@ -29,7 +29,7 @@ import butterknife.InjectView;
 
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
-    public static MobileServiceClient mClient;
+    //   public static MobileServiceClient mClient;
     @InjectView(R.id.input_name)
     EditText _nameText;
     @InjectView(R.id.input_email)
@@ -48,8 +48,8 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         SplashPage.initializeMclient(this);
-        
-        mClient = SplashPage.mClient;
+
+        //mClient = SplashPage.mClient;
         CheckBox checkbox = (CheckBox) findViewById(R.id.checkBox);
         ButterKnife.inject(this);
 
@@ -139,7 +139,7 @@ public class SignupActivity extends AppCompatActivity {
             req.phno = _PHNO.getText().toString();
             req.Pword = _passwordText.getText().toString();
 
-            mClient.invokeApi("CustomRegistration", req, HttpResponse.class, new ApiOperationCallback<HttpResponse>() {
+            SplashPage.mClient.invokeApi("CustomRegistration", req, HttpResponse.class, new ApiOperationCallback<HttpResponse>() {
                 @Override
                 public void onCompleted(HttpResponse result, Exception exception, ServiceFilterResponse response) {
                     if (exception == null) {

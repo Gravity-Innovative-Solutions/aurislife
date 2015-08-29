@@ -35,7 +35,7 @@ import butterknife.InjectView;
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
-    public static MobileServiceClient mClient;
+    // public static MobileServiceClient mClient;
     CheckBox saveLoginCheckBox;
     ScrollView loginSV;
 //    String username, password;
@@ -61,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        SplashPage.initializeMclient(this);
         ButterKnife.inject(this);
 
 //        saveLoginCheckBox = (CheckBox) findViewById(R.id.checkBox_remember);
@@ -156,7 +157,7 @@ public class LoginActivity extends AppCompatActivity {
         req.uName = _phNo.getText().toString();
         req.Pword = _passwordText.getText().toString();
         SplashPage.initializeMclient(this);
-        mClient = SplashPage.mClient;
+        //mClient = SplashPage.mClient;
 //        try {
 //
 //           LoginActivity.mClient = new MobileServiceClient("https://gravityaurislife.azure-mobile.net", "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68", LoginActivity.this);
@@ -164,7 +165,7 @@ public class LoginActivity extends AppCompatActivity {
 //            e.printStackTrace();
 //        }
 
-        mClient.invokeApi("CustomLogin", req, CustomLoginResult.class, new ApiOperationCallback<CustomLoginResult>() {
+        SplashPage.mClient.invokeApi("CustomLogin", req, CustomLoginResult.class, new ApiOperationCallback<CustomLoginResult>() {
             @Override
             public void onCompleted(CustomLoginResult result, Exception exception, ServiceFilterResponse response) {
                 if (exception == null) {
@@ -174,7 +175,7 @@ public class LoginActivity extends AppCompatActivity {
                     PrefUtils.saveToPrefs(LoginActivity.this, PrefUtils.PREFS_LOGIN_USERNAME_KEY, userId);
                     PrefUtils.saveToPrefs(LoginActivity.this, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, tok);
                     user.setAuthenticationToken(tok);
-                    mClient.setCurrentUser(user);
+                    SplashPage.mClient.setCurrentUser(user);
                     Log.d("uid", userId);
                     Intent intent = new Intent(getApplicationContext(), FirstPage.class);
                     startActivity(intent);
