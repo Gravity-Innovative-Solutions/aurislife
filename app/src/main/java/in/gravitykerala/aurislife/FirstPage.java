@@ -43,13 +43,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
-import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceUser;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 import com.ogaclejapan.arclayout.ArcLayout;
 
-import org.apache.http.StatusLine;
-
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -191,7 +187,8 @@ public class FirstPage extends AppCompatActivity {
             chngepswd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(getActivity(), ChangePasswordActivity.class);
+                    Intent i = new Intent(getActivity(), OTPverification
+                            .class);
                     startActivity(i);
                 }
             });

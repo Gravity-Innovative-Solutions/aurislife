@@ -97,7 +97,7 @@
                 android:id="@+id/button7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/frgt_pswd"
+                android:text="@string/button_forget_pswd"
                 android:textColor="@color/white" />
 
         </LinearLayout>

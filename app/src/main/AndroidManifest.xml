@@ -102,6 +102,17 @@
         <service android:name=".foregroundservice.ForegroundService" />
 
         <activity
+            android:name=".OTPverification"
+            android:label="@string/title_activity_otpverification"
+            android:parentActivityName=".FirstPage"
+            android:theme="@style/AppTheme.Dark">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.gravitykerala.aurislife.FirstPage" />
+        </activity>
+        <service android:name=".foregroundservice.ForegroundService" />
+
+        <activity
             android:name=".Detail"
             android:label="@string/title_activity_detail"></activity>
     </application>
