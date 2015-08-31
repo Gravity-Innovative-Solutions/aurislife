@@ -93,6 +93,14 @@ public class PDAdapter extends ArrayAdapter<MobilePrescription> {
         } else {
             tvContent1.setText("REMARKS" + ":" + "\t" + currentItem.getRemarks());
         }
+        tvTitle.setOnClickListener(new View.OnClickListener() {
+            //
+            @Override
+            public void onClick(View arg0) {
+                PriscriptionDetails activity = (PriscriptionDetails) mContext;
+                activity.detail(currentItem);
+            }
+        });
 //        tvContent.setOnClickListener(new View.OnClickListener() {
 //            //
 //            @Override

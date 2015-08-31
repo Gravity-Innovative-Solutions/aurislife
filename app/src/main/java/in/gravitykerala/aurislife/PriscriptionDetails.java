@@ -1,6 +1,7 @@
 package in.gravitykerala.aurislife;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -165,5 +167,14 @@ public class PriscriptionDetails extends ActionBarActivity {
         // createAndShowDialog(ex.getMessage(), title);
     }
 
+    public void detail(final MobilePrescription item) {
+
+        Intent newActivity0 = new Intent(this, Detail.class).putExtra("<id>", item.getId());
+        newActivity0.putExtra("id", item.getId());
+        Log.d("id", item.getId());
+        startActivity(newActivity0);
+
+
+    }
 }
 
