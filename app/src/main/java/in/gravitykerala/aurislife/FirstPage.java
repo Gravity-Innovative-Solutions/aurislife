@@ -59,7 +59,7 @@ public class FirstPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        SplashPage.currentContext = this;
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);
 //        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_local_phone_white_48dp);
 //        uid=getIntent().getExtras().getString("Uid");

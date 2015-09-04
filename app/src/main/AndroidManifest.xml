@@ -110,11 +110,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="in.gravitykerala.aurislife.FirstPage" />
         </activity>
+
         <service android:name=".foregroundservice.ForegroundService" />
 
         <activity
             android:name=".Detail"
-            android:label="@string/title_activity_detail"></activity>
+            android:label="@string/title_activity_detail" />
+        <activity
+            android:name=".CompolsuryUpdate"
+            android:label="@string/title_activity_compolsury_update"></activity>
+        <activity
+            android:name="com.aurislife.NoCompulsaryUpdate"
+            android:label="@string/title_activity_no_compulsary_update"></activity>
     </application>
 
 </manifest>

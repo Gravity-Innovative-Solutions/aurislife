@@ -82,4 +82,6 @@
     <string name="splash_text">Be part of India\'s first medical survey through mobile application conducted by Auris life and wellness foundation</string>
     <string name="title_activity_detail">Detail</string>
     <string name="title_activity_otpverification">OTP</string>
+    <string name="title_activity_compolsury_update">CompolsuryUpdate</string>
+    <string name="title_activity_no_compulsary_update">NoCompulsaryUpdate</string>
 </resources>

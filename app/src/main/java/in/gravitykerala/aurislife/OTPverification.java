@@ -1,17 +1,34 @@
 package in.gravitykerala.aurislife;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.util.Pair;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.aurislife.NoCompulsaryUpdate;
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
+import com.microsoft.windowsazure.mobileservices.ApiOperationCallback;
+import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
+
+import java.util.AbstractList;
+import java.util.List;
 
 public class OTPverification extends AppCompatActivity {
-
+    TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +56,21 @@ public class OTPverification extends AppCompatActivity {
         TextView messageText = (TextView) dialog.findViewById(android.R.id.message);
         messageText.setGravity(Gravity.CENTER);
 
-
-
+        tv = (TextView) findViewById(R.id.input_crnt_password);
+        Button retreve = (Button) findViewById(R.id.button8);
+        retreve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendotp();
+            }
+        });
+        Button sedntotp = (Button) findViewById(R.id.button);
+        sedntotp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newOTP();
+            }
+        });
 
     }
 
@@ -64,5 +94,82 @@ public class OTPverification extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void sendotp() {
+
+        {
+            final ProgressDialog progressDialog = new ProgressDialog(OTPverification.this,
+                    R.style.AppTheme_Dark_Dialog);
+            progressDialog.setIndeterminate(true);
+            progressDialog.setMessage(getString(R.string.authenticating));
+            progressDialog.show();
+            List<Pair<String, String>> parameters = new AbstractList<Pair<String, String>>() {
+                @Override
+                public Pair<String, String> get(int i) {
+                    return null;
+                }
+
+                @Override
+                public int size() {
+                    return 0;
+                }
+            };
+            SplashPage.mClient.invokeApi("OTPRetrieval", String.class, new ApiOperationCallback<String>() {
+                @Override
+                public void onCompleted(String result, Exception exception, ServiceFilterResponse response) {
+                    if (exception == null) {
+                        Toast.makeText(OTPverification.this, result, Toast.LENGTH_LONG).show();
+
+                        finish();
+
+                    } else {
+                        Toast.makeText(OTPverification.this, result, Toast.LENGTH_LONG).show();
+                    }
+                    progressDialog.dismiss();
+                }
+            });
+            ;
+        }
+
+    }
+
+    public void newOTP() {
+
+        String OTP = tv.getText().toString();
+        Log.d("OTP", OTP);
+        final ProgressDialog progressDialog = new ProgressDialog(OTPverification.this,
+                R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage(getString(R.string.authenticating));
+        progressDialog.show();
+        List<Pair<String, String>> parameters = new AbstractList<Pair<String, String>>() {
+            @Override
+            public Pair<String, String> get(int i) {
+                return null;
+            }
+
+            @Override
+            public int size() {
+                return 0;
+            }
+        };
+        SplashPage.mClient.invokeApi("OTPVarification?Password=" + tv.getText().toString(), String.class, new ApiOperationCallback<String>() {
+            @Override
+            public void onCompleted(String result, Exception exception, ServiceFilterResponse response) {
+                if (exception == null) {
+                    Toast.makeText(OTPverification.this, result, Toast.LENGTH_LONG).show();
+
+                    finish();
+
+                } else {
+                    Toast.makeText(OTPverification.this, result, Toast.LENGTH_LONG).show();
+                }
+                progressDialog.dismiss();
+            }
+        });
+        ;
+
+
     }
 }
