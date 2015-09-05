@@ -86,7 +86,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             String rnew_pwd_s = ReNpwd.getText().toString();
 
 
-            mClient.invokeApi(getString(R.string.title_activity_change_password), req, String.class, new ApiOperationCallback<String>() {
+            mClient.invokeApi("ChangePassword", req, String.class, new ApiOperationCallback<String>() {
                 @Override
                 public void onCompleted(String result, Exception exception, ServiceFilterResponse response) {
                     if (exception == null) {
