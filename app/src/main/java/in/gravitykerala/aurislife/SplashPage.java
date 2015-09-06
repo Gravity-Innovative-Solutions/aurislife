@@ -18,7 +18,7 @@ import android.os.Handler;
 
 public class SplashPage extends AppCompatActivity {
     public static MobileServiceClient mClient;
-    private static int SPLASH_TIME_OUT = 1200;
+    private static int SPLASH_TIME_OUT = 2500;
 
     public static void initializeMclient(Context context) {
 
