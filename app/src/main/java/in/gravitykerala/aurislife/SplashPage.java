@@ -37,8 +37,10 @@ public class SplashPage extends AppCompatActivity {
     public static void initializeMclient(Context context) {
 
         try {
-            SplashPage.mClient = new MobileServiceClient("https://mcettodolist.azure-mobile.net/", "iPwHgDEkiZXWHXyDmqGCBKYRCMBQGg87", context);
-//                String userId = PrefUtils.getFromPrefs(context, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
+            
+//            SplashPage.mClient = new MobileServiceClient("https://mcettodolist.azure-mobile.net/", "iPwHgDEkiZXWHXyDmqGCBKYRCMBQGg87", context); //Production server
+          SplashPage.mClient = new MobileServiceClient("https://gravityaurislife.azure-mobile.net", "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68", context); //Test Server
+// String userId = PrefUtils.getFromPrefs(context, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
 //                String tok = PrefUtils.getFromPrefs(context, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
 //                MobileServiceUser user = new MobileServiceUser(userId);
 //                user.setAuthenticationToken(tok);

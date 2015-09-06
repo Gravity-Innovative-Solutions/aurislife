@@ -60,8 +60,6 @@ public class PDAdapter extends ArrayAdapter<MobilePrescription> {
 //            status = "failed";
 //        }
         final TextView tvTitle = (TextView) row.findViewById(R.id.status);
-        final TextView tv_success = (TextView) row.findViewById(R.id.textView_success);
-        final TextView tv_failed = (TextView) row.findViewById(R.id.textView_failed);
 
 
         final TextView tvdate = (TextView) row.findViewById(R.id.date);
