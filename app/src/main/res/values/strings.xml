@@ -16,7 +16,10 @@
     <string name="capture_upld">Capture Or Upload Image</string>
 
     <string name="show_pswd">Show Password</string>
+    <string name="add_referrer">Add Referrer</string>
     <string name="btn_signup">Create Account</string>
+    <string name="pin">Enter your Pincode</string>
+    <string name="ref_phn">Enter Referrer Phone Number</string>
 
     <string name="btn_member_login">Already a member? Login</string>
     <string name="rchrg_amnt">Recharge Amount</string>
@@ -84,4 +87,20 @@
     <string name="title_activity_otpverification">OTP</string>
     <string name="title_activity_compolsury_update">CompolsuryUpdate</string>
     <string name="title_activity_no_compulsary_update">NoCompulsaryUpdate</string>
+
+    <string-array name="district_selection">
+        <item>Select your District</item>
+        <item>Thirssur</item>
+
+        <item>Ernakulam</item>
+
+        <item>Malappuram</item>
+
+        <item>Palakkad</item>
+
+        <item>Kottayam</item>
+
+
+        <item>Kollam</item>
+    </string-array>
 </resources>

@@ -11,16 +11,15 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.microsoft.windowsazure.mobileservices.ApiOperationCallback;
-import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
 
 import org.apache.http.HttpResponse;
 
-import java.net.MalformedURLException;
 import java.util.AbstractList;
 import java.util.List;
 
@@ -42,15 +41,21 @@ public class SignupActivity extends AppCompatActivity {
     Button _signupButton;
     @InjectView(R.id.link_login)
     TextView _loginLink;
+    @InjectView(R.id.input_Ref_phn)
+    EditText _refPhoneNo;
+    Spinner spinner_districts;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         SplashPage.initializeMclient(this);
+        spinner_districts = (Spinner) findViewById(R.id.spinner_districts);
 
         //mClient = SplashPage.mClient;
         CheckBox checkbox = (CheckBox) findViewById(R.id.checkBox);
+
+        CheckBox checkbox_add_ref = (CheckBox) findViewById(R.id.add_referror);
         ButterKnife.inject(this);
 
         checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -63,6 +68,18 @@ public class SignupActivity extends AppCompatActivity {
                 }
             }
         });
+
+        checkbox_add_ref.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    _refPhoneNo.setVisibility(View.VISIBLE);
+                } else {
+                    _refPhoneNo.setVisibility(View.GONE);
+                }
+            }
+        });
+
 
         _signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
