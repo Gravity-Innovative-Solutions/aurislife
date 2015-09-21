@@ -62,6 +62,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/phn_no"
                 android:inputType="phone"
+                android:maxLength="10"
                 android:textColor="@color/primary_darker" />
         </android.support.design.widget.TextInputLayout>
 
@@ -117,6 +118,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/pin"
+                android:inputType="number"
+                android:maxLength="6"
 
                 android:textColor="@color/primary_darker" />
         </android.support.design.widget.TextInputLayout>
@@ -141,6 +144,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/ref_phn"
                 android:inputType="phone"
+                android:maxLength="10"
                 android:textColor="@color/primary_darker"
                 android:visibility="gone" />
         </android.support.design.widget.TextInputLayout>
