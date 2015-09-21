@@ -69,6 +69,7 @@
 
     <string name="currentpassword">Current Password</string>
     <string name="action_settings">Settings</string>
+    <string name="otp_verification">Verify OTP</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="title_activity_change_password">Change Password</string>
     <string name="title_activity_transaction">Transaction</string>

@@ -30,6 +30,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,7 +43,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 import com.ogaclejapan.arclayout.ArcLayout;
 
@@ -59,6 +59,11 @@ public class FirstPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+
+        }
         SplashPage.currentContext = this;
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);
 //        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_local_phone_white_48dp);
@@ -118,15 +123,20 @@ public class FirstPage extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        switch (item.getItemId()) {
-            case R.id.home:
-                onBackPressed();
-                return true;
+        int id = item.getItemId();
 
-            default:
-                return false;
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
         }
+
+        if (id == R.id.action_verify_otp) {
+            Intent i = new Intent(FirstPage.this, OTPverification.class);
+            startActivity(i);
+        }
+        return super.onOptionsItemSelected(item);
     }
+
 
     public void onBackPressed() {
         // Disable going back to the MainActivity
@@ -187,7 +197,7 @@ public class FirstPage extends AppCompatActivity {
             chngepswd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(getActivity(), OTPverification
+                    Intent i = new Intent(getActivity(), ChangePasswordActivity
                             .class);
                     startActivity(i);
                 }
