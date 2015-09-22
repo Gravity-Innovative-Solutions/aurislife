@@ -3,29 +3,25 @@ package in.gravitykerala.aurislife;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.aurislife.NoCompulsaryUpdate;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import com.microsoft.windowsazure.mobileservices.ApiOperationCallback;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceUser;
-import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
-import com.microsoft.windowsazure.notifications.NotificationsManager;
 
 import java.net.MalformedURLException;
 import java.util.AbstractList;
 import java.util.List;
-
-import android.os.Handler;
-import android.widget.Toast;
 
 public class SplashPage extends AppCompatActivity {
     public static MobileServiceClient mClient;
@@ -167,7 +163,7 @@ public class SplashPage extends AppCompatActivity {
                     Log.d("ID", result.Vname);
 
                     Toast.makeText(SplashPage.this, "" + result.Vcode, Toast.LENGTH_SHORT).show();
-                    if (1 < result.mVcode) {
+                    if (2 < result.mVcode) {
                         new CompolsuryUpdate(currentContext);
                     } else if (versionCode < result.Vcode) {
                         new NoCompulsaryUpdate(currentContext);

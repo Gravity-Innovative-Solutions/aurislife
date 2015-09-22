@@ -18,6 +18,8 @@
         <item name="android:textColorHint">@color/primary_darker</item>
         <item name="android:textColor">@color/primary_darker</item>
 
+        <item name="android:statusBarColor">@color/status_bar</item>
+
         <item name="colorButtonNormal">@color/primary_darker</item>
         <item name="android:colorButtonNormal">@color/primary_darker</item>
     </style>
