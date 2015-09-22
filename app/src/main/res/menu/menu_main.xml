@@ -7,4 +7,10 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_verify_otp"
+        android:orderInCategory="100"
+        android:title="@string/otp_verification"
+        app:showAsAction="never" />
 </menu>

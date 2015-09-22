@@ -15,7 +15,6 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
 public class Transaction extends AppCompatActivity {
@@ -216,4 +215,23 @@ public class Transaction extends AppCompatActivity {
         }
         // createAndShowDialog(ex.getMessage(), title);
     }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        if (id == R.id.action_verify_otp) {
+//           Intent i=new Intent(Transaction.this,OTPverification.class);
+//            startActivity(i);
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
+
 }

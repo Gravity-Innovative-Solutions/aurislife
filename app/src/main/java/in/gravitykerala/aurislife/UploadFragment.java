@@ -354,14 +354,10 @@ public class UploadFragment extends Fragment {
     }
 
     private boolean isDeviceSupportCamera() {
-        if (getActivity().getPackageManager().hasSystemFeature(
-                PackageManager.FEATURE_CAMERA)) {
-            // this device has a camera
-            return true;
-        } else {
-            // no camera on this device
-            return false;
-        }
+        // this device has a camera
+// no camera on this device
+        return getActivity().getPackageManager().hasSystemFeature(
+                PackageManager.FEATURE_CAMERA);
     }
 
     private void captureImage() {

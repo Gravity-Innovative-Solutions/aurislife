@@ -5,16 +5,16 @@ package in.gravitykerala.aurislife.foregroundservice;
  */
 public class Constants {
     public interface ACTION {
-        public static String MAIN_ACTION = "com.truiton.foregroundservice.action.main";
-        public static String PREV_ACTION = "com.truiton.foregroundservice.action.prev";
-        public static String PLAY_ACTION = "com.truiton.foregroundservice.action.play";
-        public static String NEXT_ACTION = "com.truiton.foregroundservice.action.next";
-        public static String STARTFOREGROUND_ACTION = "com.truiton.foregroundservice.action.startforeground";
-        public static String STOPFOREGROUND_ACTION = "com.truiton.foregroundservice.action.stopforeground";
+        String MAIN_ACTION = "com.truiton.foregroundservice.action.main";
+        String PREV_ACTION = "com.truiton.foregroundservice.action.prev";
+        String PLAY_ACTION = "com.truiton.foregroundservice.action.play";
+        String NEXT_ACTION = "com.truiton.foregroundservice.action.next";
+        String STARTFOREGROUND_ACTION = "com.truiton.foregroundservice.action.startforeground";
+        String STOPFOREGROUND_ACTION = "com.truiton.foregroundservice.action.stopforeground";
     }
 
     public interface NOTIFICATION_ID {
-        public static int SERVICE_FOREGROUND = 101;
-        public static int SERVICE_RESULT = 102;
+        int SERVICE_FOREGROUND = 101;
+        int SERVICE_RESULT = 102;
     }
 }

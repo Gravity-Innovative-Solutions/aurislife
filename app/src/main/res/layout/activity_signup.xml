@@ -23,8 +23,6 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
             android:elevation="10dp">
 
             <EditText
@@ -40,8 +38,6 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
             android:elevation="10dp">
 
             <EditText
@@ -58,8 +54,6 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
             android:elevation="10dp">
 
             <EditText
@@ -68,6 +62,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/phn_no"
                 android:inputType="phone"
+                android:maxLength="10"
                 android:textColor="@color/primary_darker" />
         </android.support.design.widget.TextInputLayout>
 
@@ -76,8 +71,6 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
             android:elevation="10dp">
 
             <EditText
@@ -97,6 +90,65 @@
             android:elevation="10dp"
             android:text="@string/show_pswd"
             android:textColor="@color/primary_darker" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/border_primary"
+            android:orientation="vertical">
+
+            <Spinner
+                android:id="@+id/spinner_districts"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:entries="@array/district_selection"
+                android:gravity="center"
+                android:theme="@style/ThemeOverlay.AppCompat.Light">
+
+            </Spinner>
+        </LinearLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="10dp">
+
+            <EditText
+                android:id="@+id/input_pin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/pin"
+                android:inputType="number"
+                android:maxLength="6"
+
+                android:textColor="@color/primary_darker" />
+        </android.support.design.widget.TextInputLayout>
+
+        <CheckBox
+            android:id="@+id/add_referror"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:text="@string/add_referrer"
+            android:textColor="@color/primary_darker" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:elevation="10dp">
+
+            <EditText
+                android:id="@+id/input_Ref_phn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/ref_phn"
+                android:inputType="phone"
+                android:maxLength="10"
+                android:textColor="@color/primary_darker"
+                android:visibility="gone" />
+        </android.support.design.widget.TextInputLayout>
+
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_signup"

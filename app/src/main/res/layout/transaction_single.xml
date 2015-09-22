@@ -28,19 +28,7 @@
                 android:textColor="#fc0f6808"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textView_success"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#fc0f6808" />
 
-            <TextView
-                android:id="@+id/textView_failed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#ebff0c0c" />
 
             <TextView
                 android:id="@+id/amt"

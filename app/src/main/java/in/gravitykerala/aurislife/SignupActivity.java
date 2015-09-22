@@ -11,16 +11,15 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.microsoft.windowsazure.mobileservices.ApiOperationCallback;
-import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
 
 import org.apache.http.HttpResponse;
 
-import java.net.MalformedURLException;
 import java.util.AbstractList;
 import java.util.List;
 
@@ -42,15 +41,23 @@ public class SignupActivity extends AppCompatActivity {
     Button _signupButton;
     @InjectView(R.id.link_login)
     TextView _loginLink;
+    @InjectView(R.id.input_Ref_phn)
+    EditText _refPhoneNo;
+    @InjectView(R.id.input_pin)
+    EditText _pincode;
+    Spinner spinner_districts;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         SplashPage.initializeMclient(this);
+        spinner_districts = (Spinner) findViewById(R.id.spinner_districts);
 
         //mClient = SplashPage.mClient;
         CheckBox checkbox = (CheckBox) findViewById(R.id.checkBox);
+
+        CheckBox checkbox_add_ref = (CheckBox) findViewById(R.id.add_referror);
         ButterKnife.inject(this);
 
         checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -63,6 +70,18 @@ public class SignupActivity extends AppCompatActivity {
                 }
             }
         });
+
+        checkbox_add_ref.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    _refPhoneNo.setVisibility(View.VISIBLE);
+                } else {
+                    _refPhoneNo.setVisibility(View.GONE);
+                }
+            }
+        });
+
 
         _signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,6 +194,8 @@ public class SignupActivity extends AppCompatActivity {
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
         String phNo = _PHNO.getText().toString();
+        String refPhNo = _refPhoneNo.getText().toString();
+        String pincode = _pincode.getText().toString();
 
         if (name.isEmpty() || name.length() < 3) {
             _nameText.setError("At least 3 characters");
@@ -184,6 +205,7 @@ public class SignupActivity extends AppCompatActivity {
         } else {
             _nameText.setError(null);
         }
+
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             _emailText.setError("Email error");
@@ -201,13 +223,30 @@ public class SignupActivity extends AppCompatActivity {
             _PHNO.setError(null);
         }
 
+        if (pincode.isEmpty() || pincode.length() != 6) {
+            _pincode.setError("Enter Valid Pincode ");
+//            Toast.makeText(this, "Check phone no", Toast.LENGTH_LONG).show();
+            valid = false;
+        } else {
+            _PHNO.setError(null);
+        }
+        if ((refPhNo.isEmpty()) || refPhNo.length() != 10)
+            _refPhoneNo.setError("Enter 10 Digit Mobile Number");
+
 
         if (password.isEmpty() || password.length() < 8 || password.length() > 15) {
-            _passwordText.setError("between 8 and 15 alphanumeric characters");
+            _passwordText.setError("between 8 and 15 characters");
 //            Toast.makeText(this, "Password between 8 and 15 characters", Toast.LENGTH_LONG).show();
             valid = false;
         } else {
             _passwordText.setError(null);
+        }
+        if (phNo.isEmpty() || phNo.length() != 10) {
+            _PHNO.setError("10 digit mobile number");
+//            Toast.makeText(this, "Check phone no", Toast.LENGTH_LONG).show();
+            valid = false;
+        } else {
+            _PHNO.setError(null);
         }
 
         return valid;
