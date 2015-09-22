@@ -195,6 +195,7 @@ public class SignupActivity extends AppCompatActivity {
         String password = _passwordText.getText().toString();
         String phNo = _PHNO.getText().toString();
         String refPhNo = _refPhoneNo.getText().toString();
+        String pincode = _pincode.getText().toString();
 
         if (name.isEmpty() || name.length() < 3) {
             _nameText.setError("At least 3 characters");
@@ -221,12 +222,20 @@ public class SignupActivity extends AppCompatActivity {
         } else {
             _PHNO.setError(null);
         }
+
+        if (pincode.isEmpty() || pincode.length() != 6) {
+            _pincode.setError("Enter Valid Pincode ");
+//            Toast.makeText(this, "Check phone no", Toast.LENGTH_LONG).show();
+            valid = false;
+        } else {
+            _PHNO.setError(null);
+        }
         if ((refPhNo.isEmpty()) || refPhNo.length() != 10)
             _refPhoneNo.setError("Enter 10 Digit Mobile Number");
 
 
         if (password.isEmpty() || password.length() < 8 || password.length() > 15) {
-            _passwordText.setError("between 8 and 15 alphanumeric characters");
+            _passwordText.setError("between 8 and 15 characters");
 //            Toast.makeText(this, "Password between 8 and 15 characters", Toast.LENGTH_LONG).show();
             valid = false;
         } else {
