@@ -60,6 +60,7 @@ public class SplashPage extends AppCompatActivity {
         user.setAuthenticationToken(tok);
         mClient.setCurrentUser(user);
 
+
     }
 
     @Override
@@ -164,7 +165,7 @@ public class SplashPage extends AppCompatActivity {
                     Log.d("ID", result.Vname);
 
                     Toast.makeText(SplashPage.this, "" + result.Vcode, Toast.LENGTH_SHORT).show();
-                    if (versionCode < result.mVcode) {
+                    if (1 < result.mVcode) {
                         new CompolsuryUpdate(currentContext);
                     } else if (versionCode < result.Vcode) {
                         new NoCompulsaryUpdate(currentContext);

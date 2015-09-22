@@ -1,0 +1,129 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="in.gravitykerala.mcet.Fragment.Attendance">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+
+    <!--<ListView-->
+    <!--android:id="@+id/list_attndnc"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:divider="#b5b5b5"-->
+    <!--android:dividerHeight="1dp"-->
+    <!--android:listSelector="@drawable/list_selector" />-->
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
+        <ListView
+            android:id="@+id/list_noti"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:divider="#fff"
+            android:dividerHeight="1dp"
+            android:listSelector="@drawable/list_selector" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <!--<net.i2p.android.ext.floatingactionbutton.FloatingActionsMenu-->
+    <!--android:id="@+id/multiple_actions"-->
+
+    <!--style="@style/FabStyle"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="261dp"-->
+
+
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:layout_alignParentEnd="true"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_alignParentTop="true"-->
+
+
+    <!--fab:fab_addButtonColorNormal="@color/primary_darker"-->
+    <!--fab:fab_addButtonColorPressed="@color/primary"-->
+    <!--fab:fab_addButtonPlusIconColor="@color/white"-->
+    <!--fab:fab_labelStyle="@style/menu_labels_style">-->
+
+
+    <!--<net.i2p.android.ext.floatingactionbutton.FloatingActionButton-->
+    <!--android:id="@+id/a"-->
+    <!--android:layout_width="5dp"-->
+    <!--android:layout_height="5dp"-->
+    <!--fab:fab_colorNormal="@color/primary"-->
+    <!--fab:fab_colorPressed="#fff"-->
+
+
+    <!--fab:fab_size="mini"-->
+
+    <!--fab:fab_title="Mark Your Leave" />-->
+
+
+    <!--&lt;!&ndash;<com.getbase.floatingactionbutton.FloatingActionButton&ndash;&gt;-->
+    <!--&lt;!&ndash;android:id="@+id/action_news"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_width="10dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_height="10dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;fab:fab_colorNormal="@color/white"&ndash;&gt;-->
+    <!--&lt;!&ndash;fab:fab_title="News"&ndash;&gt;-->
+    <!--&lt;!&ndash;fab:fab_size="mini"&ndash;&gt;-->
+    <!--&lt;!&ndash;fab:fab_colorPressed="@color/white_pressed"/>&ndash;&gt;-->
+
+
+    <!--<net.i2p.android.ext.floatingactionbutton.FloatingActionButton-->
+    <!--android:id="@+id/b"-->
+
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--fab:fab_colorNormal="@color/primary"-->
+
+
+    <!--fab:fab_colorPressed="#fff"-->
+    <!--fab:fab_size="mini"-->
+
+
+    <!--fab:fab_title="Attendance Total" />-->
+
+    <!--<net.i2p.android.ext.floatingactionbutton.FloatingActionButton-->
+    <!--android:id="@+id/c"-->
+
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--fab:fab_colorNormal="@color/primary"-->
+
+
+    <!--fab:fab_colorPressed="#fff"-->
+    <!--fab:fab_size="mini"-->
+
+
+    <!--fab:fab_title="Attendance Month" />-->
+
+    <!--&lt;!&ndash;<net.i2p.android.ext.floatingactionbutton.FloatingActionButton&ndash;&gt;-->
+    <!--&lt;!&ndash;android:id="@+id/d"&ndash;&gt;-->
+
+    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;fab:fab_size="mini"&ndash;&gt;-->
+
+
+    <!--&lt;!&ndash;fab:fab_colorNormal="@color/primary_dark"&ndash;&gt;-->
+    <!--&lt;!&ndash;fab:fab_title="Results"&ndash;&gt;-->
+
+
+    <!--&lt;!&ndash;fab:fab_colorPressed="#fff"/>&ndash;&gt;-->
+
+
+    <!--</net.i2p.android.ext.floatingactionbutton.FloatingActionsMenu>-->
+
+</RelativeLayout>
