@@ -30,6 +30,8 @@
     <string name="no_connection">You are not connected network</string>
     <string name="camera_not_support">Sorry! Your device doesnot support camera</string>
     <string name="user_cancelled">User cancelled image capture</string>
+    <string name="user_cancelled_file_picker">User cancelled File chooser</string>
+    <string name="file_picker_failed">Sorry! Failed to pick file</string>
     <string name="capture_failed">Sorry! Failed to capture image</string>
     <string name="item_select">"On Item Select : \n" </string>
     <string name="mismatch_pswd">"Password doesn't match" </string>
@@ -45,13 +47,16 @@
     <string name="title">Title</string>
     <string name="upld_presc">Upload Prescription</string>
     <string name="presc_upld">Prescription upload</string>
+    <string name="health_record_upload">Health record upload</string>
     <string name="uplding_prgrs">Uploading in progress</string>
     <string name="pres_upld_failed">Prescription Upload failed</string>
     <string name="pres_upld_success">Prescription Upload Success</string>
+    <string name="health_record_upload_success">Health record upload success</string>
     <string name="upld_failed">Uploading failed</string>
     <string name="upld_finished">Uploading has finished</string>
     <string name="upld_starting">Upload starting</string>
     <string name="pres_upld_failed_bcoz_nw_issue">Prescription Upload failed because network issue, please reupload</string>
+    <string name="health_report_upload_failed">Health report upload failed because network issue, please reupload</string>
     <string name="req_err">Request Error</string>
     <string name="prescrptn">Prescription</string>
     <string name="authenticating">Authenticating...</string>
@@ -71,7 +76,9 @@
     <string name="view_presc_details">Pull to view reecent Prescription uploads</string>
     <string name="view_rcnt_transactions">Pull to view recent recharges</string>
     <string name="initializing">Initializing prescription upload</string>
+    <string name="initializing_file_upload">Initializing file upload</string>
     <string name="take_photo">Take photo of your prescription first</string>
+    <string name="choose_document_first">Choose a document first</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_forget_password">ForgotPassword</string>
