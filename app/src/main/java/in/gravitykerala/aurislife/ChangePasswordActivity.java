@@ -42,7 +42,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         ReNpwd = (EditText) findViewById(R.id.input_new_confirm_password);
         Submit = (Button) findViewById(R.id.button);
         SplashPage.initializeMclient(this);
-        SplashPage.Storetok(this);
+        // SplashPage.Storetok(this);
         //mClient = SplashPage.mClient;
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override

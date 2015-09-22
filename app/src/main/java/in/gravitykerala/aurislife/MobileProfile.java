@@ -19,4 +19,7 @@ public class MobileProfile {
     @com.google.gson.annotations.SerializedName("balance")
     public int bal;
 
+    @com.google.gson.annotations.SerializedName("varification_Status")
+    public Boolean status;
+
 }

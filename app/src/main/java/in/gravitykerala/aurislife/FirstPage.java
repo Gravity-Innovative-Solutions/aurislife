@@ -71,14 +71,14 @@ public class FirstPage extends AppCompatActivity {
 //        token=getIntent().getExtras().getString("Tok");
 
         SplashPage.initializeMclient(this);
-        SplashPage.Storetok(this);
+        // SplashPage.Storetok(this);
         //mClient = SplashPage.mClient;
-            String userId = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
-            String tok = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
-            if (userId.equals("default") && tok.equals("default")) {
-                Intent i = new Intent(this, LoginActivity.class);
-                startActivity(i);
-            }
+//            String userId = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
+//            String tok = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
+//            if (userId.equals("default") && tok.equals("default")) {
+//                Intent i = new Intent(this, LoginActivity.class);
+//                startActivity(i);
+//            }
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
@@ -238,16 +238,16 @@ public class FirstPage extends AppCompatActivity {
                     }
                 }
             });
-            Button logout = (Button) rootView.findViewById(R.id.button6);
-            logout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    PrefUtils.saveToPrefs(getActivity(), PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
-                    PrefUtils.saveToPrefs(getActivity(), PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
-                    Intent i = new Intent(getActivity(), LoginActivity.class);
-                    startActivity(i);
-                }
-            });
+//            Button logout = (Button) rootView.findViewById(R.id.button6);
+//            logout.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    PrefUtils.saveToPrefs(getActivity(), PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
+//                    PrefUtils.saveToPrefs(getActivity(), PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
+//                    Intent i = new Intent(getActivity(), LoginActivity.class);
+//                    startActivity(i);
+//                }
+//            });
 
 
             return rootView;

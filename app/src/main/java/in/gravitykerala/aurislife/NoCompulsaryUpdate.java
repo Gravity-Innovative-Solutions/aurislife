@@ -1,4 +1,4 @@
-package com.aurislife;
+package in.gravitykerala.aurislife;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 
 import in.gravitykerala.aurislife.FirstPage;
-import in.gravitykerala.aurislife.LoginActivity;
+
 import in.gravitykerala.aurislife.PrefUtils;
 import in.gravitykerala.aurislife.R;
 import in.gravitykerala.aurislife.SplashPage;

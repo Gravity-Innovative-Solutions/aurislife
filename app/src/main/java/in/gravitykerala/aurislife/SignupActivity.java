@@ -157,7 +157,9 @@ public class SignupActivity extends AppCompatActivity {
             req.Email = _emailText.getText().toString();
             req.phno = _PHNO.getText().toString();
             req.Pword = _passwordText.getText().toString();
-
+            req.refrel = _refPhoneNo.getText().toString();
+            req.area = spinner_districts.getSelectedItem().toString();
+            req.pin = _pincode.getText().toString();
             SplashPage.mClient.invokeApi("CustomRegistration", req, HttpResponse.class, new ApiOperationCallback<HttpResponse>() {
                 @Override
                 public void onCompleted(HttpResponse result, Exception exception, ServiceFilterResponse response) {
