@@ -63,6 +63,7 @@ public class FirstPage extends AppCompatActivity {
         if (toolbar != null) {
             setSupportActionBar(toolbar);
 
+
         }
         SplashPage.currentContext = this;
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -132,6 +133,10 @@ public class FirstPage extends AppCompatActivity {
 
         if (id == R.id.action_verify_otp) {
             Intent i = new Intent(FirstPage.this, OTPverification.class);
+            startActivity(i);
+        }
+        if (id == R.id.action_notification) {
+            Intent i = new Intent(FirstPage.this, Notifications.class);
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);

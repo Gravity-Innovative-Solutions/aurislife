@@ -17,6 +17,7 @@
 
     <string name="show_pswd">Show Password</string>
     <string name="add_referrer">Add Referrer</string>
+    <string name="notification">Notifications</string>
     <string name="btn_signup">Create Account</string>
     <string name="pin">Enter your Pincode</string>
     <string name="ref_phn">Enter Referrer Phone Number</string>

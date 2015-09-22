@@ -5,12 +5,12 @@ import java.util.ArrayList;
 /**
  * Created by USER on 7/10/2015.
  */
-public class StudentNotificationDTO {
+public class MobileNotifications {
     @com.google.gson.annotations.SerializedName("id")
     public String mId;
     ArrayList<Exam> staffs;
 
-    StudentNotificationDTO() {
+    MobileNotifications() {
         staffs = new ArrayList<Exam>();
 
     }

@@ -34,7 +34,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/toolbar"
-            android:divider="#fff"
+
             android:dividerHeight="1dp"
             android:listSelector="@drawable/list_selector" />
     </android.support.v4.widget.SwipeRefreshLayout>
