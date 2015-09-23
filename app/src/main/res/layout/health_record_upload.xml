@@ -14,29 +14,11 @@
         android:layout_height="fill_parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical"
             android:weightSum="3">
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="10dp">
-
-                <!-- To display picture taken -->
-                <ImageView
-                    android:id="@+id/imgPreview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
-
-                <!-- To preview video recorded -->
-            </LinearLayout>
 
 
             <!-- Capture picture button -->
@@ -46,8 +28,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
+
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -55,7 +36,7 @@
                     android:id="@+id/btnCapturePicture"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/take_a_pic"
+                    android:text="@string/pick_a_file"
                     android:textColor="@color/white" />
 
                 <!--<Button-->
@@ -64,20 +45,61 @@
                 <!--android:layout_height="wrap_content"-->
                 <!--android:text="Record a Video" />-->
 
-                <Button
-                    android:id="@+id/button_uploadpresc"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/upload_img"
-                    android:textColor="@color/white" />
+                <LinearLayout
+                    android:id="@+id/layout_recordDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/textView_filename"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        android:text="Filename"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <EditText
+                        android:id="@+id/editText_title"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Record Title" />
+
+                    <EditText
+                        android:id="@+id/editText_description"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="Record description and remarks"
+                        android:inputType="textMultiLine" />
+
+                    <EditText
+                        android:id="@+id/editText_doctorName"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="Doctor name"
+                        android:inputType="textPersonName" />
+
+                    <Button
+                        android:id="@+id/button_uploadpresc"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/upload_record"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/button4"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/prec_details"
+                    android:text="@string/view_records"
                     android:textColor="@color/white" />
+
             </LinearLayout>
         </LinearLayout>
 

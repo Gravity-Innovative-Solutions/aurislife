@@ -93,7 +93,7 @@ public class HealthRecordService extends Service {
                 Boolean uploadSuccess = uploadFileBlob(imageUploaddata.fileURI, imageUploaddata.blobURL, imageUploaddata.sharedAccessSignatureToken, imageUploaddata.containerName, imageUploaddata.resourceName);
                 if (uploadSuccess) {
                     Log.d("UploadStatus:", "Upload Success");
-                    submit(prescriptionId);
+                    submit(imageUploaddata.id);
 
                 } else {
 //            throw new Exception("CustomExceptionAndroid: Blob uploading Failed");

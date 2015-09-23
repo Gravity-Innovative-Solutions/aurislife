@@ -107,6 +107,7 @@
         </activity>
 
         <service android:name=".foregroundservice.ForegroundService"></service>
+        <service android:name=".foregroundservice.HealthRecordService"></service>
     </application>
 
 </manifest>

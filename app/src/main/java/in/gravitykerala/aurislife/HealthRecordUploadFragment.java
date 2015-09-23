@@ -15,6 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Toast;
@@ -22,26 +24,18 @@ import android.widget.Toast;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import com.microsoft.azure.storage.StorageCredentialsSharedAccessSignature;
-import com.microsoft.azure.storage.blob.CloudBlobContainer;
-import com.microsoft.azure.storage.blob.CloudBlockBlob;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import in.gravitykerala.aurislife.foregroundservice.ForegroundService;
 import in.gravitykerala.aurislife.foregroundservice.HealthRecordService;
 import in.gravitykerala.aurislife.model.BlobUploadDetails;
 import in.gravitykerala.aurislife.model.MobileHealthRecord;
 import in.gravitykerala.aurislife.model.MobileHealthRecordDocument;
-import in.gravitykerala.aurislife.model.MobilePrescriptionUpload;
 
 /**
  * Created by Prakash on 8/20/2015.
@@ -56,16 +50,17 @@ public class HealthRecordUploadFragment extends Fragment {
 //    private static final String IMAGE_DIRECTORY_NAME = "AurisLife";
     PowerManager.WakeLock wakeLock;
     MobileServiceClient mClient;
+    LinearLayout layoutRecordDetails;
+    EditText et_recordTitle, et_recordDescription, et_doctorName;
     private Uri pickedFileUri; // file url to store image/video
     //    private ImageView imgPreview;
 //    private VideoView videoPreview;
-    private Button btnCapturePicture;
-    private Button uploadPrescription;
+    private Button btnPickFile;
+    private Button btnUploadDocument;
     private MobileServiceTable<MobileHealthRecord> mHealthRecord;
     private MobileServiceTable<MobileHealthRecordDocument> mHealthRecordDocument;
     private ScrollView scrollView_upload;
     private ProgressBar progressBar_upload;
-
     //    private boolean imageTaken = false;
     private boolean filePicked = false;
 
@@ -112,15 +107,19 @@ public class HealthRecordUploadFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.health_record_upload, container, false);
 //        imgPreview = (ImageView) rootView.findViewById(R.id.imgPreview);
-        btnCapturePicture = (Button) rootView.findViewById(R.id.btnCapturePicture);
-        uploadPrescription = (Button) rootView.findViewById(R.id.button_uploadpresc);
-        uploadPrescription.setVisibility(Button.GONE);
+        btnPickFile = (Button) rootView.findViewById(R.id.btnCapturePicture);
+        btnUploadDocument = (Button) rootView.findViewById(R.id.button_uploadpresc);
+        btnUploadDocument.setVisibility(Button.GONE);
+        layoutRecordDetails = (LinearLayout) rootView.findViewById(R.id.layout_recordDetails);
+        et_recordTitle = (EditText) rootView.findViewById(R.id.editText_title);
+        et_recordDescription = (EditText) rootView.findViewById(R.id.editText_description);
+        et_doctorName = (EditText) rootView.findViewById(R.id.editText_doctorName);
         scrollView_upload = (ScrollView) rootView.findViewById(R.id.scrollView_upload);
         progressBar_upload = (ProgressBar) rootView.findViewById(R.id.progressBar_upload);
         mHealthRecord = mClient.getTable("MobileHealthRecord", MobileHealthRecord.class);
         mHealthRecordDocument = mClient.getTable("MobileHealthRecordDocument", MobileHealthRecordDocument.class);
 
-        uploadPrescription.setOnClickListener(new View.OnClickListener() {
+        btnUploadDocument.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -134,7 +133,7 @@ public class HealthRecordUploadFragment extends Fragment {
             }
         });
 
-        btnCapturePicture.setOnClickListener(new View.OnClickListener() {
+        btnPickFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // capture picture
@@ -221,9 +220,9 @@ public class HealthRecordUploadFragment extends Fragment {
         final MobileHealthRecord mobileHealthRecord = new MobileHealthRecord();
 
 //        mobilePrescription.setEventDate(new Date());
-//        mobileHealthRecord.setDoctorName();
-//        mobileHealthRecord.setRecordTitle();
-//        mobileHealthRecord.setRecordDescription();
+        mobileHealthRecord.setDoctorName(et_doctorName.getText().toString());
+        mobileHealthRecord.setRecordTitle(et_recordTitle.getText().toString());
+        mobileHealthRecord.setRecordDescription(et_recordDescription.getText().toString());
 
 
         // Insert the new item
@@ -251,6 +250,7 @@ public class HealthRecordUploadFragment extends Fragment {
                         if ((resultHealthRecordDocument.getSasQueryString() != null) && (!resultHealthRecordDocument.getSasQueryString().isEmpty())) {
 
                             BlobUploadDetails imageUpload = new BlobUploadDetails();
+                            imageUpload.id = resultHealthRecordDocument.getId();
                             imageUpload.fileURI = pickedFileUri;
                             imageUpload.blobURL = resultHealthRecordDocument.getImageUri();
                             imageUpload.sharedAccessSignatureToken = resultHealthRecordDocument.getSasQueryString();
@@ -395,7 +395,8 @@ public class HealthRecordUploadFragment extends Fragment {
                 //TODO Enable upload button
                 pickedFileUri = data.getData();
                 filePicked = true;
-                uploadPrescription.setVisibility(Button.VISIBLE);
+                layoutRecordDetails.setVisibility(LinearLayout.VISIBLE);
+                btnUploadDocument.setVisibility(Button.VISIBLE);
 
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 // user cancelled Image capture
