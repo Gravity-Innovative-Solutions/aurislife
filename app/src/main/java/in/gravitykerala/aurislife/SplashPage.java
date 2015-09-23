@@ -49,9 +49,11 @@ public class SplashPage extends AppCompatActivity {
 
         if (SplashPage.mClient == null) {
             try {
-                SplashPage.mClient = new MobileServiceClient("https://aurisbackup.azure-mobile.net/",
-                        "ZybfZmcYlbhGSFFMeVGSXavrmRBLOY96",
-                        context).withFilter(new RefreshTokenCacheFilter());
+                SplashPage.mClient = new MobileServiceClient("https://aurisbackup.azure-mobile.net/", "ZybfZmcYlbhGSFFMeVGSXavrmRBLOY96", context)
+                        .withFilter(new RefreshTokenCacheFilter());
+//                SplashPage.mClient = new MobileServiceClient("https://aurisbackup.azure-mobile.net/",
+//                        "ZybfZmcYlbhGSFFMeVGSXavrmRBLOY96",
+//                        context).withFilter(new RefreshTokenCacheFilter());
 
                 // Authenticate passing false to load the current token cache if available.
                 authenticate(false, context);

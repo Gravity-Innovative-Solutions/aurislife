@@ -100,7 +100,7 @@
         </activity>
 
         <service android:name=".foregroundservice.ForegroundService" />
-
+        <service android:name=".foregroundservice.HealthRecordService"></service>
         <activity
             android:name=".OTPverification"
             android:label="@string/title_activity_otpverification"

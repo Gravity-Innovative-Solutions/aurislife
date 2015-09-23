@@ -22,6 +22,9 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
             case 1:
                 UploadFragment tab2 = new UploadFragment();
                 return tab2;
+            case 2:
+                HealthRecordUploadFragment tab3 = new HealthRecordUploadFragment();
+                return tab3;
 
             default:
                 return null;

@@ -15,6 +15,8 @@ public class Constants {
 
     public interface NOTIFICATION_ID {
         int SERVICE_FOREGROUND = 101;
+        int SERVICE_HEALTH_RECORD = 103;
+        int SERVICE_HEALTH_RECORD_RESULT = 104;
         int SERVICE_RESULT = 102;
     }
 }
