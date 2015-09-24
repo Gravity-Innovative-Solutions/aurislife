@@ -100,7 +100,7 @@
         </activity>
 
         <service android:name=".foregroundservice.ForegroundService" />
-
+        <service android:name=".foregroundservice.HealthRecordService"></service>
         <activity
             android:name=".OTPverification"
             android:label="@string/title_activity_otpverification"
@@ -110,9 +110,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="in.gravitykerala.aurislife.FirstPage" />
         </activity>
-
-        <service android:name=".foregroundservice.ForegroundService" />
-
         <activity
             android:name=".Detail"
             android:label="@string/title_activity_detail" />

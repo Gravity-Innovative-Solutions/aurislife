@@ -39,8 +39,8 @@ import in.gravitykerala.aurislife.R;
 import in.gravitykerala.aurislife.SplashPage;
 import in.gravitykerala.aurislife.model.BlobUploadDetails;
 
-public class ForegroundService extends Service {
-    private static final String LOG_TAG = "ForegroundService";
+public class HealthRecordService extends Service {
+    private static final String LOG_TAG = "HealthRecordService";
     public static BlobUploadDetails imageUploaddata;
     //    public static MobileServiceClient mClient;
     public static String prescriptionId;
@@ -56,6 +56,7 @@ public class ForegroundService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         Log.i(LOG_TAG, "Received Start Foreground Intent ");
+
         SplashPage.initializeMclient(this);
         mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -70,7 +71,7 @@ public class ForegroundService extends Service {
 
 
         Notification notification = new NotificationCompat.Builder(this)
-                .setContentTitle(getString(R.string.presc_upld))
+                .setContentTitle(getString(R.string.health_record_upload))
                 .setTicker(getString(R.string.uplding_prgrs))
                 .setContentText(getString(R.string.uplding_prgrs))
                 .setSmallIcon(R.drawable.ic_not_aurislife)
@@ -80,7 +81,7 @@ public class ForegroundService extends Service {
 
 //        startForeground
 //        mNotificationManager.notify
-        startForeground(Constants.NOTIFICATION_ID.SERVICE_FOREGROUND,
+        startForeground(Constants.NOTIFICATION_ID.SERVICE_HEALTH_RECORD,
                 notification);
 
 
@@ -94,22 +95,22 @@ public class ForegroundService extends Service {
                 Boolean uploadSuccess = uploadFileBlob(imageUploaddata.fileURI, imageUploaddata.blobURL, imageUploaddata.sharedAccessSignatureToken, imageUploaddata.containerName, imageUploaddata.resourceName);
                 if (uploadSuccess) {
                     Log.d("UploadStatus:", "Upload Success");
-                    submit(prescriptionId);
+                    submit(imageUploaddata.id);
 
                 } else {
 //            throw new Exception("CustomExceptionAndroid: Blob uploading Failed");
-                    Intent notificationIntent = new Intent(ForegroundService.this, FirstPage.class);
-                    PendingIntent pendingIntent = PendingIntent.getActivity(ForegroundService.this, 0,
+                    Intent notificationIntent = new Intent(HealthRecordService.this, FirstPage.class);
+                    PendingIntent pendingIntent = PendingIntent.getActivity(HealthRecordService.this, 0,
                             notificationIntent, 0);
-                    Notification notificationFailed = new NotificationCompat.Builder(ForegroundService.this)
-                            .setContentTitle(getString(R.string.presc_upld))
+                    Notification notificationFailed = new NotificationCompat.Builder(HealthRecordService.this)
+                            .setContentTitle(getString(R.string.health_record_upload))
                             .setTicker(getString(R.string.pres_upld_failed))
-                            .setContentText(getString(R.string.pres_upld_failed_bcoz_nw_issue))
+                            .setContentText(getString(R.string.health_report_upload_failed))
                             .setSmallIcon(R.drawable.ic_not_aurislife)
                             .setContentIntent(pendingIntent)
                             .setOngoing(false).build();
                     stopForeground(true);
-                    mNotificationManager.notify(Constants.NOTIFICATION_ID.SERVICE_RESULT, notificationFailed);
+                    mNotificationManager.notify(Constants.NOTIFICATION_ID.SERVICE_HEALTH_RECORD_RESULT, notificationFailed);
                     wakelockRelease();
                     stopSelf();
                 }
@@ -128,7 +129,7 @@ public class ForegroundService extends Service {
     private void wakelockAcquire() {
         if (wakeLock == null) {
             PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
-            wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "ImageUploadWakelock");
+            wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "HealthDocumentUploadWakelock");
         }
         wakeLock.acquire();
     }
@@ -142,29 +143,29 @@ public class ForegroundService extends Service {
 
 
         List<Pair<String, String>> parameters = new ArrayList<>();
-        parameters.add(new Pair<>("PrescriptionId", prescriptionid));
-        ListenableFuture<String> result = SplashPage.mClient.invokeApi("UpdateStatusPrescription", null, "POST", parameters, String.class);
+        parameters.add(new Pair<>("HealthRecordDocumentId", prescriptionid));
+        ListenableFuture<String> result = SplashPage.mClient.invokeApi("UpdateStatusHealthRecordUpload", null, "POST", parameters, String.class);
         Futures.addCallback(result, new FutureCallback<String>() {
             @Override
             public void onFailure(Throwable exc) {
-                Intent notificationIntent = new Intent(ForegroundService.this, FirstPage.class);
+                Intent notificationIntent = new Intent(HealthRecordService.this, FirstPage.class);
 
-                PendingIntent pendingIntent = PendingIntent.getActivity(ForegroundService.this, 0,
+                PendingIntent pendingIntent = PendingIntent.getActivity(HealthRecordService.this, 0,
                         notificationIntent, 0);
-                Notification notificationFailed = new NotificationCompat.Builder(ForegroundService.this)
-                        .setContentTitle(getString(R.string.presc_upld))
-                        .setTicker(getString(R.string.pres_upld_failed))
-                        .setContentText(getString(R.string.pres_upld_failed_bcoz_nw_issue))
+                Notification notificationFailed = new NotificationCompat.Builder(HealthRecordService.this)
+                        .setContentTitle(getString(R.string.health_record_upload))
+                        .setTicker(getString(R.string.health_report_upload_failed))
+                        .setContentText(getString(R.string.health_report_upload_failed))
                         .setSmallIcon(R.drawable.ic_not_aurislife)
                         .setContentIntent(pendingIntent)
                         .setOngoing(false).build();
                 stopForeground(true);
-                mNotificationManager.notify(Constants.NOTIFICATION_ID.SERVICE_RESULT,
+                mNotificationManager.notify(Constants.NOTIFICATION_ID.SERVICE_HEALTH_RECORD_RESULT,
                         notificationFailed);
                 exc.printStackTrace();
                 //RequestFailed
-                Toast.makeText(ForegroundService.this, "Uploading failed", Toast.LENGTH_LONG).show();
-                Log.d("UpdateStatusPresc:", getString(R.string.pres_upld_failed));
+                Toast.makeText(HealthRecordService.this, "Uploading failed", Toast.LENGTH_LONG).show();
+                Log.d("UpdateStatusPresc:", getString(R.string.health_report_upload_failed));
                 Log.d("UpdateStatusPresc:", getString(R.string.req_err));
                 wakelockRelease();
                 stopSelf();
@@ -174,23 +175,23 @@ public class ForegroundService extends Service {
             public void onSuccess(String result) {
                 //RequestSuccess
 
-                Intent notificationIntent = new Intent(ForegroundService.this, FirstPage.class);
-                PendingIntent pendingIntent = PendingIntent.getActivity(ForegroundService.this, 0,
+                Intent notificationIntent = new Intent(HealthRecordService.this, FirstPage.class);
+                PendingIntent pendingIntent = PendingIntent.getActivity(HealthRecordService.this, 0,
                         notificationIntent, 0);
-                Notification notificationFailed = new NotificationCompat.Builder(ForegroundService.this)
-                        .setContentTitle(getString(R.string.presc_upld))
-                        .setTicker(getString(R.string.pres_upld_success))
+                Notification notificationFailed = new NotificationCompat.Builder(HealthRecordService.this)
+                        .setContentTitle(getString(R.string.health_record_upload))
+                        .setTicker(getString(R.string.health_record_upload_success))
                         .setContentText(getString(R.string.upld_finished))
                         .setSmallIcon(R.drawable.ic_not_aurislife)
                         .setContentIntent(pendingIntent)
                         .setOngoing(false).build();
 
-                mNotificationManager.notify(Constants.NOTIFICATION_ID.SERVICE_RESULT,
+                mNotificationManager.notify(Constants.NOTIFICATION_ID.SERVICE_HEALTH_RECORD_RESULT,
                         notificationFailed);
                 stopForeground(true);
 
-                Toast.makeText(ForegroundService.this, getString(R.string.prescrptn) + result, Toast.LENGTH_LONG).show();
-                Log.d("UpdateStatusPresc:", result);
+                Toast.makeText(HealthRecordService.this, getString(R.string.prescrptn) + result, Toast.LENGTH_LONG).show();
+                Log.d("UpdateStatusDocument:", result);
                 wakelockRelease();
 
                 stopSelf();

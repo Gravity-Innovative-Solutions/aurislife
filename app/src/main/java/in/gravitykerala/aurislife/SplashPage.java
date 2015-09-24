@@ -188,16 +188,16 @@ public class SplashPage extends AppCompatActivity {
         editor.apply();
     }
 
-//    public static void Storetok(Context context) {
-//
-//
-//        String userId = PrefUtils.getFromPrefs(context, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
-//        String tok = PrefUtils.getFromPrefs(context, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
-//        MobileServiceUser user = new MobileServiceUser(userId);
-//        user.setAuthenticationToken(tok);
-//        mClient.setCurrentUser(user);
-//
-//    }
+    public static void Storetok(Context context) {
+
+
+        String userId = PrefUtils.getFromPrefs(context, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
+        String tok = PrefUtils.getFromPrefs(context, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
+        MobileServiceUser user = new MobileServiceUser(userId);
+        user.setAuthenticationToken(tok);
+        mClient.setCurrentUser(user);
+
+    }
 
     public void updationcheck() {
 

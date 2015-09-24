@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by Prakash on 8/23/2015.
  */
 public class BlobUploadDetails {
-
+    public String id;
     public Uri fileURI;
     public String blobURL;
     public String sharedAccessSignatureToken;

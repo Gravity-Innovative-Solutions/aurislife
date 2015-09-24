@@ -87,7 +87,7 @@ public class FirstPage extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText(R.string.profile));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.upld_presc));
-        // tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
+         tabLayout.addTab(tabLayout.newTab().setText(R.string.upload_health_records));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
