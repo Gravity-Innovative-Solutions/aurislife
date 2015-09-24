@@ -15,11 +15,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
 import com.microsoft.windowsazure.mobileservices.ApiOperationCallback;
+import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
 
 import org.apache.http.HttpResponse;
 
+import java.net.MalformedURLException;
 import java.util.AbstractList;
 import java.util.List;
 
@@ -28,6 +33,7 @@ import butterknife.InjectView;
 
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
+    public static MobileServiceClient mClient;
     //   public static MobileServiceClient mClient;
     @InjectView(R.id.input_name)
     EditText _nameText;
@@ -53,7 +59,16 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         SplashPage.initializeMclient(this);
         spinner_districts = (Spinner) findViewById(R.id.spinner_districts);
+        try {
+            mClient = new MobileServiceClient(SplashPage.APINAME, SplashPage.APIKEY, this);
+//                Log.d("PushNotification:", "registering");
+//                NotificationsManager.handleNotifications(context, GCM_PUSH_SENDER_ID, PushNotificationHandler.class);
+//                Log.d("PushNotification:", "registered");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            //TODO check for Netowrk connectivity and add Exception handling
 
+        }
         //mClient = SplashPage.mClient;
         CheckBox checkbox = (CheckBox) findViewById(R.id.checkBox);
 
@@ -160,19 +175,35 @@ public class SignupActivity extends AppCompatActivity {
             req.refrel = _refPhoneNo.getText().toString();
             req.area = spinner_districts.getSelectedItem().toString();
             req.pin = _pincode.getText().toString();
-            SplashPage.mClient.invokeApi("CustomRegistration", req, HttpResponse.class, new ApiOperationCallback<HttpResponse>() {
+            final ListenableFuture<String> result = mClient.invokeApi("CustomRegistration", null, "POST", parameters, String.class);
+            Futures.addCallback(result, new FutureCallback<String>() {
                 @Override
-                public void onCompleted(HttpResponse result, Exception exception, ServiceFilterResponse response) {
-                    if (exception == null) {
-                        Toast.makeText(SignupActivity.this, R.string.success, Toast.LENGTH_LONG).show();
-                        finish();
+                public void onSuccess(String result) {
+                    Log.d("Success", result.toString());
+                }
 
-                    } else {
-                        onSignupFailed();
-                    }
-                    progressDialog.dismiss();
+                @Override
+                public void onFailure(Throwable t) {
+                    Log.d("Failed", result.toString());
                 }
             });
+
+
+//                @Override
+//                public void onCompleted (String result, Exception exception, ServiceFilterResponse
+//                response){
+//                if (exception == null) {
+//                    Toast.makeText(SignupActivity.this, R.string.success, Toast.LENGTH_LONG).show();
+//                    finish();
+//
+//                } else {
+//                    onSignupFailed();
+//                }
+//                progressDialog.dismiss();
+//            }
+//            }
+//
+//            );
         }
 
     }

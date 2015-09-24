@@ -37,6 +37,8 @@ import android.widget.Toast;
 public class SplashPage extends AppCompatActivity {
     public static final Object mAuthenticationLock = new Object();
     public static final String SHAREDPREFFILE = "temp";
+    public static final String APINAME = "https://aurisbackup.azure-mobile.net/";
+    public static final String APIKEY = "ZybfZmcYlbhGSFFMeVGSXavrmRBLOY96";
     public static final String USERIDPREF = "uid";
     public static final String TOKENPREF = "tkn";
     public static boolean bAuthenticating = false;
@@ -49,9 +51,7 @@ public class SplashPage extends AppCompatActivity {
 
         if (SplashPage.mClient == null) {
             try {
-                SplashPage.mClient = new MobileServiceClient("https://aurisbackup.azure-mobile.net/",
-                        "ZybfZmcYlbhGSFFMeVGSXavrmRBLOY96",
-                        context).withFilter(new RefreshTokenCacheFilter());
+                SplashPage.mClient = new MobileServiceClient(APINAME, APIKEY, context).withFilter(new RefreshTokenCacheFilter());
 
                 // Authenticate passing false to load the current token cache if available.
                 authenticate(false, context);
@@ -191,16 +191,16 @@ public class SplashPage extends AppCompatActivity {
         editor.apply();
     }
 
-    public static void Storetok(Context context) {
-
-
-        String userId = PrefUtils.getFromPrefs(context, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
-        String tok = PrefUtils.getFromPrefs(context, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
-        MobileServiceUser user = new MobileServiceUser(userId);
-        user.setAuthenticationToken(tok);
-        mClient.setCurrentUser(user);
-
-    }
+//    public static void Storetok(Context context) {
+//
+//
+//        String userId = PrefUtils.getFromPrefs(context, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
+//        String tok = PrefUtils.getFromPrefs(context, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
+//        MobileServiceUser user = new MobileServiceUser(userId);
+//        user.setAuthenticationToken(tok);
+//        mClient.setCurrentUser(user);
+//
+//    }
 
     public void updationcheck() {
 

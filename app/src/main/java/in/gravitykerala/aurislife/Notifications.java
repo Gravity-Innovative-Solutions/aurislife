@@ -8,27 +8,18 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.util.Pair;
-import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.google.common.util.concurrent.FutureCallback;
-import com.google.common.util.concurrent.Futures;
-import com.google.common.util.concurrent.ListenableFuture;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
-import java.util.AbstractList;
 import java.util.List;
-
-import in.gravitykerala.aurislife.model.MobilePrescription;
 
 public class Notifications extends AppCompatActivity {
     private static final String KEY_TITLE = "title";
     private NotificationItemAdapter mAdapter;
     private SwipeRefreshLayout mSwipeLayout;
-    private MobileServiceTable<StudentNotificationDTO.Exam> mToDoTable;
+    private MobileServiceTable<MobileNotifications.Exam> mToDoTable;
 
     public Notifications() {
         // Required empty public constructor
@@ -40,7 +31,7 @@ public class Notifications extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications);
         SplashPage.initializeMclient(this);
-        mToDoTable = SplashPage.mClient.getTable("StudentNotificationDTO", StudentNotificationDTO.Exam.class);
+        mToDoTable = SplashPage.mClient.getTable("MobileNotifications", MobileNotifications.Exam.class);
         mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -79,7 +70,7 @@ public class Notifications extends AppCompatActivity {
 
             protected Void doInBackground(Void... params) {
                 try {
-                    final List<StudentNotificationDTO.Exam> results =
+                    final List<MobileNotifications.Exam> results =
                             mToDoTable.where().execute().get();
                     runOnUiThread(new Runnable() {
                         @Override
@@ -90,7 +81,7 @@ public class Notifications extends AppCompatActivity {
                                 Toast.makeText(Notifications.this, "No Notification", Toast.LENGTH_LONG).show();
 
                             } else {
-                                for (StudentNotificationDTO.Exam item : results) {
+                                for (MobileNotifications.Exam item : results) {
                                     mAdapter.add(item);
 
                                 }

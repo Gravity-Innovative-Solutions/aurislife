@@ -33,7 +33,7 @@ public class RecentTransactions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recent_transactions);
         SplashPage.initializeMclient(this);
-        SplashPage.Storetok(this);
+        // SplashPage.Storetok(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);

@@ -21,6 +21,7 @@ import java.util.AbstractList;
 import java.util.List;
 
 public class ForgetPasswordActivity extends AppCompatActivity {
+    public static MobileServiceClient mClient;
     //  public static MobileServiceClient mClient;
     EditText PhnNum;
     EditText Email;
@@ -31,6 +32,16 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        try {
+            mClient = new MobileServiceClient(SplashPage.APINAME, SplashPage.APIKEY, this);
+//                Log.d("PushNotification:", "registering");
+//                NotificationsManager.handleNotifications(context, GCM_PUSH_SENDER_ID, PushNotificationHandler.class);
+//                Log.d("PushNotification:", "registered");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            //TODO check for Netowrk connectivity and add Exception handling
+
+        }
         if (toolbar != null) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -83,7 +94,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 //            String rnew_pwd_s = ReNpwd.getText().toString();
 
 
-            SplashPage.mClient.invokeApi(getString(R.string.frgt_pswd), req, String.class, new ApiOperationCallback<String>() {
+            mClient.invokeApi(getString(R.string.frgt_pswd), req, String.class, new ApiOperationCallback<String>() {
                 @Override
                 public void onCompleted(String result, Exception exception, ServiceFilterResponse response) {
                     if (exception == null) {

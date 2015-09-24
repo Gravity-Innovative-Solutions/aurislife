@@ -35,7 +35,7 @@ public class Detail extends AppCompatActivity {
         tv2 = (TextView) findViewById(R.id.textView4);
         tv3 = (TextView) findViewById(R.id.textView6);
         SplashPage.initializeMclient(this);
-        SplashPage.Storetok(this);
+        //SplashPage.Storetok(this);
         // mClient = SplashPage.mClient;
 
         // Get the Mobile Service Table instance to use

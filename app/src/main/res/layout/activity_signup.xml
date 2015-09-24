@@ -31,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/name"
 
+                android:text="syril"
                 android:textColor="@color/primary_darker" />
         </android.support.design.widget.TextInputLayout>
 
@@ -46,6 +47,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
+                android:text="syril@gmail.com"
                 android:textColor="@color/primary_darker" />
         </android.support.design.widget.TextInputLayout>
 
@@ -63,6 +65,7 @@
                 android:hint="@string/phn_no"
                 android:inputType="phone"
                 android:maxLength="10"
+                android:text="9998754654"
                 android:textColor="@color/primary_darker" />
         </android.support.design.widget.TextInputLayout>
 
@@ -79,6 +82,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
                 android:inputType="textPassword"
+                android:text="qwertyuiop"
                 android:textColor="@color/primary_darker" />
         </android.support.design.widget.TextInputLayout>
 
@@ -121,6 +125,7 @@
                 android:inputType="number"
                 android:maxLength="6"
 
+                android:text="805032"
                 android:textColor="@color/primary_darker" />
         </android.support.design.widget.TextInputLayout>
 

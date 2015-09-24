@@ -154,6 +154,7 @@ public class FirstPage extends AppCompatActivity {
     public static class ProfileFragment extends Fragment {
 //        MobileServiceClient mClient;
 
+        public Boolean stats = false;
         // MobileServiceClient mClient;
         MobileServiceTable<MobileProfile> mToDoTable;
         int currnt_blnce = 0;
@@ -212,9 +213,11 @@ public class FirstPage extends AppCompatActivity {
             Recahrge.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    if (currnt_blnce == 0) {
-//                        Toast.makeText(getActivity(), "Current balance is zero", Toast.LENGTH_SHORT).show();
-//                    } else
+                    if (!stats) {
+                        Intent i = new Intent(getActivity(), OTPverification.class);
+
+                        startActivity(i);
+                    } else
                     {
 
 
@@ -361,7 +364,7 @@ public class FirstPage extends AppCompatActivity {
                                     tv1.setText(item.email);
                                     tv2.setText(item.phn);
                                     currnt_blnce = item.bal;
-
+                                    stats = item.status;
                                 }
 
                             }

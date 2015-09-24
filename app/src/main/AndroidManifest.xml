@@ -118,10 +118,20 @@
             android:label="@string/title_activity_detail" />
         <activity
             android:name=".CompolsuryUpdate"
-            android:label="@string/title_activity_compolsury_update"></activity>
+            android:label="@string/title_activity_compolsury_update">
+
+        </activity>
         <activity
             android:name=".NoCompulsaryUpdate"
-            android:label="@string/title_activity_no_compulsary_update"></activity>
+            android:label="@string/title_activity_no_compulsary_update">
+
+        </activity>
+        <activity
+            android:name=".Notifications"
+            android:label="Notifications">
+
+        </activity>
+
     </application>
 
 </manifest>

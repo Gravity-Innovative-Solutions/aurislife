@@ -149,7 +149,7 @@ public class OTPverification extends AppCompatActivity {
                 return 0;
             }
         };
-        SplashPage.mClient.invokeApi("OTPVarification?Password=" + tv.getText().toString(), String.class, new ApiOperationCallback<String>() {
+        SplashPage.mClient.invokeApi("OTPVerification?Password=" + tv.getText().toString(), String.class, new ApiOperationCallback<String>() {
             @Override
             public void onCompleted(String result, Exception exception, ServiceFilterResponse response) {
                 if (exception == null) {

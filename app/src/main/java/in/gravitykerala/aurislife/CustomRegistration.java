@@ -1,6 +1,7 @@
 package in.gravitykerala.aurislife;
 
-public class CustomRegistration {
+public class
+        CustomRegistration {
 
     @com.google.gson.annotations.SerializedName("name")
     public String Name;
