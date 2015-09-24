@@ -259,7 +259,7 @@ public class UploadFragment extends Fragment {
 
                             Intent forgroundService = new Intent(getActivity(), ForegroundService.class);
                             ForegroundService.imageUploaddata = imageUpload;
-                            ForegroundService.mClient = SplashPage.mClient;
+                            //ForegroundService.mClient = SplashPage.mClient;
                             ForegroundService.prescriptionId = resultPrescription.getId();
                             getActivity().startService(forgroundService);
 

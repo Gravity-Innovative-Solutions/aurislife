@@ -102,7 +102,7 @@ public class HealthRecordUploadFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         SplashPage.initializeMclient(getActivity());
-        SplashPage.Storetok(getActivity());
+        // SplashPage.Storetok(getActivity());
 //        mClient = SplashPage.mClient;
 
         View rootView = inflater.inflate(R.layout.health_record_upload, container, false);
