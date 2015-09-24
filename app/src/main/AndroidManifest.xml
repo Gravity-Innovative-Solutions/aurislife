@@ -110,9 +110,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="in.gravitykerala.aurislife.FirstPage" />
         </activity>
-
-        <service android:name=".foregroundservice.ForegroundService" />
-
         <activity
             android:name=".Detail"
             android:label="@string/title_activity_detail" />

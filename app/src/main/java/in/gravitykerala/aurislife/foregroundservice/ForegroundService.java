@@ -36,12 +36,13 @@ import java.util.List;
 
 import in.gravitykerala.aurislife.FirstPage;
 import in.gravitykerala.aurislife.R;
+import in.gravitykerala.aurislife.SplashPage;
 import in.gravitykerala.aurislife.model.BlobUploadDetails;
 
 public class ForegroundService extends Service {
     private static final String LOG_TAG = "ForegroundService";
     public static BlobUploadDetails imageUploaddata;
-    public static MobileServiceClient mClient;
+    //    public static MobileServiceClient mClient;
     public static String prescriptionId;
     PowerManager.WakeLock wakeLock;
     NotificationManager mNotificationManager;
@@ -55,7 +56,7 @@ public class ForegroundService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         Log.i(LOG_TAG, "Received Start Foreground Intent ");
-
+        SplashPage.initializeMclient(this);
         mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -142,7 +143,7 @@ public class ForegroundService extends Service {
 
         List<Pair<String, String>> parameters = new ArrayList<>();
         parameters.add(new Pair<>("PrescriptionId", prescriptionid));
-        ListenableFuture<String> result = mClient.invokeApi("UpdateStatusPrescription", null, "POST", parameters, String.class);
+        ListenableFuture<String> result = SplashPage.mClient.invokeApi("UpdateStatusPrescription", null, "POST", parameters, String.class);
         Futures.addCallback(result, new FutureCallback<String>() {
             @Override
             public void onFailure(Throwable exc) {

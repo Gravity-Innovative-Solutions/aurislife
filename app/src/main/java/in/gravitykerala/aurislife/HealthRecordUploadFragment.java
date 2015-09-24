@@ -49,7 +49,7 @@ public class HealthRecordUploadFragment extends Fragment {
     // directory name to store captured images and videos
 //    private static final String IMAGE_DIRECTORY_NAME = "AurisLife";
     PowerManager.WakeLock wakeLock;
-    MobileServiceClient mClient;
+    //    MobileServiceClient mClient;
     LinearLayout layoutRecordDetails;
     EditText et_recordTitle, et_recordDescription, et_doctorName;
     private Uri pickedFileUri; // file url to store image/video
@@ -103,7 +103,7 @@ public class HealthRecordUploadFragment extends Fragment {
                              Bundle savedInstanceState) {
         SplashPage.initializeMclient(getActivity());
         SplashPage.Storetok(getActivity());
-        mClient = SplashPage.mClient;
+//        mClient = SplashPage.mClient;
 
         View rootView = inflater.inflate(R.layout.health_record_upload, container, false);
 //        imgPreview = (ImageView) rootView.findViewById(R.id.imgPreview);
@@ -116,8 +116,8 @@ public class HealthRecordUploadFragment extends Fragment {
         et_doctorName = (EditText) rootView.findViewById(R.id.editText_doctorName);
         scrollView_upload = (ScrollView) rootView.findViewById(R.id.scrollView_upload);
         progressBar_upload = (ProgressBar) rootView.findViewById(R.id.progressBar_upload);
-        mHealthRecord = mClient.getTable("MobileHealthRecord", MobileHealthRecord.class);
-        mHealthRecordDocument = mClient.getTable("MobileHealthRecordDocument", MobileHealthRecordDocument.class);
+        mHealthRecord = SplashPage.mClient.getTable("MobileHealthRecord", MobileHealthRecord.class);
+        mHealthRecordDocument = SplashPage.mClient.getTable("MobileHealthRecordDocument", MobileHealthRecordDocument.class);
 
         btnUploadDocument.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,7 +177,7 @@ public class HealthRecordUploadFragment extends Fragment {
 
         List<Pair<String, String>> parameters = new ArrayList<>();
         parameters.add(new Pair<>("PrescriptionId", prescriptionid));
-        ListenableFuture<String> result = mClient.invokeApi("UpdateStatusHealthRecordDocument", null, "POST", parameters, String.class);
+        ListenableFuture<String> result = SplashPage.mClient.invokeApi("UpdateStatusHealthRecordDocument", null, "POST", parameters, String.class);
         Futures.addCallback(result, new FutureCallback<String>() {
             @Override
             public void onFailure(Throwable exc) {
@@ -261,7 +261,7 @@ public class HealthRecordUploadFragment extends Fragment {
 
                             Intent forgroundService = new Intent(getActivity(), HealthRecordService.class);
                             HealthRecordService.imageUploaddata = imageUpload;
-                            HealthRecordService.mClient = mClient;
+//                            HealthRecordService.mClient = mClient;
                             HealthRecordService.prescriptionId = resultHealthRecord.getId();
                             getActivity().startService(forgroundService);
 
