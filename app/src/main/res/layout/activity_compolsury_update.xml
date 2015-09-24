@@ -7,14 +7,32 @@
     android:paddingBottom="150dp"
     android:paddingLeft="80dp"
     android:paddingRight="80dp"
+
     android:paddingTop="150dp"
     tools:context="in.gravitykerala.aurislife.CompolsuryUpdate">
 
-    <Button
-        android:id="@+id/button9"
+    <TextView
+        android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:text="Your App is outdated. Please Update Latest version"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/black" />
 
-        android:text="Update Your App" />
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+
+
+        android:layout_below="@+id/textView8"
+        android:layout_centerHorizontal="true"
+        android:background="@color/primary"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="Update"
+        android:textColor="@color/white" />
 
 </RelativeLayout>

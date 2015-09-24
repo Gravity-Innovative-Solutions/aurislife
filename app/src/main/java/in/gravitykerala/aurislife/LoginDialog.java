@@ -19,8 +19,6 @@ import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceUser;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
 
-import butterknife.InjectView;
-
 /**
  * TODO: document your custom view class.
  */
@@ -72,6 +70,8 @@ public class LoginDialog extends Dialog {
         interactiveLayout = (LinearLayout) findViewById(R.id.layout_interactive);
         show();
         setTitle("Auris Life");
+        this.getWindow().setBackgroundDrawableResource(R.color.white);
+
 
         // loginSV = (ScrollView) findViewById(R.id.login_scrollview);
 //        prefs = this.getSharedPreferences("in.gravity", Context.MODE_PRIVATE);
