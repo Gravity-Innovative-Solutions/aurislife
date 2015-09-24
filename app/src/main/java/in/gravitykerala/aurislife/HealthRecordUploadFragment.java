@@ -153,8 +153,10 @@ public class HealthRecordUploadFragment extends Fragment {
         mobpricss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), PriscriptionDetails.class);
-                startActivity(i);
+                //TODO
+                Toast.makeText(getActivity(), "Work in progress", Toast.LENGTH_LONG).show();
+//                Intent i = new Intent(getActivity(), PriscriptionDetails.class);
+//                startActivity(i);
             }
         });
         return rootView;

@@ -65,7 +65,7 @@ public class LoginDialog extends Dialog {
                 .coordinatorLayout);
         _signupLink = (TextView) findViewById(R.id.link_signup2);
         _loginButton = (Button) findViewById(R.id.btn_login);
-        _phNo = (EditText) findViewById(R.id.input_password);
+        _phNo = (EditText) findViewById(R.id.input_email);
         _forgetPword = (Button) findViewById(R.id.button7);
         _passwordText = (EditText) findViewById(R.id.input_password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar_login);
