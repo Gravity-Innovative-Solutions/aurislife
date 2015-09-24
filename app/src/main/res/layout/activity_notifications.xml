@@ -6,14 +6,7 @@
     android:layout_height="match_parent"
     tools:context="in.gravitykerala.mcet.Fragment.Attendance">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    <include layout="@layout/toolbar_default" />
 
 
     <!--<ListView-->
