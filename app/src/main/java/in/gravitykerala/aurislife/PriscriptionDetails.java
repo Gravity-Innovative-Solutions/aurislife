@@ -72,7 +72,7 @@ public class PriscriptionDetails extends ActionBarActivity {
                 android.R.color.holo_blue_light);
         mSwipeLayout.setEnabled(true);
         SplashPage.initializeMclient(this);
-        SplashPage.Storetok(this);
+        // SplashPage.Storetok(this);
         // mClient = SplashPage.mClient;
 
         // Get the Mobile Service Table instance to use

@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso;
 /**
  * Adapter to bind a ToDoItem List to a view
  */
-public class NotificationItemAdapter extends ArrayAdapter<StudentNotificationDTO.Exam> {
+public class NotificationItemAdapter extends ArrayAdapter<MobileNotifications.Exam> {
 
     /**
      * Adapter context
@@ -41,7 +41,7 @@ public class NotificationItemAdapter extends ArrayAdapter<StudentNotificationDTO
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = convertView;
 
-        final StudentNotificationDTO.Exam currentItem = getItem(position);
+        final MobileNotifications.Exam currentItem = getItem(position);
 
         if (row == null) {
             LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
@@ -60,7 +60,7 @@ public class NotificationItemAdapter extends ArrayAdapter<StudentNotificationDTO
 //Loading image from below url into imageView
 
         Picasso.with(getContext())
-                .load(currentItem.getId())
+                .load(currentItem.img)
                 .into(imageView);
 
 //        checkBox.setOnClickListener(new View.OnClickListener() {
