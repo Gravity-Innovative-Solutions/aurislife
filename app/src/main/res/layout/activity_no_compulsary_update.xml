@@ -2,49 +2,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#bfc9e1"
+
     android:gravity="center"
-    android:paddingBottom="150dp"
-    android:paddingLeft="80dp"
-    android:paddingRight="80dp"
-    android:paddingTop="150dp"
 
     tools:context="com.aurislife.NoCompulsaryUpdate">
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
         android:gravity="center"
         android:text="Your App is outdated. Please Upload, skip to ignore "
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/black" />
+        android:textColor="@color/primary_darker" />
 
-    <Button
-        android:id="@+id/button10"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginRight="10dp"
-        android:background="@color/primary"
-        android:text="Update"
-        android:textColor="@color/white" />
+        android:layout_below="@+id/textView7"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
-    <Button
-        android:id="@+id/button11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="10dp"
-        android:background="@color/primary"
-        android:text="Skip"
-        android:textColor="@color/white" />
+        <Button
+            android:id="@+id/button10"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@color/primary"
+            android:text="Update"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/button11"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@color/primary"
+            android:text="Skip"
+            android:textColor="@color/white" />
+    </LinearLayout>
 
 </RelativeLayout>

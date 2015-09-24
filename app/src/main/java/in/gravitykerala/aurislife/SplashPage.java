@@ -235,7 +235,7 @@ public class SplashPage extends AppCompatActivity {
                     Log.d("ID", result.Vname);
 
                     Toast.makeText(SplashPage.this, "" + result.mVcode, Toast.LENGTH_SHORT).show();
-                    if (1 < result.mVcode) {
+                    if (versionCode < result.mVcode) {
                         new CompolsuryUpdate(currentContext);
                     } else if (versionCode < result.Vcode) {
                         new NoCompulsaryUpdate(currentContext);

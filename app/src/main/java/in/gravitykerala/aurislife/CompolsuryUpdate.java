@@ -12,8 +12,10 @@ public class CompolsuryUpdate extends Dialog {
         super(context);
         setCancelable(false);
         setContentView(R.layout.activity_compolsury_update);
+        getWindow().setBackgroundDrawableResource(R.color.primary_lighter);
         show();
-        setTitle("UPDATE ALERT");
+        setTitle("Update Alert");
+
 
 
         Button btn = (Button) findViewById(R.id.button9);

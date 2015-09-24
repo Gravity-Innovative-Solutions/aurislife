@@ -128,7 +128,12 @@
         </activity>
         <activity
             android:name=".Notifications"
-            android:label="Notifications">
+            android:label="Notifications"
+            android:parentActivityName=".FirstPage"
+            android:theme="@style/AppTheme.Dark">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.gravitykerala.aurislife.FirstPage" />
 
         </activity>
 
