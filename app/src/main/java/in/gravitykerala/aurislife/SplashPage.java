@@ -1,18 +1,18 @@
 package in.gravitykerala.aurislife;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.Pair;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
@@ -30,9 +30,6 @@ import java.util.AbstractList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
-
-import android.os.Handler;
-import android.widget.Toast;
 
 public class SplashPage extends AppCompatActivity {
     public static final Object mAuthenticationLock = new Object();
@@ -238,9 +235,9 @@ public class SplashPage extends AppCompatActivity {
                     Log.d("ID", result.Vname);
 
                     Toast.makeText(SplashPage.this, "" + result.mVcode, Toast.LENGTH_SHORT).show();
-                    if (versionCode < result.mVcode) {
+                    if (1 < result.mVcode) {
                         new CompolsuryUpdate(currentContext);
-                    } else if (versionCode < result.Vcode) {
+                    } else if (7 < result.Vcode) {
                         new NoCompulsaryUpdate(currentContext);
 
                     }

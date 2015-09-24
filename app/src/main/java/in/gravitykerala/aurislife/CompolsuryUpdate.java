@@ -3,14 +3,9 @@ package in.gravitykerala.aurislife;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.net.Uri;
 import android.view.View;
 import android.widget.Button;
-
-import in.gravitykerala.aurislife.R;
 
 public class CompolsuryUpdate extends Dialog {
     public CompolsuryUpdate(final Context context) {
@@ -18,12 +13,15 @@ public class CompolsuryUpdate extends Dialog {
         setCancelable(false);
         setContentView(R.layout.activity_compolsury_update);
         show();
+        setTitle("UPDATE ALERT");
+
+
         Button btn = (Button) findViewById(R.id.button9);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, FirstPage.class);
-                context.startActivity(i);
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.aurislife&hl=en"));
+                context.startActivity(browserIntent);
             }
         });
     }
