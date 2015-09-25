@@ -44,7 +44,7 @@ public class HRDAdapter extends ArrayAdapter<MobileHealthRecordCustom.elements> 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = convertView;
-        String r1 = null;
+        String r1 = "";
         final MobileHealthRecordCustom.elements currentItem = getItem(position);
 
         if (row == null) {
