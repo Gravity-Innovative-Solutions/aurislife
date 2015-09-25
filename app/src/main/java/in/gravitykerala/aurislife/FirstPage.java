@@ -139,6 +139,10 @@ public class FirstPage extends AppCompatActivity {
             Intent i = new Intent(FirstPage.this, Notifications.class);
             startActivity(i);
         }
+        if (id == R.id.action_change_pswd) {
+            Intent i = new Intent(FirstPage.this, ChangePasswordActivity.class);
+            startActivity(i);
+        }
         return super.onOptionsItemSelected(item);
     }
 

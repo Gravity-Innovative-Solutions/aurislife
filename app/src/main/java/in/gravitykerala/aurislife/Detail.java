@@ -4,11 +4,11 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +16,6 @@ import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
 import java.util.List;
 
-import in.gravitykerala.aurislife.R;
 import in.gravitykerala.aurislife.model.MobilePrescription;
 
 public class Detail extends AppCompatActivity {
@@ -30,6 +29,11 @@ public class Detail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         tv = (TextView) findViewById(R.id.textView2);
         tv1 = (TextView) findViewById(R.id.textView3);
         tv2 = (TextView) findViewById(R.id.textView4);
