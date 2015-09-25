@@ -72,7 +72,8 @@
                             android:id="@+id/editText_title"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Record Title" />
+                            android:hint="Record Title"
+                            android:textColor="@color/primary_darker" />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -88,7 +89,8 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:hint="Record description and remarks"
-                        android:inputType="textMultiLine" />
+                        android:inputType="textMultiLine"
+                        android:textColor="@color/primary_darker" />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -103,7 +105,8 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:hint="Doctor name"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:textColor="@color/primary_darker" />
                     </android.support.design.widget.TextInputLayout>
 
                     <Button
