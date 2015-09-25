@@ -100,7 +100,8 @@
         </activity>
 
         <service android:name=".foregroundservice.ForegroundService" />
-        <service android:name=".foregroundservice.HealthRecordService"></service>
+        <service android:name=".foregroundservice.HealthRecordService" />
+
         <activity
             android:name=".OTPverification"
             android:label="@string/title_activity_otpverification"
@@ -116,12 +117,10 @@
         <activity
             android:name=".CompolsuryUpdate"
             android:label="@string/title_activity_compolsury_update">
-
         </activity>
         <activity
             android:name=".NoCompulsaryUpdate"
             android:label="@string/title_activity_no_compulsary_update">
-
         </activity>
         <activity
             android:name=".Notifications"
@@ -131,9 +130,10 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="in.gravitykerala.aurislife.FirstPage" />
-
         </activity>
-
+        <activity
+            android:name=".HealthRecordDetailView"
+            android:label="@string/title_activity_health_record_detail_view"></activity>
     </application>
 
 </manifest>

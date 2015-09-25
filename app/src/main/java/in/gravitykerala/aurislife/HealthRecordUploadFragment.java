@@ -154,9 +154,9 @@ public class HealthRecordUploadFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //TODO
-                Toast.makeText(getActivity(), "Work in progress", Toast.LENGTH_LONG).show();
-//                Intent i = new Intent(getActivity(), PriscriptionDetails.class);
-//                startActivity(i);
+                // Toast.makeText(getActivity(), "Work in progress", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(getActivity(), HealthRecordDetailView.class);
+                startActivity(i);
             }
         });
         return rootView;

@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout4"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_default" />
+
+    <TextView
+        android:id="@+id/textView_pull"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/view_presc_details"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/primary" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:dividerHeight="1dp"
+            android:listSelector="@drawable/list_selector" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>
