@@ -69,7 +69,7 @@ public class LoginDialog extends Dialog {
         progressBar = (ProgressBar) findViewById(R.id.progressBar_login);
         interactiveLayout = (LinearLayout) findViewById(R.id.layout_interactive);
         show();
-        setTitle("Auris Life");
+//        setTitle("Auris Life");
         this.getWindow().setBackgroundDrawableResource(R.color.white);
 
 

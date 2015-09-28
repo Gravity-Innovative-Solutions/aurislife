@@ -15,18 +15,18 @@
         <item name="android:activatedBackgroundIndicator">@drawable/selectable_item_background
         </item>
         <!--<item name="android:selectableItemBackground">@drawable/selectable_item_background</item>-->
-        <item name="android:windowBackground">@color/primary_lighter</item>
+        <item name="android:windowBackground">@color/white</item>
+
 
         <item name="colorControlNormal">@color/primary_darker</item>
         <item name="colorControlActivated">@color/primary_darker</item>
         <item name="colorControlHighlight">@color/primary_darker</item>
         <item name="android:textColorHint">@color/primary_darker</item>
         <item name="android:textColor">@color/primary_darker</item>
-        <item name="android:statusBarColor">@color/accent</item>
 
 
         <item name="colorButtonNormal">@color/primary_darker</item>
-        <item name="android:colorButtonNormal">@color/primary_darker</item>
+
         <!--<item name="android:colorButtonNormal">@color/primary_darker</item>-->
     </style>
 

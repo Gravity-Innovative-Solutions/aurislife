@@ -41,7 +41,7 @@
         </activity>
         <activity
             android:name=".FirstPage"
-            android:screenOrientation="portrait"
+
             android:theme="@style/AppTheme.Dark">
         </activity>
         <activity
@@ -139,7 +139,13 @@
         </activity>
         <activity
             android:name=".HealthRecordDetailView"
-            android:label="@string/title_activity_health_record_detail_view"></activity>
+            android:label="@string/title_activity_health_record_detail_view"
+            android:parentActivityName=".FirstPage"
+            android:theme="@style/AppTheme.Dark">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.gravitykerala.aurislife.FirstPage" />
+        </activity>
     </application>
 
 </manifest>
