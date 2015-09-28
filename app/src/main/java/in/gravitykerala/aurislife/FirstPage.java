@@ -352,6 +352,7 @@ public class FirstPage extends AppCompatActivity {
             // adapter
 
             new AsyncTask<Void, Void, Void>() {
+
                 @Override
                 protected Void doInBackground(Void... params) {
                     try {

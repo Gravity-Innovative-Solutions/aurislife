@@ -1,6 +1,7 @@
 package in.gravitykerala.aurislife;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -21,6 +22,7 @@ import java.util.List;
 
 public class OTPverification extends AppCompatActivity {
     TextView tv;
+    Button retreve;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +51,7 @@ public class OTPverification extends AppCompatActivity {
 //        messageText.setGravity(Gravity.CENTER);
 
         tv = (TextView) findViewById(R.id.input_crnt_password);
-        Button retreve = (Button) findViewById(R.id.button8);
+        retreve = (Button) findViewById(R.id.button8);
         retreve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,7 +114,7 @@ public class OTPverification extends AppCompatActivity {
                 public void onCompleted(String result, Exception exception, ServiceFilterResponse response) {
                     if (exception == null) {
                         Toast.makeText(OTPverification.this, result, Toast.LENGTH_LONG).show();
-
+                        retreve.setText("RESEND OTP");
                         finish();
 
                     } else {
@@ -152,7 +154,8 @@ public class OTPverification extends AppCompatActivity {
                 if (exception == null) {
                     Toast.makeText(OTPverification.this, result, Toast.LENGTH_LONG).show();
 
-                    finish();
+                    Intent i = new Intent(OTPverification.this, FirstPage.class);
+                    startActivity(i);
 
                 } else {
                     Toast.makeText(OTPverification.this, result, Toast.LENGTH_LONG).show();
