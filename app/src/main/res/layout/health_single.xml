@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:padding="3dp"
         app:cardElevation="8dp"
+
         app:cardUseCompatPadding="true">
 
 
@@ -31,16 +32,16 @@
             <TextView
                 android:id="@+id/amt"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_marginLeft="3dp"
                 android:autoLink="web"
 
-                android:gravity="left"
-                android:text=" "
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/path_orange"
-                android:textColorLink="#e7e80303"
-                android:textIsSelectable="false" />
+
+                android:gravity="center_vertical"
+                android:text="@string/file1"
+                android:textColor="@color/path_blue"
+                android:textSize="20sp"
+                android:textStyle="italic" />
 
             <!--<TextView-->
             <!--android:id="@+id/uri"-->

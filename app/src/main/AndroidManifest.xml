@@ -41,7 +41,6 @@
         </activity>
         <activity
             android:name=".FirstPage"
-
             android:theme="@style/AppTheme.Dark">
         </activity>
         <activity
@@ -120,6 +119,7 @@
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="in.gravitykerala.aurislife.Detail" />
+
         <activity
             android:name=".CompolsuryUpdate"
             android:label="@string/title_activity_compolsury_update">
@@ -145,6 +145,11 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="in.gravitykerala.aurislife.FirstPage" />
+        </activity>
+        <activity
+            android:name="com.aurislife.Developer_info"
+            android:label="@string/title_activity_developer_info"
+            android:theme="@style/AppTheme.Dark">
         </activity>
     </application>
 

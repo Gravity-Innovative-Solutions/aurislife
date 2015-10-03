@@ -118,4 +118,7 @@
         <item>Kollam</item>
     </string-array>
     <string name="title_activity_health_record_detail_view">Health Record Details </string>
+    <string name="title_activity_developer_info">Developer_info</string>
+
+    <string name="file1"> <u>file1</u>.</string>
 </resources>

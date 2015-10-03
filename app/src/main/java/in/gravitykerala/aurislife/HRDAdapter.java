@@ -2,6 +2,8 @@ package in.gravitykerala.aurislife;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,7 +76,19 @@ public class HRDAdapter extends ArrayAdapter<MobileHealthRecordCustom.elements> 
             r1 = r1 + currentItem.hlthrecdocumnt[i].getImageUri() + "\n";
 
         }
-        tvContent0.setText(r1);
+//        tvContent0.setText(r1);
+        final String finalR = r1;
+        tvContent0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse(finalR); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                mContext.startActivity(intent);
+            }
+        });
+
+
+
 //        tv_success.setText(currentItem.getStatus());
 //        tv_success.setText(currentItem.getStatus());
 //        tvContent0.setText("PRESCRIPTION NUMBER" + ":" + "\t" + currentItem.getPrescriptionNumber());

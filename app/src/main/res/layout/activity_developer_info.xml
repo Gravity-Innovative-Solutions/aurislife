@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.aurislife.Developer_info">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+        <!--android:text="Visit us"-->
+        <!--android:id="@+id/textView34"-->
+        <!--android:textSize="15sp"-->
+        <!--android:textColor="#ffe1242d" />-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+        <!--android:text="\@"-->
+        <!--android:id="@+id/textView35"-->
+        <!--android:textColor="#ffe1242d"-->
+        <!--android:textSize="15sp" />-->
+
+        <!--<TextView-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textSize="15sp"-->
+
+        <!--android:text="www.gravitykerala.in"-->
+        <!--android:id="@+id/textView5"-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:autoLink="web"-->
+        <!--android:gravity="center" />-->
+    </LinearLayout>
+
+</LinearLayout>
