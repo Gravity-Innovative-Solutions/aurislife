@@ -27,7 +27,6 @@ import com.google.common.util.concurrent.ListenableFuture;
 import com.microsoft.azure.storage.StorageCredentialsSharedAccessSignature;
 import com.microsoft.azure.storage.blob.CloudBlobContainer;
 import com.microsoft.azure.storage.blob.CloudBlockBlob;
-import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 
 import java.io.InputStream;
 import java.net.URI;
@@ -55,7 +54,7 @@ public class HealthRecordService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        Log.i(LOG_TAG, "Received Start Foreground Intent ");
+        Log.i(LOG_TAG, "Received Start HealthRecord Intent ");
 
         SplashPage.initializeMclient(this);
         mNotificationManager =

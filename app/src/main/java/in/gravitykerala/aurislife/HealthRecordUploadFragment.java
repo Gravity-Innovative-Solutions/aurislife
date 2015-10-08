@@ -1,6 +1,7 @@
 package in.gravitykerala.aurislife;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,17 +15,18 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
 import java.text.SimpleDateFormat;
@@ -56,11 +58,14 @@ public class HealthRecordUploadFragment extends Fragment {
     //    private ImageView imgPreview;
 //    private VideoView videoPreview;
     private Button btnPickFile;
+    private Spinner spinnerType;
     private Button btnUploadDocument;
     private MobileServiceTable<MobileHealthRecord> mHealthRecord;
     private MobileServiceTable<MobileHealthRecordDocument> mHealthRecordDocument;
     private ScrollView scrollView_upload;
     private ProgressBar progressBar_upload;
+    private String selectedFileExtention;
+
     //    private boolean imageTaken = false;
     private boolean filePicked = false;
 
@@ -108,6 +113,7 @@ public class HealthRecordUploadFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.health_record_upload, container, false);
 //        imgPreview = (ImageView) rootView.findViewById(R.id.imgPreview);
         btnPickFile = (Button) rootView.findViewById(R.id.btnCapturePicture);
+        spinnerType = (Spinner) rootView.findViewById(R.id.spinnerHealthRecordType);
         btnUploadDocument = (Button) rootView.findViewById(R.id.button_uploadpresc);
         btnUploadDocument.setVisibility(Button.GONE);
         layoutRecordDetails = (LinearLayout) rootView.findViewById(R.id.layout_recordDetails);
@@ -224,6 +230,7 @@ public class HealthRecordUploadFragment extends Fragment {
 //        mobilePrescription.setEventDate(new Date());
         mobileHealthRecord.setDoctorName(et_doctorName.getText().toString());
         mobileHealthRecord.setRecordTitle(et_recordTitle.getText().toString());
+        mobileHealthRecord.setRecordType(spinnerType.getSelectedItem().toString());
         mobileHealthRecord.setRecordDescription(et_recordDescription.getText().toString());
 
 
@@ -245,7 +252,7 @@ public class HealthRecordUploadFragment extends Fragment {
                         SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd_HHmmss");
                         String imageName = df.format(new Date());
 
-                        mobileHealthRecordDocument.setResourceName(imageName + ".jpg");
+                        mobileHealthRecordDocument.setResourceName(imageName + "." + selectedFileExtention);
 
                         MobileHealthRecordDocument resultHealthRecordDocument = mHealthRecordDocument.insert(mobileHealthRecordDocument).get();
 
@@ -364,7 +371,7 @@ public class HealthRecordUploadFragment extends Fragment {
 
     private void chooseFile() {
         Intent fileIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        fileIntent.setType("file/*"); // intent type to filter application based on your requirement
+        fileIntent.setType("*/*"); // intent type to filter application based on your requirement
         startActivityForResult(fileIntent, FILE_CHOOSER_REQUEST_CODE);
     }
 
@@ -396,6 +403,10 @@ public class HealthRecordUploadFragment extends Fragment {
 
                 //TODO Enable upload button
                 pickedFileUri = data.getData();
+                ContentResolver cR = this.getActivity().getContentResolver();
+                MimeTypeMap mime = MimeTypeMap.getSingleton();
+                selectedFileExtention = mime.getExtensionFromMimeType(cR.getType(pickedFileUri));
+
                 filePicked = true;
                 layoutRecordDetails.setVisibility(LinearLayout.VISIBLE);
                 btnUploadDocument.setVisibility(Button.VISIBLE);

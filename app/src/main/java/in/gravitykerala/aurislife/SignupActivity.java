@@ -18,11 +18,7 @@ import android.widget.Toast;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import com.microsoft.windowsazure.mobileservices.ApiOperationCallback;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
-import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
-
-import org.apache.http.HttpResponse;
 
 import java.net.MalformedURLException;
 import java.util.AbstractList;
@@ -175,7 +171,7 @@ public class SignupActivity extends AppCompatActivity {
             req.refrel = _refPhoneNo.getText().toString();
             req.area = spinner_districts.getSelectedItem().toString();
             req.pin = _pincode.getText().toString();
-            final ListenableFuture<String> result = mClient.invokeApi("CustomRegistration", null, "POST", parameters, String.class);
+            final ListenableFuture<String> result = mClient.invokeApi("CustomRegistration", req, "POST", parameters, String.class);
             Futures.addCallback(result, new FutureCallback<String>() {
                 @Override
                 public void onSuccess(String result) {

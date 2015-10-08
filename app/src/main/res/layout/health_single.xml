@@ -29,19 +29,14 @@
                 android:textColor="#fc0f6808"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/amt"
+            <LinearLayout
+                android:id="@+id/documentsLayout"
                 android:layout_width="fill_parent"
-                android:layout_height="45dp"
-                android:layout_marginLeft="3dp"
-                android:autoLink="web"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:orientation="vertical">
 
-
-                android:gravity="center_vertical"
-                android:text="@string/file1"
-                android:textColor="@color/path_blue"
-                android:textSize="20sp"
-                android:textStyle="italic" />
+            </LinearLayout>
 
             <!--<TextView-->
             <!--android:id="@+id/uri"-->

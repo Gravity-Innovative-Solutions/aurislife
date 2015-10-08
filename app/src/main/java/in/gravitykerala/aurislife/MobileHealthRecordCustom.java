@@ -18,15 +18,15 @@ public class MobileHealthRecordCustom {
         public String id;
 
         @SerializedName("recordComplete")
-        public Boolean reccomplt;
+        public Boolean recordComplete;
         @SerializedName("recordTitle")
-        public String rectitle;
+        public String recordTitle;
         @SerializedName("recordDescription")
-        public String recdescription;
+        public String recordDescription;
         @SerializedName("doctorName")
-        public String docname;
+        public String doctorName;
         @SerializedName("healthRecordDocuments")
-        public MobileHealthRecordDocument[] hlthrecdocumnt;
+        public MobileHealthRecordDocument[] healthRecordDocuments;
 
     }
 }

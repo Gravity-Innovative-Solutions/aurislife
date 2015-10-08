@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
@@ -40,7 +41,7 @@ public class HRDAdapter extends ArrayAdapter<MobileHealthRecordCustom.elements> 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = convertView;
-        String r1 = "";
+
         final MobileHealthRecordCustom.elements currentItem = getItem(position);
 
         if (row == null) {
@@ -65,29 +66,35 @@ public class HRDAdapter extends ArrayAdapter<MobileHealthRecordCustom.elements> 
 //        tv_success.setText(currentItem.getStatus());
 
 
-        tvdate.setText("Record STATUS" + ":" + "\t" + currentItem.reccomplt);
+        if (currentItem.recordComplete) {
+            tvdate.setText("Record Status" + ":" + "\t" + "Success");
+        } else {
+            tvdate.setText("Record Status" + ":" + "\t" + "Failed");
+        }
 //        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 //        Date date = new Date();
 //        String ourformat = formatter.format(currentItem.getEventDate());
-        tvTitle.setText(currentItem.rectitle);
-        for (int i = 0; i < currentItem.hlthrecdocumnt.length; i++) {
-            Log.d("ID", currentItem.hlthrecdocumnt[i].getImageUri());
+        tvTitle.setText(currentItem.recordTitle);
+//        String r1 = "";
+        LinearLayout documentsLayout = (LinearLayout) row.findViewById(R.id.documentsLayout);
 
-            r1 = r1 + currentItem.hlthrecdocumnt[i].getImageUri() + "\n";
 
-        }
-//        tvContent0.setText(r1);
-        final String finalR = r1;
-        tvContent0.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Uri uri = Uri.parse(finalR); // missing 'http://' will cause crashed
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                mContext.startActivity(intent);
+        for (int i = 0; i < currentItem.healthRecordDocuments.length; i++) {
+            Log.d("ID", currentItem.healthRecordDocuments[i].getImageUri());
+            TextView inflateTextView = (TextView) View.inflate(mContext, R.layout.health_record_item, null);
+            inflateTextView.setText("Download document " + (i + 1));
+//            r1 = r1 + currentItem.healthRecordDocuments[i].getImageUri() + "\n";
+            inflateTextView.setTag(currentItem.healthRecordDocuments[i].getImageUri());
+            inflateTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Uri uri = Uri.parse((String) v.getTag()); // missing 'http://' will cause crashed
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    mContext.startActivity(intent);
+                }
+            });
+            documentsLayout.addView(inflateTextView);
             }
-        });
-
-
 
 //        tv_success.setText(currentItem.getStatus());
 //        tv_success.setText(currentItem.getStatus());
