@@ -1,6 +1,7 @@
 package in.gravitykerala.aurislife;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -18,7 +19,9 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
@@ -31,7 +34,6 @@ import com.google.common.util.concurrent.ListenableFuture;
 import com.microsoft.azure.storage.StorageCredentialsSharedAccessSignature;
 import com.microsoft.azure.storage.blob.CloudBlobContainer;
 import com.microsoft.azure.storage.blob.CloudBlockBlob;
-import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
 import java.io.File;
@@ -56,6 +58,7 @@ public class UploadFragment extends Fragment {
     public static final int MEDIA_TYPE_IMAGE = 1;
     private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 100;
     private static final int CAMERA_CAPTURE_VIDEO_REQUEST_CODE = 200;
+    private static final int FILE_CHOOSER_REQUEST_CODE = 150;
     //    public static final int MEDIA_TYPE_VIDEO = 2;
     // directory name to store captured images and videos
     private static final String IMAGE_DIRECTORY_NAME = "AurisLife";
@@ -64,12 +67,14 @@ public class UploadFragment extends Fragment {
     private Uri fileUri; // file url to store image/video
     private ImageView imgPreview;
     private VideoView videoPreview;
-    private Button btnCapturePicture, btnRecordVideo;
+    private Button btnRecordVideo, btnPickImage;
+    private ImageButton btnCapturePicture;
     private Button uploadPrescription;
     private MobileServiceTable<MobilePrescription> mPrescriptionsTable;
     private MobileServiceTable<MobilePrescriptionUpload> mPrescriptionUploadTable;
     private ScrollView scrollView_upload;
     private ProgressBar progressBar_upload;
+    private String selectedFileExtention;
 
     private boolean imageTaken = false;
 
@@ -116,10 +121,11 @@ public class UploadFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.activity_upload, container, false);
         imgPreview = (ImageView) rootView.findViewById(R.id.imgPreview);
-        btnCapturePicture = (Button) rootView.findViewById(R.id.btnCapturePicture);
+        btnCapturePicture = (ImageButton) rootView.findViewById(R.id.btnCapturePicture);
         uploadPrescription = (Button) rootView.findViewById(R.id.button_uploadpresc);
         scrollView_upload = (ScrollView) rootView.findViewById(R.id.scrollView_upload);
         progressBar_upload = (ProgressBar) rootView.findViewById(R.id.progressBar_upload);
+        btnPickImage = (Button) rootView.findViewById(R.id.btnPickFile);
         mPrescriptionsTable = SplashPage.mClient.getTable("MobilePrescriptions", MobilePrescription.class);
         mPrescriptionUploadTable = SplashPage.mClient.getTable("MobilePrescriptionUpload", MobilePrescriptionUpload.class);
 
@@ -144,6 +150,13 @@ public class UploadFragment extends Fragment {
                 captureImage();
             }
         });
+        btnPickImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chooseFile();
+            }
+
+        });
 
         if (!isDeviceSupportCamera()) {
             Toast.makeText(getActivity(),
@@ -162,6 +175,12 @@ public class UploadFragment extends Fragment {
             }
         });
         return rootView;
+    }
+
+    private void chooseFile() {
+        Intent fileIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        fileIntent.setType("image/*"); // intent type to filter application based on your requirement
+        startActivityForResult(fileIntent, FILE_CHOOSER_REQUEST_CODE);
     }
 
     private void disableUI() {
@@ -244,7 +263,7 @@ public class UploadFragment extends Fragment {
                         SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd_HHmmss");
                         String imageName = df.format(new Date());
 
-                        mobilePrescriptionUpload.setResourceName(imageName + ".jpg");
+                        mobilePrescriptionUpload.setResourceName(imageName + "." + selectedFileExtention);
 
                         MobilePrescriptionUpload resultImageUpload = mPrescriptionUploadTable.insert(mobilePrescriptionUpload).get();
 
@@ -391,10 +410,17 @@ public class UploadFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         // if the result is capturing Image
-        if (requestCode == CAMERA_CAPTURE_IMAGE_REQUEST_CODE) {
+        if ((requestCode == CAMERA_CAPTURE_IMAGE_REQUEST_CODE) || requestCode == FILE_CHOOSER_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 // successfully captured the image
                 // display it in image view
+                if (requestCode == FILE_CHOOSER_REQUEST_CODE) {
+                    fileUri = data.getData();
+                }
+                ContentResolver cR = this.getActivity().getContentResolver();
+                MimeTypeMap mime = MimeTypeMap.getSingleton();
+                selectedFileExtention = mime.getExtensionFromMimeType(cR.getType(fileUri));
+
                 previewCapturedImage();
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 // user cancelled Image capture

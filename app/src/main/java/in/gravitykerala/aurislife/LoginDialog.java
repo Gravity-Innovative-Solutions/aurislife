@@ -109,8 +109,8 @@ public class LoginDialog extends Dialog {
 
                 MobileServiceClient mClientLogin = null;
                 try {
-                    mClientLogin = new MobileServiceClient("https://aurisbackup.azure-mobile.net/",
-                            "ZybfZmcYlbhGSFFMeVGSXavrmRBLOY96",
+                    mClientLogin = new MobileServiceClient(SplashPage.APINAME,
+                            SplashPage.APIKEY,
                             context);
                 } catch (Exception e) {
                     e.printStackTrace();

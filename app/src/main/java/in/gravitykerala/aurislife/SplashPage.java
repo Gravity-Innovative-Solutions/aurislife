@@ -34,14 +34,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class SplashPage extends AppCompatActivity {
     public static final Object mAuthenticationLock = new Object();
     public static final String SHAREDPREFFILE = "temp";
-    public static final String APINAME = "https://aurisbackup.azure-mobile.net/";
-    public static final String APIKEY = "ZybfZmcYlbhGSFFMeVGSXavrmRBLOY96";
+    public static final String APINAME = "https://gravityaurislife.azure-mobile.net/";
+    public static final String APIKEY = "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68";
     public static final String USERIDPREF = "uid";
     public static final String TOKENPREF = "tkn";
     public static boolean bAuthenticating = false;
     public static MobileServiceClient mClient;
     public static Context currentContext;
-    private static int SPLASH_TIME_OUT = 1200;
+    private static int SPLASH_TIME_OUT = 1300;
     double versionCode = BuildConfig.VERSION_CODE;
 
     public static void initializeMclient(Context context) {
@@ -234,7 +234,7 @@ public class SplashPage extends AppCompatActivity {
 
                     Log.d("ID", result.Vname);
 
-                    Toast.makeText(SplashPage.this, "" + result.mVcode, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(SplashPage.this, "" + result.mVcode, Toast.LENGTH_SHORT).show();
                     if (versionCode < result.mVcode) {
                         new CompolsuryUpdate(currentContext);
                     } else if (versionCode < result.Vcode) {

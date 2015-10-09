@@ -52,12 +52,25 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/btnCapturePicture"
-                        android:layout_width="fill_parent"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/take_a_pic"
-                        android:textColor="@color/white" />
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnPickFile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pick_image"
+                            android:textColor="@color/white" />
+
+                        <ImageButton
+                            android:id="@+id/btnCapturePicture"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:src="@drawable/ic_camera_white_24dp"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
 
                     <!--<Button-->
                     <!--android:id="@+id/btnRecordVideo"-->

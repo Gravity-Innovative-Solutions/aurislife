@@ -43,6 +43,7 @@
     <string name="item_select">"On Item Select : \n" </string>
     <string name="mismatch_pswd">"Password doesn't match" </string>
     <string name="take_a_pic">Take a Picture</string>
+    <string name="pick_image">Pick an Image</string>
     <string name="pick_a_file">Select document</string>
     <string name="upload_img">Upload Image</string>
     <string name="upload_record">Upload Record</string>
@@ -87,11 +88,12 @@
     <string name="title_activity_priscription_details">Prescription Details</string>
     <string name="title_activity_splash_page">Aurislife</string>
     <string name="title_activity_uidtoken">Uidtoken</string>
-    <string name="view_presc_details">Pull to view reecent Prescription uploads</string>
+    <string name="view_presc_details">Pull to view recent prescription uploads</string>
+    <string name="view_ehr_details">Pull to view recent EHR uploads</string>
     <string name="view_rcnt_transactions">Pull to view recent recharges</string>
     <string name="initializing">Initializing prescription upload</string>
     <string name="initializing_file_upload">Initializing file upload</string>
-    <string name="take_photo">Take photo of your prescription first</string>
+    <string name="take_photo">Select photo of your prescription first</string>
     <string name="choose_document_first">Choose a document first</string>
 
     <string name="hello_world">Hello world!</string>
@@ -112,18 +114,20 @@
 
     <string-array name="district_selection">
         <item>Select your District</item>
-        <item>Thirssur</item>
-
+        <item>Alappuzha</item>
         <item>Ernakulam</item>
-
-        <item>Malappuram</item>
-
-        <item>Palakkad</item>
-
-        <item>Kottayam</item>
-
-
+        <item>Idukki</item>
+        <item>Kannur</item>
+        <item>Kasaragod</item>
         <item>Kollam</item>
+        <item>Kottayam</item>
+        <item>Kozhikode</item>
+        <item>Malappuram</item>
+        <item>Palakkad</item>
+        <item>Pathanamthitta</item>
+        <item>Thiruvananthapuram</item>
+        <item>Thrissur</item>
+        <item>Wayanad</item>
     </string-array>
     <string name="title_activity_health_record_detail_view">Health Record Details </string>
     <string name="title_activity_developer_info">Developer_info</string>

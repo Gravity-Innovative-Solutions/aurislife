@@ -20,7 +20,7 @@ public class NoCompulsaryUpdate extends Dialog {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.aurislife&hl=en"));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.aurislife"));
                 context.startActivity(browserIntent);
             }
         });
