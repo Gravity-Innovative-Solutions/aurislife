@@ -59,15 +59,25 @@
                         android:layout_marginLeft="3dp"
                         android:layout_marginRight="3dp"
                         android:text="Filename"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:visibility="gone" />
 
-
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/border_primary"
+                        android:gravity="center"
+                        android:orientation="vertical">
                     <Spinner
                         android:id="@+id/spinnerHealthRecordType"
                         android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
                         android:drawSelectorOnTop="true"
-                        android:entries="@array/array_ehr_types" />
+
+                        android:entries="@array/array_ehr_types"
+                        android:theme="@style/ThemeOverlay.AppCompat.Light" />
+                    </LinearLayout>
 
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
