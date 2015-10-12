@@ -15,13 +15,13 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Phone Number"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+        <!--<TextView-->
+        <!--android:id="@+id/textView2"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:text="Phone Number"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium" />-->
 
         <Button
             android:id="@+id/button8"
