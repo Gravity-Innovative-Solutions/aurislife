@@ -35,7 +35,7 @@ public class LoginDialog extends Dialog {
     EditText _phNo;
     Button _loginButton;
     //    String username, password;
-//    String KEY_username = "username";
+//    String KEY_username = "username"; 69992133
 //    String KEY_password = "password";
 //    SharedPreferences prefs;
     LinearLayout l1;
@@ -70,7 +70,8 @@ public class LoginDialog extends Dialog {
         interactiveLayout = (LinearLayout) findViewById(R.id.layout_interactive);
         show();
 //        setTitle("Auris Life");
-        this.getWindow().setBackgroundDrawableResource(R.color.white);
+        this.getWindow().setBackgroundDrawableResource(R.color.primary_lighter);
+        setTitle("Aurislife");
 
 
         // loginSV = (ScrollView) findViewById(R.id.login_scrollview);

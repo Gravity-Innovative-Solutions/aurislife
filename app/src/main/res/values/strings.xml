@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AurisLife</string>
+    <string name="app_name">Aurislife</string>
 
     <string name="newpassword">New Password</string>
     <string name="confirm_pswd">Confirm Password</string>

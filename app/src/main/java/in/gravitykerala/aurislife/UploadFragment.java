@@ -67,8 +67,8 @@ public class UploadFragment extends Fragment {
     private Uri fileUri; // file url to store image/video
     private ImageView imgPreview;
     private VideoView videoPreview;
-    private Button btnRecordVideo, btnPickImage;
-    private ImageButton btnCapturePicture;
+
+    private ImageButton btnCapturePicture, btnPickImage;
     private Button uploadPrescription;
     private MobileServiceTable<MobilePrescription> mPrescriptionsTable;
     private MobileServiceTable<MobilePrescriptionUpload> mPrescriptionUploadTable;
@@ -125,7 +125,7 @@ public class UploadFragment extends Fragment {
         uploadPrescription = (Button) rootView.findViewById(R.id.button_uploadpresc);
         scrollView_upload = (ScrollView) rootView.findViewById(R.id.scrollView_upload);
         progressBar_upload = (ProgressBar) rootView.findViewById(R.id.progressBar_upload);
-        btnPickImage = (Button) rootView.findViewById(R.id.btnPickFile);
+        btnPickImage = (ImageButton) rootView.findViewById(R.id.btnPickFile);
         mPrescriptionsTable = SplashPage.mClient.getTable("MobilePrescriptions", MobilePrescription.class);
         mPrescriptionUploadTable = SplashPage.mClient.getTable("MobilePrescriptionUpload", MobilePrescriptionUpload.class);
 
