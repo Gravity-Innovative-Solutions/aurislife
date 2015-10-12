@@ -13,6 +13,7 @@ public class NoCompulsaryUpdate extends Dialog {
         setCancelable(false);
         setContentView(R.layout.activity_no_compulsary_update);
         getWindow().setBackgroundDrawableResource(R.color.primary_lighter);
+        setTitle("Update Available");
         show();
 
         Button btn = (Button) findViewById(R.id.button10);

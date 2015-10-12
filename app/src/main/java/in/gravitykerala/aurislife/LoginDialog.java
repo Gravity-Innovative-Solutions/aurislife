@@ -70,7 +70,8 @@ public class LoginDialog extends Dialog {
         interactiveLayout = (LinearLayout) findViewById(R.id.layout_interactive);
         show();
 //        setTitle("Auris Life");
-        this.getWindow().setBackgroundDrawableResource(R.color.white);
+        this.getWindow().setBackgroundDrawableResource(R.color.primary_lighter);
+        setTitle("AurisLife");
 
 
         // loginSV = (ScrollView) findViewById(R.id.login_scrollview);
