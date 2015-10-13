@@ -3,7 +3,6 @@ package in.gravitykerala.aurislife;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,11 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import in.gravitykerala.aurislife.model.MobilePrescription;
 
 /**
  * Adapter to bind a ToDoItem List to a view
@@ -63,13 +57,14 @@ public class
 //        } else {
 //            status = "failed";
 //        }
-        final TextView tvTitle = (TextView) row.findViewById(R.id.title);
+        final TextView tvTitle = (TextView) row.findViewById(R.id.date);
 
 
-        final TextView tvstatus = (TextView) row.findViewById(R.id.status);
+        final TextView tvstatus = (TextView) row.findViewById(R.id.status1);
         final TextView tvContent0 = (TextView) row.findViewById(R.id.dctrname);
 //        final TextView tvContent1 = (TextView) row.findViewById(R.id.uri);
 //        tv_success.setText(currentItem.getStatus());
+//        Log.d("doctor_n", currentItem.status);
 
         tvstatus.setText(currentItem.status);
         tvContent0.setText(currentItem.doctorName);

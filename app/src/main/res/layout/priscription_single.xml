@@ -20,7 +20,7 @@
             android:padding="5dp">
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/date"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/title"
@@ -51,7 +51,7 @@
             <!--android:textColor="@color/primary" />-->
 
             <TextView
-                android:id="@+id/status"
+                android:id="@+id/status1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"

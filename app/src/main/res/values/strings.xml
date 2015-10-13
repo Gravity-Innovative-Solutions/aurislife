@@ -90,7 +90,7 @@
     <string name="title_activity_uidtoken">Uidtoken</string>
     <string name="view_presc_details">Pull to view recent prescription uploads</string>
     <string name="view_ehr_details">Pull to view recent EHR uploads</string>
-    <string name="view_priscription_details">Pull to view Priscription details</string>
+    <string name="view_priscription_details">Pull to view Prescription details</string>
     <string name="view_rcnt_transactions">Pull to view recent recharges</string>
     <string name="initializing">Initializing prescription upload</string>
     <string name="initializing_file_upload">Initializing file upload</string>
