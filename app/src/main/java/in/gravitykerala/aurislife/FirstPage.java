@@ -144,8 +144,11 @@ public class FirstPage extends AppCompatActivity {
             startActivity(i);
         }
         if (id == R.id.logout) {
+            SplashPage.clearUserToken(this);
 //            Intent i = new Intent(FirstPage.this, SplashPage.class);
 //            startActivity(i);
+
+
         }
         return super.onOptionsItemSelected(item);
     }

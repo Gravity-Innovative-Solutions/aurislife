@@ -180,12 +180,15 @@ public class SplashPage extends AppCompatActivity {
         }
     }
 
-    private static void clearUserToken(Context context) {
+    public static void clearUserToken(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(SHAREDPREFFILE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(USERIDPREF, "undefined");
         editor.putString(TOKENPREF, "undefined");
         editor.apply();
+        new LoginDialog(context);
+        //  android.os.Process.killProcess(android.os.Process.myPid());
+        // System.exit(1);
     }
 
     public static void Storetok(Context context) {
