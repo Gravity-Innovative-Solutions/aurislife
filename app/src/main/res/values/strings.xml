@@ -83,6 +83,7 @@
     <string name="otp_verification">Verify Phone Number</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="title_activity_change_password">Change Password</string>
+    <string name="logout">Logout</string>
     <string name="title_activity_transaction">Transaction</string>
     <string name="title_activity_recent_transactions">Recent Transactions</string>
     <string name="title_activity_priscription_details">Prescription Details</string>
