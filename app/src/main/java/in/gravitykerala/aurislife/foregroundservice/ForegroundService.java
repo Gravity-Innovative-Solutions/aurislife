@@ -27,7 +27,6 @@ import com.google.common.util.concurrent.ListenableFuture;
 import com.microsoft.azure.storage.StorageCredentialsSharedAccessSignature;
 import com.microsoft.azure.storage.blob.CloudBlobContainer;
 import com.microsoft.azure.storage.blob.CloudBlockBlob;
-import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 
 import java.io.InputStream;
 import java.net.URI;
@@ -140,7 +139,7 @@ public class ForegroundService extends Service {
 
     public void submit(String prescriptionid) {
 
-
+        Log.d("UpdateStatusPresc:", "PrescriptionID" + prescriptionid);
         List<Pair<String, String>> parameters = new ArrayList<>();
         parameters.add(new Pair<>("PrescriptionId", prescriptionid));
         ListenableFuture<String> result = SplashPage.mClient.invokeApi("UpdateStatusPrescription", null, "POST", parameters, String.class);
@@ -164,8 +163,8 @@ public class ForegroundService extends Service {
                 exc.printStackTrace();
                 //RequestFailed
                 Toast.makeText(ForegroundService.this, "Uploading failed", Toast.LENGTH_LONG).show();
-                Log.d("UpdateStatusPresc:", getString(R.string.pres_upld_failed));
-                Log.d("UpdateStatusPresc:", getString(R.string.req_err));
+                Log.d("UpdateStatusPresc:", "Failed; Updating prescription status");
+//                Log.d("UpdateStatusPresc:", getString(R.string.req_err));
                 wakelockRelease();
                 stopSelf();
             }
