@@ -53,7 +53,7 @@ public class SignupActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        SplashPage.initializeMclient(this);
+        AzureMobileServiceAuris.initialize(this);
         spinner_districts = (Spinner) findViewById(R.id.spinner_districts);
         try {
             mClient = new MobileServiceClient(SplashPage.APINAME, SplashPage.APIKEY, this);
@@ -65,7 +65,7 @@ public class SignupActivity extends AppCompatActivity {
             //TODO check for Netowrk connectivity and add Exception handling
 
         }
-        //mClient = SplashPage.mClient;
+        //mClient = A;
         CheckBox checkbox = (CheckBox) findViewById(R.id.checkBox);
 
         CheckBox checkbox_add_ref = (CheckBox) findViewById(R.id.add_referror);

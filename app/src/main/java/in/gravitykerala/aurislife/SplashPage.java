@@ -44,26 +44,26 @@ public class SplashPage extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 1300;
     double versionCode = BuildConfig.VERSION_CODE;
 
-    public static void initializeMclient(Context context) {
-
-        if (SplashPage.mClient == null) {
-            try {
-                SplashPage.mClient = new MobileServiceClient(APINAME, APIKEY, context).withFilter(new RefreshTokenCacheFilter());
-
-                // Authenticate passing false to load the current token cache if available.
-                authenticate(false, context);
-//                Log.d("PushNotification:", "registering");
-//                NotificationsManager.handleNotifications(context, GCM_PUSH_SENDER_ID, PushNotificationHandler.class);
-//                Log.d("PushNotification:", "registered");
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-                //TODO check for Netowrk connectivity and add Exception handling
-
-            }
-        } else {
-            mClient.setContext(context);
-        }
-    }
+//    public static void initializeMclient(Context context) {
+//
+//        if (Azure == null) {
+//            try {
+//                Azure = new MobileServiceClient(APINAME, APIKEY, context).withFilter(new RefreshTokenCacheFilter());
+//
+//                // Authenticate passing false to load the current token cache if available.
+//                authenticate(false, context);
+////                Log.d("PushNotification:", "registering");
+////                NotificationsManager.handleNotifications(context, GCM_PUSH_SENDER_ID, PushNotificationHandler.class);
+////                Log.d("PushNotification:", "registered");
+//            } catch (MalformedURLException e) {
+//                e.printStackTrace();
+//                //TODO check for Netowrk connectivity and add Exception handling
+//
+//            }
+//        } else {
+//            mClient.setContext(context);
+//        }
+//    }
 
     private static boolean loadUserTokenCache(final Context context) {
         SharedPreferences prefs = context.getSharedPreferences(SHAREDPREFFILE, Context.MODE_PRIVATE);
@@ -83,13 +83,13 @@ public class SplashPage extends AppCompatActivity {
         return true;
     }
 
-    public static void cacheUserToken(MobileServiceUser user, Context context) {
-        SharedPreferences prefs = context.getSharedPreferences(SHAREDPREFFILE, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(USERIDPREF, user.getUserId());
-        editor.putString(TOKENPREF, user.getAuthenticationToken());
-        editor.apply();
-    }
+//    public static void cacheUserToken(MobileServiceUser user, Context context) {
+//        SharedPreferences prefs = context.getSharedPreferences(SHAREDPREFFILE, Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = prefs.edit();
+//        editor.putString(USERIDPREF, user.getUserId());
+//        editor.putString(TOKENPREF, user.getAuthenticationToken());
+//        editor.apply();
+//    }
 
     /**
      * Authenticates with the desired login provider. Also caches the token.
@@ -191,16 +191,16 @@ public class SplashPage extends AppCompatActivity {
         // System.exit(1);
     }
 
-    public static void Storetok(Context context) {
-
-
-        String userId = PrefUtils.getFromPrefs(context, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
-        String tok = PrefUtils.getFromPrefs(context, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
-        MobileServiceUser user = new MobileServiceUser(userId);
-        user.setAuthenticationToken(tok);
-        mClient.setCurrentUser(user);
-
-    }
+//    public static void Storetok(Context context) {
+//
+//
+//        String userId = PrefUtils.getFromPrefs(context, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
+//        String tok = PrefUtils.getFromPrefs(context, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
+//        MobileServiceUser user = new MobileServiceUser(userId);
+//        user.setAuthenticationToken(tok);
+//        mClient.setCurrentUser(user);
+//
+//    }
 
     public void updationcheck() {
 
@@ -221,7 +221,7 @@ public class SplashPage extends AppCompatActivity {
                     return 0;
                 }
             };
-            ListenableFuture<VersionCheck> result = SplashPage.mClient.invokeApi("VersionCheck", VersionCheck.class);
+            ListenableFuture<VersionCheck> result = AzureMobileServiceAuris.client.invokeApi("VersionCheck", VersionCheck.class);
 
             Futures.addCallback(result, new FutureCallback<VersionCheck>() {
                 @Override
@@ -268,7 +268,7 @@ public class SplashPage extends AppCompatActivity {
             public void run() {
                 // This method will be executed once the timer is over
                 // Start your app main activity
-                initializeMclient(SplashPage.this);
+                AzureMobileServiceAuris.initialize(SplashPage.this);
 //                usertok();
                 isOnline();
                 updationcheck();

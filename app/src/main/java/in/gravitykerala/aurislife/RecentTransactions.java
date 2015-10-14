@@ -32,7 +32,7 @@ public class RecentTransactions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recent_transactions);
-        SplashPage.initializeMclient(this);
+        AzureMobileServiceAuris.initialize(this);
         // SplashPage.Storetok(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
@@ -71,10 +71,10 @@ public class RecentTransactions extends AppCompatActivity {
                 android.R.color.holo_blue_light);
         mSwipeLayout.setEnabled(true);
 
-        // mClient = SplashPage.mClient;
+        // mClient = AzureMobileServiceAuris.client;
         // Get the Mobile Service Table instance to use
 
-        mToDoTable = SplashPage.mClient.getTable(MobileTransactions.class);
+        mToDoTable = AzureMobileServiceAuris.client.getTable(MobileTransactions.class);
 
         // mTextNewToDo = (EditText) findViewById(R.id.textNewToDo);
 

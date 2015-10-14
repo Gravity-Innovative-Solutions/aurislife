@@ -108,7 +108,7 @@ public class OTPverification extends AppCompatActivity {
                     return 0;
                 }
             };
-            SplashPage.mClient.invokeApi("OTPRetrieval", String.class, new ApiOperationCallback<String>() {
+            AzureMobileServiceAuris.client.invokeApi("OTPRetrieval", String.class, new ApiOperationCallback<String>() {
                 @Override
                 public void onCompleted(String result, Exception exception, ServiceFilterResponse response) {
                     if (exception == null) {
@@ -147,7 +147,7 @@ public class OTPverification extends AppCompatActivity {
                 return 0;
             }
         };
-        SplashPage.mClient.invokeApi("OTPVerification?Password=" + tv.getText().toString(), String.class, new ApiOperationCallback<String>() {
+        AzureMobileServiceAuris.client.invokeApi("OTPVerification?Password=" + tv.getText().toString(), String.class, new ApiOperationCallback<String>() {
             @Override
             public void onCompleted(String result, Exception exception, ServiceFilterResponse response) {
                 if (exception == null) {

@@ -33,6 +33,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import in.gravitykerala.aurislife.AzureMobileServiceAuris;
 import in.gravitykerala.aurislife.FirstPage;
 import in.gravitykerala.aurislife.R;
 import in.gravitykerala.aurislife.SplashPage;
@@ -56,7 +57,7 @@ public class HealthRecordService extends Service {
 
         Log.i(LOG_TAG, "Received Start HealthRecord Intent ");
 
-        SplashPage.initializeMclient(this);
+        AzureMobileServiceAuris.initialize(this);
         mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -143,7 +144,7 @@ public class HealthRecordService extends Service {
 
         List<Pair<String, String>> parameters = new ArrayList<>();
         parameters.add(new Pair<>("HealthRecordDocumentId", prescriptionid));
-        ListenableFuture<String> result = SplashPage.mClient.invokeApi("UpdateStatusHealthRecordUpload", null, "POST", parameters, String.class);
+        ListenableFuture<String> result = AzureMobileServiceAuris.client.invokeApi("UpdateStatusHealthRecordUpload", null, "POST", parameters, String.class);
         Futures.addCallback(result, new FutureCallback<String>() {
             @Override
             public void onFailure(Throwable exc) {

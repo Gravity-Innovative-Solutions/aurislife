@@ -110,8 +110,8 @@ public class LoginDialog extends Dialog {
 
                 MobileServiceClient mClientLogin = null;
                 try {
-                    mClientLogin = new MobileServiceClient(SplashPage.APINAME,
-                            SplashPage.APIKEY,
+                    mClientLogin = new MobileServiceClient(AzureMobileServiceAuris.APP_URL,
+                            AzureMobileServiceAuris.APP_KEY,
                             context);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -122,23 +122,23 @@ public class LoginDialog extends Dialog {
                     //TODO convert to non-deprecated function; remember about Synchronization
                     @Override
                     public void onCompleted(CustomLoginResult result, Exception exception, ServiceFilterResponse response) {
-                        synchronized (SplashPage.mAuthenticationLock) {
+                        synchronized (AzureMobileServiceAuris.mAuthenticationLock) {
                             if (exception == null) {
                                 Log.d("LoginDialog:", "Success");
                                 String userId = result.uId.replace("CUSTOM:", "");
                                 MobileServiceUser user = new MobileServiceUser(userId);
                                 String tok = result.Mtoken;
                                 user.setAuthenticationToken(tok);
-                                SplashPage.mClient.setCurrentUser(user);
-                                SplashPage.cacheUserToken(SplashPage.mClient.getCurrentUser(), context);
+                                AzureMobileServiceAuris.client.setCurrentUser(user);
+                                AzureMobileServiceAuris.cacheUserToken(AzureMobileServiceAuris.client.getCurrentUser(), context);
                                 Log.d("Result_SUCCESS_UID", userId);
                                 Log.d("Result_SUCCESS_Token", tok);
 
 //                            Intent intent = new Intent(getApplicationContext(), Attendance_marking.class);
 //                            startActivity(intent);
 //                            finish();
-                                SplashPage.bAuthenticating = false;
-                                SplashPage.mAuthenticationLock.notifyAll();
+                                AzureMobileServiceAuris.bAuthenticating = false;
+                                AzureMobileServiceAuris.mAuthenticationLock.notifyAll();
                                 if (context instanceof SplashPage) {
                                     Intent i = new Intent(context, FirstPage.class);
                                     context.startActivity(i);
