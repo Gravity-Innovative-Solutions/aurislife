@@ -42,7 +42,7 @@ public class Transaction extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
-        SplashPage.initializeMclient(this);
+        AzureMobileServiceAuris.initialize(this);
         //SplashPage.Storetok(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
@@ -53,8 +53,8 @@ public class Transaction extends AppCompatActivity {
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar_3);
         mProgressBar.setVisibility(ProgressBar.GONE);
 
-        // mClient = SplashPage.mClient;
-        mToDoTable = SplashPage.mClient.getTable(MobileTransactions.class);
+        // mClient = AzureMobileServiceAuris.client;
+        mToDoTable = AzureMobileServiceAuris.client.getTable(MobileTransactions.class);
         phn = (EditText) findViewById(R.id.input_phn);
         sbmt = (Button) findViewById(R.id.submit);
         spnr = (Spinner) findViewById(R.id.spinner);
@@ -139,7 +139,7 @@ public class Transaction extends AppCompatActivity {
     }
 
     public void addItem() {
-        if (SplashPage.mClient == null) {
+        if (AzureMobileServiceAuris.client == null) {
             return;
         }
 

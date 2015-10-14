@@ -37,13 +37,13 @@ public class Detail extends AppCompatActivity {
         tv1 = (TextView) findViewById(R.id.textView3);
         tv2 = (TextView) findViewById(R.id.textView4);
         tv3 = (TextView) findViewById(R.id.textView6);
-        SplashPage.initializeMclient(this);
+        AzureMobileServiceAuris.initialize(this);
         //SplashPage.Storetok(this);
-        // mClient = SplashPage.mClient;
+        // mClient = AzureMobileServiceAuris.client;
 
         // Get the Mobile Service Table instance to use
 
-        mToDoTable = SplashPage.mClient.getTable("MobilePrescriptions", MobilePrescription.class);
+        mToDoTable = AzureMobileServiceAuris.client.getTable("MobilePrescriptions", MobilePrescription.class);
         GetItemsFromTable();
     }
 

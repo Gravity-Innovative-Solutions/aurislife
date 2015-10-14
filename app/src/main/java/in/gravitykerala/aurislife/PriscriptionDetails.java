@@ -76,13 +76,13 @@ public class PriscriptionDetails extends ActionBarActivity {
                 android.R.color.holo_green_light, android.R.color.holo_orange_light,
                 android.R.color.holo_blue_light);
         mSwipeLayout.setEnabled(true);
-        SplashPage.initializeMclient(this);
+        AzureMobileServiceAuris.initialize(this);
         // SplashPage.Storetok(this);
-        // mClient = SplashPage.mClient;
+        // mClient = AzureMobileServiceAuris.client;
 
         // Get the Mobile Service Table instance to use
 
-        mToDoTable = SplashPage.mClient.getTable("MobilePrescriptions", MobilePrescription.class);
+        mToDoTable = AzureMobileServiceAuris.client.getTable("MobilePrescriptions", MobilePrescription.class);
 
         // mTextNewToDo = (EditText) findViewById(R.id.textNewToDo);
 
@@ -117,7 +117,7 @@ public class PriscriptionDetails extends ActionBarActivity {
                 return 0;
             }
         };
-        ListenableFuture<MobilePriscriptionCustom.pelements[]> result = SplashPage.mClient.invokeApi("MobilePrescriptionsDetails", MobilePriscriptionCustom.pelements[].class);
+        ListenableFuture<MobilePriscriptionCustom.pelements[]> result = AzureMobileServiceAuris.client.invokeApi("MobilePrescriptionsDetails", MobilePriscriptionCustom.pelements[].class);
 
         Futures.addCallback(result, new FutureCallback<MobilePriscriptionCustom.pelements[]>() {
             @Override
