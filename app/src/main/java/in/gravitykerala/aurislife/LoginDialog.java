@@ -1,8 +1,10 @@
 package in.gravitykerala.aurislife;
 
+import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.design.widget.CoordinatorLayout;
 import android.util.Log;
 import android.view.View;
@@ -69,9 +71,12 @@ public class LoginDialog extends Dialog {
         progressBar = (ProgressBar) findViewById(R.id.progressBar_login);
         interactiveLayout = (LinearLayout) findViewById(R.id.layout_interactive);
         show();
-//        setTitle("Auris Life");
-        this.getWindow().setBackgroundDrawableResource(R.color.primary_lighter);
-        setTitle("Aurislife");
+        setTitle("Auris Life");
+        this.getWindow().setBackgroundDrawableResource(R.color.white);
+
+
+
+
 
 
         // loginSV = (ScrollView) findViewById(R.id.login_scrollview);
