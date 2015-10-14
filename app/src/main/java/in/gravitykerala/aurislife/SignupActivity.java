@@ -175,12 +175,15 @@ public class SignupActivity extends AppCompatActivity {
             Futures.addCallback(result, new FutureCallback<String>() {
                 @Override
                 public void onSuccess(String result) {
-                    Log.d("Success", result.toString());
+                    //  Log.d("Success", result.toString());
+                    onSignupSuccess();
                 }
+
 
                 @Override
                 public void onFailure(Throwable t) {
                     Log.d("Failed", result.toString());
+                    onSignupFailed();
                 }
             });
 
@@ -206,7 +209,7 @@ public class SignupActivity extends AppCompatActivity {
 
     public void onSignupSuccess() {
         _signupButton.setEnabled(true);
-        setResult(RESULT_OK, null);
+        Toast.makeText(getBaseContext(), "Registration Success", Toast.LENGTH_LONG).show();
         finish();
     }
 
@@ -214,6 +217,7 @@ public class SignupActivity extends AppCompatActivity {
         Toast.makeText(getBaseContext(), "Registration Failed", Toast.LENGTH_LONG).show();
 
         _signupButton.setEnabled(true);
+        finish();
     }
 
     public boolean validate() {

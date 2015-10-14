@@ -10,15 +10,20 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
+import java.util.AbstractList;
 import java.util.List;
 
 import in.gravitykerala.aurislife.model.MobilePrescription;
@@ -101,49 +106,47 @@ public class PriscriptionDetails extends ActionBarActivity {
 //        Toast.makeText(getBaseContext(), s,
 //                Toast.LENGTH_LONG).show();
     public void refreshItemsFromTable() {
-
-        // Get the items that weren't marked as completed and add them in the
-        // adapter
-
-        new AsyncTask<Void, Void, Void>() {
+        List<Pair<String, String>> parameters = new AbstractList<Pair<String, String>>() {
             @Override
-
-            protected Void doInBackground(Void... params) {
-                try {
-                    final List<MobilePrescription> results =
-                            mToDoTable.where().execute().get();
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            mSwipeLayout.setRefreshing(false);
-                            if (results.size() == 0) {
-                                Toast.makeText(PriscriptionDetails.this, R.string.no_prescription, Toast.LENGTH_LONG).show();
-
-                            } else {
-                                for (MobilePrescription item : results) {
-                                    mAdapter.add(item);
-                                    pull.setVisibility(View.GONE);
-                                }
-                            }
-                        }
-                    });
-                } catch (Exception e) {
-                    e.printStackTrace();
-
-                    createAndShowDialog(e, "Error");
-
-
-                }
+            public Pair<String, String> get(int i) {
                 return null;
             }
 
-            protected void onPostExecute(Void results) {
-                super.onPostExecute(results);
-//
+            @Override
+            public int size() {
+                return 0;
             }
-        }.execute();
+        };
+        ListenableFuture<MobilePriscriptionCustom.pelements[]> result = SplashPage.mClient.invokeApi("MobilePrescriptionsDetails", MobilePriscriptionCustom.pelements[].class);
 
+        Futures.addCallback(result, new FutureCallback<MobilePriscriptionCustom.pelements[]>() {
+            @Override
+            public void onFailure(Throwable exc) {
+                exc.printStackTrace();
+                Log.d("Output", "" + exc);
+                //createAndShowDialog((Exception) exc, "Error");
+            }
+
+            @Override
+            public void onSuccess(MobilePriscriptionCustom.pelements[] result) {
+                String[] r = null;
+                String r1 = "";
+
+                // List<MobileHealthRecordCustom> s = result.length;
+                if (result.length == 0) {
+                    mSwipeLayout.setRefreshing(false);
+                    Toast.makeText(PriscriptionDetails.this, "No Item", Toast.LENGTH_LONG).show();
+                } else {
+                    for (MobilePriscriptionCustom.pelements item1 : result) {
+
+                        mSwipeLayout.setRefreshing(false);
+                        mAdapter.add(item1);
+                    }
+                }
+
+            }
+        });
+        // mSwipeLayout.setRefreshing(false);
         mAdapter.clear();
     }
 

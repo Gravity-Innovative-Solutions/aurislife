@@ -34,8 +34,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class SplashPage extends AppCompatActivity {
     public static final Object mAuthenticationLock = new Object();
     public static final String SHAREDPREFFILE = "temp";
-    public static final String APINAME = "https://gravityaurislife.azure-mobile.net/";
-    public static final String APIKEY = "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68";
+    public static final String APINAME = "https://aurisbackup.azure-mobile.net/";            //"https://gravityaurislife.azure-mobile.net/";
+    public static final String APIKEY = "ZybfZmcYlbhGSFFMeVGSXavrmRBLOY96";             //"eaQlkccAUXuRPnafjDXCNaDjxrrDTG68";
     public static final String USERIDPREF = "uid";
     public static final String TOKENPREF = "tkn";
     public static boolean bAuthenticating = false;
@@ -180,12 +180,15 @@ public class SplashPage extends AppCompatActivity {
         }
     }
 
-    private static void clearUserToken(Context context) {
+    public static void clearUserToken(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(SHAREDPREFFILE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(USERIDPREF, "undefined");
         editor.putString(TOKENPREF, "undefined");
         editor.apply();
+        new LoginDialog(context);
+        //  android.os.Process.killProcess(android.os.Process.myPid());
+        // System.exit(1);
     }
 
     public static void Storetok(Context context) {

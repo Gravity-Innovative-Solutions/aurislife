@@ -72,7 +72,7 @@ public class ForegroundService extends Service {
                 .setContentTitle(getString(R.string.presc_upld))
                 .setTicker(getString(R.string.uplding_prgrs))
                 .setContentText(getString(R.string.uplding_prgrs))
-                .setSmallIcon(R.drawable.ic_not_aurislife)
+                .setSmallIcon(R.mipmap.icon_app)
                 .setProgress(0, 0, true)
                 .setContentIntent(pendingIntent)
                 .setOngoing(true).build();

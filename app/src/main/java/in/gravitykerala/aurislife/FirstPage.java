@@ -143,6 +143,13 @@ public class FirstPage extends AppCompatActivity {
             Intent i = new Intent(FirstPage.this, ChangePasswordActivity.class);
             startActivity(i);
         }
+        if (id == R.id.logout) {
+            SplashPage.clearUserToken(this);
+//            Intent i = new Intent(FirstPage.this, SplashPage.class);
+//            startActivity(i);
+
+
+        }
         return super.onOptionsItemSelected(item);
     }
 

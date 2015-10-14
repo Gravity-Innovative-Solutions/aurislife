@@ -13,9 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="@string/view_presc_details"
+        android:text="@string/view_priscription_details"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/primary" />
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_container"
         android:layout_width="match_parent"
@@ -24,8 +25,8 @@
 
         <ListView
             android:id="@+id/list"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
 
             android:dividerHeight="1dp"
             android:listSelector="@drawable/list_selector" />

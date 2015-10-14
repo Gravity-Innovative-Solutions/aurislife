@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AurisLife</string>
+    <string name="app_name">Aurislife</string>
 
     <string name="newpassword">New Password</string>
     <string name="confirm_pswd">Confirm Password</string>
@@ -83,6 +83,7 @@
     <string name="otp_verification">Verify Phone Number</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="title_activity_change_password">Change Password</string>
+    <string name="logout">Logout</string>
     <string name="title_activity_transaction">Transaction</string>
     <string name="title_activity_recent_transactions">Recent Transactions</string>
     <string name="title_activity_priscription_details">Prescription Details</string>
@@ -90,6 +91,7 @@
     <string name="title_activity_uidtoken">Uidtoken</string>
     <string name="view_presc_details">Pull to view recent prescription uploads</string>
     <string name="view_ehr_details">Pull to view recent EHR uploads</string>
+    <string name="view_priscription_details">Pull to view Prescription details</string>
     <string name="view_rcnt_transactions">Pull to view recent recharges</string>
     <string name="initializing">Initializing prescription upload</string>
     <string name="initializing_file_upload">Initializing file upload</string>

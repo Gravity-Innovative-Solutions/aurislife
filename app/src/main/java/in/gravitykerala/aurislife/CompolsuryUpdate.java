@@ -17,7 +17,6 @@ public class CompolsuryUpdate extends Dialog {
         setTitle("Update Alert");
 
 
-
         Button btn = (Button) findViewById(R.id.button9);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
