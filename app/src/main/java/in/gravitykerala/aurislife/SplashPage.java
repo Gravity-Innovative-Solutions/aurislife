@@ -34,8 +34,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class SplashPage extends AppCompatActivity {
     public static final Object mAuthenticationLock = new Object();
     public static final String SHAREDPREFFILE = "temp";
-    public static final String APINAME = "https://aurisbackup.azure-mobile.net/";            //"https://gravityaurislife.azure-mobile.net/";
-    public static final String APIKEY = "ZybfZmcYlbhGSFFMeVGSXavrmRBLOY96";             //"eaQlkccAUXuRPnafjDXCNaDjxrrDTG68";
+    public static final String APINAME = "https://gravityaurislife.azure-mobile.net/";// "https://aurisbackup.azure-mobile.net/";
+    public static final String APIKEY = "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68";// "ZybfZmcYlbhGSFFMeVGSXavrmRBLOY96";             //
     public static final String USERIDPREF = "uid";
     public static final String TOKENPREF = "tkn";
     public static boolean bAuthenticating = false;
