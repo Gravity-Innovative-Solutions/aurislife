@@ -105,7 +105,7 @@ public class ForegroundService extends Service {
                             .setContentTitle(getString(R.string.presc_upld))
                             .setTicker(getString(R.string.pres_upld_failed))
                             .setContentText(getString(R.string.pres_upld_failed_bcoz_nw_issue))
-                            .setSmallIcon(R.drawable.ic_not_aurislife)
+                            .setSmallIcon(R.mipmap.icon_app)
                             .setContentIntent(pendingIntent)
                             .setOngoing(false).build();
                     stopForeground(true);
@@ -155,7 +155,7 @@ public class ForegroundService extends Service {
                         .setContentTitle(getString(R.string.presc_upld))
                         .setTicker(getString(R.string.pres_upld_failed))
                         .setContentText(getString(R.string.pres_upld_failed_bcoz_nw_issue))
-                        .setSmallIcon(R.drawable.ic_not_aurislife)
+                        .setSmallIcon(R.mipmap.icon_app)
                         .setContentIntent(pendingIntent)
                         .setOngoing(false).build();
                 stopForeground(true);
@@ -181,7 +181,7 @@ public class ForegroundService extends Service {
                         .setContentTitle(getString(R.string.presc_upld))
                         .setTicker(getString(R.string.pres_upld_success))
                         .setContentText(getString(R.string.upld_finished))
-                        .setSmallIcon(R.drawable.ic_not_aurislife)
+                        .setSmallIcon(R.mipmap.icon_app)
                         .setContentIntent(pendingIntent)
                         .setOngoing(false).build();
 

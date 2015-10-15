@@ -421,6 +421,9 @@ public class UploadFragment extends Fragment {
                 MimeTypeMap mime = MimeTypeMap.getSingleton();
                 selectedFileExtention = mime.getExtensionFromMimeType(cR.getType(fileUri));
 
+                if (selectedFileExtention == null || selectedFileExtention.contains("null")) {
+                    selectedFileExtention = "jpg";
+                }
                 previewCapturedImage();
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 // user cancelled Image capture
