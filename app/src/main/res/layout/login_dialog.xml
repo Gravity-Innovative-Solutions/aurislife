@@ -24,6 +24,12 @@
         <!--android:src="@drawable/logo_auris" />-->
 
 
+        <!--<ImageView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:src="@drawable/icon"-->
+        <!--android:id="@+id/imageView3" />-->
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

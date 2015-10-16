@@ -33,6 +33,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import in.gravitykerala.aurislife.AzureMobileServiceAuris;
 import in.gravitykerala.aurislife.FirstPage;
 import in.gravitykerala.aurislife.R;
 import in.gravitykerala.aurislife.SplashPage;
@@ -55,7 +56,7 @@ public class ForegroundService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         Log.i(LOG_TAG, "Received Start Foreground Intent ");
-        SplashPage.initializeMclient(this);
+        AzureMobileServiceAuris.initialize(this);
         mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -72,7 +73,7 @@ public class ForegroundService extends Service {
                 .setContentTitle(getString(R.string.presc_upld))
                 .setTicker(getString(R.string.uplding_prgrs))
                 .setContentText(getString(R.string.uplding_prgrs))
-                .setSmallIcon(R.mipmap.icon_app)
+                .setSmallIcon(R.drawable.icon_app_notification)
                 .setProgress(0, 0, true)
                 .setContentIntent(pendingIntent)
                 .setOngoing(true).build();
@@ -104,7 +105,7 @@ public class ForegroundService extends Service {
                             .setContentTitle(getString(R.string.presc_upld))
                             .setTicker(getString(R.string.pres_upld_failed))
                             .setContentText(getString(R.string.pres_upld_failed_bcoz_nw_issue))
-                            .setSmallIcon(R.drawable.ic_not_aurislife)
+                            .setSmallIcon(R.drawable.icon_app_notification)
                             .setContentIntent(pendingIntent)
                             .setOngoing(false).build();
                     stopForeground(true);
@@ -142,7 +143,7 @@ public class ForegroundService extends Service {
         Log.d("UpdateStatusPresc:", "PrescriptionID" + prescriptionid);
         List<Pair<String, String>> parameters = new ArrayList<>();
         parameters.add(new Pair<>("PrescriptionId", prescriptionid));
-        ListenableFuture<String> result = SplashPage.mClient.invokeApi("UpdateStatusPrescription", null, "POST", parameters, String.class);
+        ListenableFuture<String> result = AzureMobileServiceAuris.client.invokeApi("UpdateStatusPrescription", null, "POST", parameters, String.class);
         Futures.addCallback(result, new FutureCallback<String>() {
             @Override
             public void onFailure(Throwable exc) {
@@ -154,7 +155,7 @@ public class ForegroundService extends Service {
                         .setContentTitle(getString(R.string.presc_upld))
                         .setTicker(getString(R.string.pres_upld_failed))
                         .setContentText(getString(R.string.pres_upld_failed_bcoz_nw_issue))
-                        .setSmallIcon(R.drawable.ic_not_aurislife)
+                        .setSmallIcon(R.drawable.icon_app_notification)
                         .setContentIntent(pendingIntent)
                         .setOngoing(false).build();
                 stopForeground(true);
@@ -180,7 +181,7 @@ public class ForegroundService extends Service {
                         .setContentTitle(getString(R.string.presc_upld))
                         .setTicker(getString(R.string.pres_upld_success))
                         .setContentText(getString(R.string.upld_finished))
-                        .setSmallIcon(R.drawable.ic_not_aurislife)
+                        .setSmallIcon(R.drawable.icon_app_notification)
                         .setContentIntent(pendingIntent)
                         .setOngoing(false).build();
 

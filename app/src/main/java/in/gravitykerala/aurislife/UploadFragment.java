@@ -115,9 +115,9 @@ public class UploadFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        SplashPage.initializeMclient(getActivity());
+        AzureMobileServiceAuris.initialize(getActivity());
         // SplashPage.Storetok(getActivity());
-        //mClient = SplashPage.mClient;
+        //mClient = Azure;
 
         View rootView = inflater.inflate(R.layout.activity_upload, container, false);
         imgPreview = (ImageView) rootView.findViewById(R.id.imgPreview);
@@ -126,8 +126,8 @@ public class UploadFragment extends Fragment {
         scrollView_upload = (ScrollView) rootView.findViewById(R.id.scrollView_upload);
         progressBar_upload = (ProgressBar) rootView.findViewById(R.id.progressBar_upload);
         btnPickImage = (ImageButton) rootView.findViewById(R.id.btnPickFile);
-        mPrescriptionsTable = SplashPage.mClient.getTable("MobilePrescriptions", MobilePrescription.class);
-        mPrescriptionUploadTable = SplashPage.mClient.getTable("MobilePrescriptionUpload", MobilePrescriptionUpload.class);
+        mPrescriptionsTable = AzureMobileServiceAuris.client.getTable("MobilePrescriptions", MobilePrescription.class);
+        mPrescriptionUploadTable = AzureMobileServiceAuris.client.getTable("MobilePrescriptionUpload", MobilePrescriptionUpload.class);
 
         uploadPrescription.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,7 +198,7 @@ public class UploadFragment extends Fragment {
 
         List<Pair<String, String>> parameters = new ArrayList<>();
         parameters.add(new Pair<>("PrescriptionId", prescriptionid));
-        ListenableFuture<String> result = SplashPage.mClient.invokeApi("UpdateStatusPrescription", null, "POST", parameters, String.class);
+        ListenableFuture<String> result = AzureMobileServiceAuris.client.invokeApi("UpdateStatusPrescription", null, "POST", parameters, String.class);
         Futures.addCallback(result, new FutureCallback<String>() {
             @Override
             public void onFailure(Throwable exc) {
@@ -278,7 +278,7 @@ public class UploadFragment extends Fragment {
 
                             Intent forgroundService = new Intent(getActivity(), ForegroundService.class);
                             ForegroundService.imageUploaddata = imageUpload;
-                            //ForegroundService.mClient = SplashPage.mClient;
+                            //ForegroundService.mClient = Azure;
                             ForegroundService.prescriptionId = resultPrescription.getId();
                             getActivity().startService(forgroundService);
 
@@ -421,6 +421,9 @@ public class UploadFragment extends Fragment {
                 MimeTypeMap mime = MimeTypeMap.getSingleton();
                 selectedFileExtention = mime.getExtensionFromMimeType(cR.getType(fileUri));
 
+                if (selectedFileExtention == null || selectedFileExtention.contains("null")) {
+                    selectedFileExtention = "jpg";
+                }
                 previewCapturedImage();
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 // user cancelled Image capture

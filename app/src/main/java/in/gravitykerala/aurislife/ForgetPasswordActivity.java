@@ -33,7 +33,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_forget_password);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         try {
-            mClient = new MobileServiceClient(SplashPage.APINAME, SplashPage.APIKEY, this);
+            mClient = new MobileServiceClient(AzureMobileServiceAuris.APP_URL, AzureMobileServiceAuris.APP_KEY, this);
 //                Log.d("PushNotification:", "registering");
 //                NotificationsManager.handleNotifications(context, GCM_PUSH_SENDER_ID, PushNotificationHandler.class);
 //                Log.d("PushNotification:", "registered");
@@ -46,10 +46,10 @@ public class ForgetPasswordActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        SplashPage.initializeMclient(this);
+        AzureMobileServiceAuris.initialize(this);
 
 //        try {
-//            SplashPage.mClient = new MobileServiceClient("https://gravityaurislife.azure-mobile.net", "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68", this);
+//            Az = new MobileServiceClient("https://gravityaurislife.azure-mobile.net", "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68", this);
 ////
 //        } catch (MalformedURLException e) {
 //            e.printStackTrace();
