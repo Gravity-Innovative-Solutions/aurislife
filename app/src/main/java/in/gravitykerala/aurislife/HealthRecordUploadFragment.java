@@ -106,9 +106,9 @@ public class HealthRecordUploadFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        AzureMobileServiceAuris.initialize(getActivity());
+        AzureMobileService.initialize(getActivity());
         // SplashPage.Storetok(getActivity());
-//        mClient = AzureMobileServiceAuris.client;
+//        mClient = AzureMobileService.client;
 
         View rootView = inflater.inflate(R.layout.health_record_upload, container, false);
 //        imgPreview = (ImageView) rootView.findViewById(R.id.imgPreview);
@@ -122,8 +122,8 @@ public class HealthRecordUploadFragment extends Fragment {
         et_doctorName = (EditText) rootView.findViewById(R.id.editText_doctorName);
         scrollView_upload = (ScrollView) rootView.findViewById(R.id.scrollView_upload);
         progressBar_upload = (ProgressBar) rootView.findViewById(R.id.progressBar_upload);
-        mHealthRecord = AzureMobileServiceAuris.client.getTable("MobileHealthRecord", MobileHealthRecord.class);
-        mHealthRecordDocument = AzureMobileServiceAuris.client.getTable("MobileHealthRecordDocument", MobileHealthRecordDocument.class);
+        mHealthRecord = AzureMobileService.client.getTable("MobileHealthRecord", MobileHealthRecord.class);
+        mHealthRecordDocument = AzureMobileService.client.getTable("MobileHealthRecordDocument", MobileHealthRecordDocument.class);
 
         btnUploadDocument.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,7 +183,7 @@ public class HealthRecordUploadFragment extends Fragment {
 
         List<Pair<String, String>> parameters = new ArrayList<>();
         parameters.add(new Pair<>("PrescriptionId", prescriptionid));
-        ListenableFuture<String> result = AzureMobileServiceAuris.client.invokeApi("UpdateStatusHealthRecordDocument", null, "POST", parameters, String.class);
+        ListenableFuture<String> result = AzureMobileService.client.invokeApi("UpdateStatusHealthRecordDocument", null, "POST", parameters, String.class);
         Futures.addCallback(result, new FutureCallback<String>() {
             @Override
             public void onFailure(Throwable exc) {

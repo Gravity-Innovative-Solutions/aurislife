@@ -1,10 +1,8 @@
 package in.gravitykerala.aurislife;
 
-import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.support.design.widget.CoordinatorLayout;
 import android.util.Log;
 import android.view.View;
@@ -115,8 +113,8 @@ public class LoginDialog extends Dialog {
 
                 MobileServiceClient mClientLogin = null;
                 try {
-                    mClientLogin = new MobileServiceClient(AzureMobileServiceAuris.APP_URL,
-                            AzureMobileServiceAuris.APP_KEY,
+                    mClientLogin = new MobileServiceClient(AzureMobileService.API_URL,
+                            AzureMobileService.API_KEY,
                             context);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -127,23 +125,23 @@ public class LoginDialog extends Dialog {
                     //TODO convert to non-deprecated function; remember about Synchronization
                     @Override
                     public void onCompleted(CustomLoginResult result, Exception exception, ServiceFilterResponse response) {
-                        synchronized (AzureMobileServiceAuris.mAuthenticationLock) {
+                        synchronized (AzureMobileService.mAuthenticationLock) {
                             if (exception == null) {
                                 Log.d("LoginDialog:", "Success");
                                 String userId = result.uId.replace("CUSTOM:", "");
                                 MobileServiceUser user = new MobileServiceUser(userId);
                                 String tok = result.Mtoken;
                                 user.setAuthenticationToken(tok);
-                                AzureMobileServiceAuris.client.setCurrentUser(user);
-                                AzureMobileServiceAuris.cacheUserToken(AzureMobileServiceAuris.client.getCurrentUser(), context);
+                                AzureMobileService.client.setCurrentUser(user);
+                                AzureMobileService.cacheUserToken(AzureMobileService.client.getCurrentUser(), context);
                                 Log.d("Result_SUCCESS_UID", userId);
                                 Log.d("Result_SUCCESS_Token", tok);
 
 //                            Intent intent = new Intent(getApplicationContext(), Attendance_marking.class);
 //                            startActivity(intent);
 //                            finish();
-                                AzureMobileServiceAuris.bAuthenticating = false;
-                                AzureMobileServiceAuris.mAuthenticationLock.notifyAll();
+                                AzureMobileService.bAuthenticating = false;
+                                AzureMobileService.mAuthenticationLock.notifyAll();
                                 if (context instanceof SplashPage) {
                                     Intent i = new Intent(context, FirstPage.class);
                                     context.startActivity(i);

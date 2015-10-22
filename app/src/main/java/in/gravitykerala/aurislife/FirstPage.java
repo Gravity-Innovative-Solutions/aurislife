@@ -71,9 +71,9 @@ public class FirstPage extends AppCompatActivity {
 //        uid=getIntent().getExtras().getString("Uid");
 //        token=getIntent().getExtras().getString("Tok");
 
-        AzureMobileServiceAuris.initialize(this);
+        AzureMobileService.initialize(this);
         // SplashPage.Storetok(this);
-        //mClient = AzureMobileServiceAuris.client;
+        //mClient = AzureMobileService.client;
 //            String userId = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_USERNAME_KEY, "default");
 //            String tok = PrefUtils.getFromPrefs(FirstPage.this, PrefUtils.PREFS_LOGIN_PASSWORD_KEY, "default");
 //            if (userId.equals("default") && tok.equals("default")) {
@@ -144,7 +144,7 @@ public class FirstPage extends AppCompatActivity {
             startActivity(i);
         }
         if (id == R.id.logout) {
-            AzureMobileServiceAuris.clearUserToken(this);
+            AzureMobileService.clearUserToken(this);
 //            Intent i = new Intent(FirstPage.this, SplashPage.class);
 //            startActivity(i);
 
@@ -203,7 +203,7 @@ public class FirstPage extends AppCompatActivity {
             mProgressBar = (ProgressBar) rootView.findViewById(R.id.progressBar_CourseSelection);
             mProgressBar.setVisibility(ProgressBar.GONE);
 //            mProgressBar.setBackgroundColor(Color.RED);
-            mToDoTable = AzureMobileServiceAuris.client.getTable(MobileProfile.class);
+            mToDoTable = AzureMobileService.client.getTable(MobileProfile.class);
             tv = (TextView) rootView.findViewById(R.id.textView_points);
             tv1 = (TextView) rootView.findViewById(R.id.textView_email);
             tv2 = (TextView) rootView.findViewById(R.id.textView_phn);

@@ -1,8 +1,8 @@
 package in.gravitykerala.aurislife;
 
 import android.app.ProgressDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Pair;
 import android.view.Menu;
@@ -33,7 +33,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_forget_password);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         try {
-            mClient = new MobileServiceClient(AzureMobileServiceAuris.APP_URL, AzureMobileServiceAuris.APP_KEY, this);
+            mClient = new MobileServiceClient(AzureMobileService.API_URL, AzureMobileService.API_KEY, this);
 //                Log.d("PushNotification:", "registering");
 //                NotificationsManager.handleNotifications(context, GCM_PUSH_SENDER_ID, PushNotificationHandler.class);
 //                Log.d("PushNotification:", "registered");
@@ -46,7 +46,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        AzureMobileServiceAuris.initialize(this);
+        AzureMobileService.initialize(this);
 
 //        try {
 //            Az = new MobileServiceClient("https://gravityaurislife.azure-mobile.net", "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68", this);

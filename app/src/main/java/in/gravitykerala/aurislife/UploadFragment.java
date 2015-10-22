@@ -115,7 +115,7 @@ public class UploadFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        AzureMobileServiceAuris.initialize(getActivity());
+        AzureMobileService.initialize(getActivity());
         // SplashPage.Storetok(getActivity());
         //mClient = Azure;
 
@@ -126,8 +126,8 @@ public class UploadFragment extends Fragment {
         scrollView_upload = (ScrollView) rootView.findViewById(R.id.scrollView_upload);
         progressBar_upload = (ProgressBar) rootView.findViewById(R.id.progressBar_upload);
         btnPickImage = (ImageButton) rootView.findViewById(R.id.btnPickFile);
-        mPrescriptionsTable = AzureMobileServiceAuris.client.getTable("MobilePrescriptions", MobilePrescription.class);
-        mPrescriptionUploadTable = AzureMobileServiceAuris.client.getTable("MobilePrescriptionUpload", MobilePrescriptionUpload.class);
+        mPrescriptionsTable = AzureMobileService.client.getTable("MobilePrescriptions", MobilePrescription.class);
+        mPrescriptionUploadTable = AzureMobileService.client.getTable("MobilePrescriptionUpload", MobilePrescriptionUpload.class);
 
         uploadPrescription.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,7 +198,7 @@ public class UploadFragment extends Fragment {
 
         List<Pair<String, String>> parameters = new ArrayList<>();
         parameters.add(new Pair<>("PrescriptionId", prescriptionid));
-        ListenableFuture<String> result = AzureMobileServiceAuris.client.invokeApi("UpdateStatusPrescription", null, "POST", parameters, String.class);
+        ListenableFuture<String> result = AzureMobileService.client.invokeApi("UpdateStatusPrescription", null, "POST", parameters, String.class);
         Futures.addCallback(result, new FutureCallback<String>() {
             @Override
             public void onFailure(Throwable exc) {
@@ -264,6 +264,7 @@ public class UploadFragment extends Fragment {
                         String imageName = df.format(new Date());
 
                         mobilePrescriptionUpload.setResourceName(imageName + "." + selectedFileExtention);
+                        Log.d("Upload:SelectedFileExt:", selectedFileExtention);
 
                         MobilePrescriptionUpload resultImageUpload = mPrescriptionUploadTable.insert(mobilePrescriptionUpload).get();
 
@@ -421,9 +422,12 @@ public class UploadFragment extends Fragment {
                 MimeTypeMap mime = MimeTypeMap.getSingleton();
                 selectedFileExtention = mime.getExtensionFromMimeType(cR.getType(fileUri));
 
+                Log.d("Initia:SelectedFileExt:", selectedFileExtention);
+
                 if (selectedFileExtention == null || selectedFileExtention.contains("null")) {
                     selectedFileExtention = "jpg";
                 }
+                Log.d("LastSelectedFileExt:", selectedFileExtention);
                 previewCapturedImage();
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 // user cancelled Image capture

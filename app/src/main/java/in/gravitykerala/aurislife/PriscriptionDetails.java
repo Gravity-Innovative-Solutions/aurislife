@@ -4,14 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.Pair;
-import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -20,7 +18,6 @@ import android.widget.Toast;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
 import java.util.AbstractList;
@@ -76,13 +73,13 @@ public class PriscriptionDetails extends ActionBarActivity {
                 android.R.color.holo_green_light, android.R.color.holo_orange_light,
                 android.R.color.holo_blue_light);
         mSwipeLayout.setEnabled(true);
-        AzureMobileServiceAuris.initialize(this);
+        AzureMobileService.initialize(this);
         // SplashPage.Storetok(this);
-        // mClient = AzureMobileServiceAuris.client;
+        // mClient = AzureMobileService.client;
 
         // Get the Mobile Service Table instance to use
 
-        mToDoTable = AzureMobileServiceAuris.client.getTable("MobilePrescriptions", MobilePrescription.class);
+        mToDoTable = AzureMobileService.client.getTable("MobilePrescriptions", MobilePrescription.class);
 
         // mTextNewToDo = (EditText) findViewById(R.id.textNewToDo);
 
@@ -117,7 +114,7 @@ public class PriscriptionDetails extends ActionBarActivity {
                 return 0;
             }
         };
-        ListenableFuture<MobilePriscriptionCustom.pelements[]> result = AzureMobileServiceAuris.client.invokeApi("MobilePrescriptionsDetails", MobilePriscriptionCustom.pelements[].class);
+        ListenableFuture<MobilePriscriptionCustom.pelements[]> result = AzureMobileService.client.invokeApi("MobilePrescriptionsDetails", MobilePriscriptionCustom.pelements[].class);
 
         Futures.addCallback(result, new FutureCallback<MobilePriscriptionCustom.pelements[]>() {
             @Override

@@ -53,10 +53,10 @@ public class SignupActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        AzureMobileServiceAuris.initialize(this);
+        AzureMobileService.initialize(this);
         spinner_districts = (Spinner) findViewById(R.id.spinner_districts);
         try {
-            mClient = new MobileServiceClient(SplashPage.APINAME, SplashPage.APIKEY, this);
+            mClient = new MobileServiceClient(AzureMobileService.API_URL, AzureMobileService.API_KEY, this);
 //                Log.d("PushNotification:", "registering");
 //                NotificationsManager.handleNotifications(context, GCM_PUSH_SENDER_ID, PushNotificationHandler.class);
 //                Log.d("PushNotification:", "registered");

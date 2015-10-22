@@ -14,7 +14,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
 import java.util.List;
@@ -32,7 +31,7 @@ public class RecentTransactions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recent_transactions);
-        AzureMobileServiceAuris.initialize(this);
+        AzureMobileService.initialize(this);
         // SplashPage.Storetok(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
@@ -71,10 +70,10 @@ public class RecentTransactions extends AppCompatActivity {
                 android.R.color.holo_blue_light);
         mSwipeLayout.setEnabled(true);
 
-        // mClient = AzureMobileServiceAuris.client;
+        // mClient = AzureMobileService.client;
         // Get the Mobile Service Table instance to use
 
-        mToDoTable = AzureMobileServiceAuris.client.getTable(MobileTransactions.class);
+        mToDoTable = AzureMobileService.client.getTable(MobileTransactions.class);
 
         // mTextNewToDo = (EditText) findViewById(R.id.textNewToDo);
 

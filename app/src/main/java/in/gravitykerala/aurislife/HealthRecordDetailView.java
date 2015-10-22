@@ -78,13 +78,13 @@ public class HealthRecordDetailView extends AppCompatActivity {
                 android.R.color.holo_green_light, android.R.color.holo_orange_light,
                 android.R.color.holo_blue_light);
         mSwipeLayout.setEnabled(true);
-        AzureMobileServiceAuris.initialize(this);
+        AzureMobileService.initialize(this);
         // SplashPage.Storetok(this);
-        // mClient = AzureMobileServiceAuris.client;
+        // mClient = AzureMobileService.client;
 
         // Get the Mobile Service Table instance to use
 
-        // mToDoTable = AzureMobileServiceAuris.client.getTable("MobileHealthRecordCustom", MobileHealthRecordCustom.class);
+        // mToDoTable = AzureMobileService.client.getTable("MobileHealthRecordCustom", MobileHealthRecordCustom.class);
 
         // mTextNewToDo = (EditText) findViewById(R.id.textNewToDo);
 
@@ -119,7 +119,7 @@ public class HealthRecordDetailView extends AppCompatActivity {
                 return 0;
             }
         };
-        ListenableFuture<MobileHealthRecordCustom.elements[]> result = AzureMobileServiceAuris.client.invokeApi("MobileHealthRecordDetails", MobileHealthRecordCustom.elements[].class);
+        ListenableFuture<MobileHealthRecordCustom.elements[]> result = AzureMobileService.client.invokeApi("MobileHealthRecordDetails", MobileHealthRecordCustom.elements[].class);
 
         Futures.addCallback(result, new FutureCallback<MobileHealthRecordCustom.elements[]>() {
             @Override

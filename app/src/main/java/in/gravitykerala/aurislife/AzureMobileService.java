@@ -22,13 +22,13 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * Created by Prakash on 9/26/2015.
  */
-public class AzureMobileServiceAuris {
+public class AzureMobileService {
     public static final Object mAuthenticationLock = new Object();
     public static final String SHARED_PREF_KEY = "ZUMO";
     public static final String USERID_PREF = "USER_ID";
     public static final String TOKEN_PREF = "TOKEN";
-    public static final String APP_URL = "https://aurisbackup.azure-mobile.net/";            //"https://gravityaurislife.azure-mobile.net/";
-    public static final String APP_KEY = "ZybfZmcYlbhGSFFMeVGSXavrmRBLOY96";             //"eaQlkccAUXuRPnafjDXCNaDjxrrDTG68";
+    public static final String API_URL = "https://gravityaurislife.azure-mobile.net/";// "https://aurisbackup.azure-mobile.net/";
+    public static final String API_KEY = "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68";// "ZybfZmcYlbhGSFFMeVGSXavrmRBLOY96";             //
     public static boolean bAuthenticating = false;
     public static MobileServiceClient client;
 
@@ -44,7 +44,7 @@ public class AzureMobileServiceAuris {
     public static void initialize(Context context) {
         if (client == null) {
             try {
-                client = new MobileServiceClient(APP_URL, APP_KEY, context).withFilter(new RefreshTokenCacheFilter());
+                client = new MobileServiceClient(API_URL, API_KEY, context).withFilter(new RefreshTokenCacheFilter());
 
                 // Authenticate passing false to load the current token cache if available.
                 authenticate(false, context);

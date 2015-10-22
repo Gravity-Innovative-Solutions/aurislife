@@ -39,9 +39,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
         NewPwd = (EditText) findViewById(R.id.input_new_password);
         ReNpwd = (EditText) findViewById(R.id.input_new_confirm_password);
         Submit = (Button) findViewById(R.id.button);
-        AzureMobileServiceAuris.initialize(this);
+        AzureMobileService.initialize(this);
         // SplashPage.Storetok(this);
-        //mClient = AzureMobileServiceAuris.client;
+        //mClient = AzureMobileService.client;
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,7 +84,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             String rnew_pwd_s = ReNpwd.getText().toString();
 
 
-            AzureMobileServiceAuris.client.invokeApi("ChangePassword", req, String.class, new ApiOperationCallback<String>() {
+            AzureMobileService.client.invokeApi("ChangePassword", req, String.class, new ApiOperationCallback<String>() {
                 @Override
                 public void onCompleted(String result, Exception exception, ServiceFilterResponse response) {
                     if (exception == null) {

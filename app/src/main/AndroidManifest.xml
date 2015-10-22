@@ -84,10 +84,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Uidtoken"
-            android:label="@string/title_activity_uidtoken"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".ForgetPasswordActivity"
             android:label="@string/title_activity_forget_password"

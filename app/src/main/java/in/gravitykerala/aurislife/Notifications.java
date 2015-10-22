@@ -36,8 +36,8 @@ public class Notifications extends AppCompatActivity {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        AzureMobileServiceAuris.initialize(this);
-        mToDoTable = AzureMobileServiceAuris.client.getTable("MobileNotifications", MobileNotifications.Exam.class);
+        AzureMobileService.initialize(this);
+        mToDoTable = AzureMobileService.client.getTable("MobileNotifications", MobileNotifications.Exam.class);
         mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
