@@ -27,8 +27,15 @@ public class AzureMobileService {
     public static final String SHARED_PREF_KEY = "ZUMO";
     public static final String USERID_PREF = "USER_ID";
     public static final String TOKEN_PREF = "TOKEN";
-    public static final String API_URL = "https://gravityaurislife.azure-mobile.net/";// "https://aurisbackup.azure-mobile.net/";
-    public static final String API_KEY = "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68";// "ZybfZmcYlbhGSFFMeVGSXavrmRBLOY96";             //
+
+//    public static final String DEBUG_API_URL = "https://aurisbackup.azure-mobile.net/";
+//    public static final String DEBUG_API_KEY = "ZybfZmcYlbhGSFFMeVGSXavrmRBLOY96";
+    public static final String RELEASE_API_URL = "https://gravityaurislife.azure-mobile.net/";
+    public static final String RELEASE_API_KEY = "eaQlkccAUXuRPnafjDXCNaDjxrrDTG68";
+
+    public static final String API_URL = RELEASE_API_URL;
+    public static final String API_KEY = RELEASE_API_KEY;
+
     public static boolean bAuthenticating = false;
     public static MobileServiceClient client;
 

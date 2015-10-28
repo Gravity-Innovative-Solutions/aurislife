@@ -144,7 +144,7 @@
                 android:value="in.gravitykerala.aurislife.FirstPage" />
         </activity>
         <activity
-            android:name="com.aurislife.Developer_info"
+            android:name=".Developer_info"
             android:label="@string/title_activity_developer_info"
             android:theme="@style/AppTheme.Dark">
         </activity>
